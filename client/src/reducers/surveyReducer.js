@@ -7,8 +7,8 @@ import {
 
 export const initialState = {
   email: '',
-  existingSupporter: '',
   firstName: '',
+  isExistingSupporter: '',
   lastName: '',
   mobilePhoneNumber: '',
   officePhoneNumber: '',

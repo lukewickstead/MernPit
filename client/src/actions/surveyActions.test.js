@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 
 import {
-  applicantEmailBackAction,
-  applicantEmailNextAction,
-  applicantNameBackAction,
-  applicantNameNextAction,
-  applicantPhoneNumberBackAction,
-  applicantPhoneNumberNextAction,
+  putApplicantEmailBackAction,
+  putApplicantEmailNextAction,
+  putApplicantNameBackAction,
+  putApplicantNameNextAction,
+  putApplicantPhoneNumberBackAction,
+  putApplicantPhoneNumberNextAction,
   putApplicantEmailIntoStateAction,
   putApplicantNameIntoStateAction,
   putApplicantPhoneNumberIntoStateAction,
@@ -81,7 +81,7 @@ describe('surveyActions', () => {
 
   describe('applicantNameNextAction', () => {
     it('should return the correct action type and value', () => {
-      expect(applicantNameNextAction('Test FirstName', 'Test Last Name'))
+      expect(putApplicantNameNextAction('Test FirstName', 'Test Last Name'))
         .to.deep.equal({
           type: APPLICANT_NAME__NEXT,
           data: {
@@ -94,7 +94,7 @@ describe('surveyActions', () => {
 
   describe('applicantNameNextAction', () => {
     it('should return the correct action type and value', () => {
-      expect(applicantNameBackAction('Test FirstName', 'Test Last Name'))
+      expect(putApplicantNameBackAction('Test FirstName', 'Test Last Name'))
         .to.deep.equal({ type: APPLICANT_NAME__BACK });
     });
   });
@@ -113,7 +113,7 @@ describe('surveyActions', () => {
 
     describe('applicantPhoneNumberNextAction', () => {
       it('should return the correct action type and value', () => {
-        expect(applicantPhoneNumberNextAction('Test OfficeNo', 'Test Mobile No'))
+        expect(putApplicantPhoneNumberNextAction('Test OfficeNo', 'Test Mobile No'))
           .to.deep.equal({
             type: APPLICANT_PHONE_NOS__NEXT,
             data: {
@@ -126,7 +126,7 @@ describe('surveyActions', () => {
 
     describe('applicantPhoneNumberBackAction', () => {
       it('should return the correct action type and value', () => {
-        expect(applicantPhoneNumberBackAction())
+        expect(putApplicantPhoneNumberBackAction())
           .to.deep.equal({ type: APPLICANT_PHONE_NOS__BACK });
       });
     });
@@ -145,7 +145,7 @@ describe('surveyActions', () => {
 
     describe('applicantPhoneNumberNextAction', () => {
       it('should return the correct action type and value', () => {
-        expect(applicantEmailNextAction('Test Email'))
+        expect(putApplicantEmailNextAction('Test Email'))
           .to.deep.equal({
             type: APPLICANT_EMAIL__NEXT,
             data: {
@@ -157,7 +157,7 @@ describe('surveyActions', () => {
 
     describe('applicantEmailBackAction', () => {
       it('should return the correct action type and value', () => {
-        expect(applicantEmailBackAction())
+        expect(putApplicantEmailBackAction())
           .to.deep.equal({ type: APPLICANT_EMAIL__BACK });
       });
     });

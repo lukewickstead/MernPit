@@ -9,7 +9,7 @@ import {
 } from '../actions/surveyActions';
 
 describe('applicantReducer ', () => {
-  const stubbedIsExistingSupporter = 'Test Is Supporter';
+  const stubbedIsExistingSupporter = 'Test IS SUPPORTER';
   const stubbedEmail = 'TEST EMAIL';
   const stubbedFirstName = 'TEST FIRST NAME';
   const stubbedLastName = 'TEST LAST NAME';
@@ -19,7 +19,7 @@ describe('applicantReducer ', () => {
   it('should return the initial state', () => {
     expect(surveyReducer(undefined, {})).deep.equal({
       email: '',
-      existingSupporter: '',
+      isExistingSupporter: '',
       firstName: '',
       lastName: '',
       mobilePhoneNumber: '',

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import QuestionText from '../../components/Widgets/QuestionText';
 import SubmitBackButtons from '../../components/Widgets/SubmitBackButtons';
 import { validateApplicantFirstName, validateApplicantLastName } from '../../validation/applicantValidation';
-import { applicantNameBackAction, applicantNameNextAction } from '../../actions/surveyActions';
+import { putApplicantNameBackAction, putApplicantNameNextAction } from '../../actions/surveyActions';
 import { APPLICANT_NAME__BACK, APPLICANT_NAME__NEXT } from '../../constants/actions/surveyActionConstants';
 
 import {
@@ -75,7 +75,7 @@ class ApplicantName extends React.Component {
   }
 
   handleSubmit = (event) => {
-    const { applicantNameNextActionHandler } = this.props;
+    const { putApplicantNameNextActionHandler } = this.props;
     const {
       firstName,
       lastName,
@@ -89,14 +89,14 @@ class ApplicantName extends React.Component {
         lastNameIsVisited: true,
       });
     } else {
-      applicantNameNextActionHandler(firstName, lastName);
+      putApplicantNameNextActionHandler(firstName, lastName);
       event.preventDefault();
     }
   }
 
   handleBack = (event) => {
-    const { applicantNameBackActionHandler } = this.props;
-    applicantNameBackActionHandler();
+    const { putApplicantNameBackActionHandler } = this.props;
+    putApplicantNameBackActionHandler();
     event.preventDefault();
   }
 
@@ -159,8 +159,8 @@ class ApplicantName extends React.Component {
 }
 
 ApplicantName.propTypes = {
-  applicantNameBackActionHandler: PropTypes.func.isRequired,
-  applicantNameNextActionHandler: PropTypes.func.isRequired,
+  putApplicantNameBackActionHandler: PropTypes.func.isRequired,
+  putApplicantNameNextActionHandler: PropTypes.func.isRequired,
   applicantLastNameGlobal: PropTypes.string.isRequired,
   applicantFirstNameGlobal: PropTypes.string.isRequired,
 };
@@ -171,9 +171,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  applicantNameBackActionHandler: () => dispatch(applicantNameBackAction()),
-  applicantNameNextActionHandler: (firstName, lastName) => {
-    dispatch(applicantNameNextAction(firstName, lastName));
+  putApplicantNameBackActionHandler: () => dispatch(putApplicantNameBackAction()),
+  putApplicantNameNextActionHandler: (firstName, lastName) => {
+    dispatch(putApplicantNameNextAction(firstName, lastName));
   },
 });
 

@@ -37,7 +37,7 @@ export function putExistingSupporterBackAction() {
   };
 }
 
-export function applicantNameNextAction(firstName, lastName) {
+export function putApplicantNameNextAction(firstName, lastName) {
   return {
     type: APPLICANT_NAME__NEXT,
     data: {
@@ -57,11 +57,11 @@ export function putApplicantNameIntoStateAction(firstName, lastName) {
   };
 }
 
-export function applicantNameBackAction() {
+export function putApplicantNameBackAction() {
   return { type: APPLICANT_NAME__BACK };
 }
 
-export function applicantEmailNextAction(email) {
+export function putApplicantEmailNextAction(email) {
   return {
     type: APPLICANT_EMAIL__NEXT,
     data: {
@@ -79,11 +79,11 @@ export function putApplicantEmailIntoStateAction(email) {
   };
 }
 
-export function applicantEmailBackAction() {
+export function putApplicantEmailBackAction() {
   return { type: APPLICANT_EMAIL__BACK };
 }
 
-export function applicantPhoneNumberNextAction(officePhoneNumber, mobilePhoneNumber) {
+export function putApplicantPhoneNumberNextAction(officePhoneNumber, mobilePhoneNumber) {
   return {
     type: APPLICANT_PHONE_NOS__NEXT,
     data: {
@@ -103,6 +103,6 @@ export function putApplicantPhoneNumberIntoStateAction(officePhoneNumber, mobile
   };
 }
 
-export function applicantPhoneNumberBackAction() {
+export function putApplicantPhoneNumberBackAction() {
   return { type: APPLICANT_PHONE_NOS__BACK };
 }

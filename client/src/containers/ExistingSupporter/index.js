@@ -11,12 +11,12 @@ class ExistingSupporter extends React.Component {
   constructor(props) {
     super(props);
 
-    const existingSupporterIsValid = this.isValid(props.existingSupporterGlobal);
+    const isExistingSupporterIsValid = this.isValid(props.isExistingSupporterGlobal);
 
     this.state = {
-      existingSupporter: props.existingSupporterGlobal,
-      existingSupporterIsInvalid: !existingSupporterIsValid,
-      existingSupporterIsVisited: false,
+      isExistingSupporter: props.isExistingSupporterGlobal,
+      isExistingSupporterIsInvalid: !isExistingSupporterIsValid,
+      isExistingSupporterIsVisited: false,
     };
   }
 
@@ -34,17 +34,17 @@ class ExistingSupporter extends React.Component {
 
   handleSubmit = (event) => {
     const {
-      existingSupporter,
-      existingSupporterIsInvalid,
+      isExistingSupporter,
+      isExistingSupporterIsInvalid,
     } = this.state;
     const { putExistingSupporterNextActionHandler } = this.props;
 
-    if (existingSupporterIsInvalid) {
+    if (isExistingSupporterIsInvalid) {
       this.setState({
-        existingSupporterIsVisited: true,
+        isExistingSupporterIsVisited: true,
       });
     } else {
-      putExistingSupporterNextActionHandler(existingSupporter);
+      putExistingSupporterNextActionHandler(isExistingSupporter);
       event.preventDefault();
     }
   }
@@ -57,9 +57,9 @@ class ExistingSupporter extends React.Component {
 
   render() {
     const {
-      existingSupporter,
-      existingSupporterIsInvalid,
-      existingSupporterIsVisited,
+      isExistingSupporter,
+      isExistingSupporterIsInvalid,
+      isExistingSupporterIsVisited,
     } = this.state;
 
     return (
@@ -70,9 +70,9 @@ class ExistingSupporter extends React.Component {
 
             <ExistingSupporterOptions
               handleInputChange={this.handleInputChange}
-              value={existingSupporter}
-              isInvalid={existingSupporterIsInvalid}
-              isVisited={existingSupporterIsVisited}
+              value={isExistingSupporter}
+              isInvalid={isExistingSupporterIsInvalid}
+              isVisited={isExistingSupporterIsVisited}
             />
 
             <SubmitBackButtons
@@ -90,12 +90,12 @@ class ExistingSupporter extends React.Component {
 
 ExistingSupporter.propTypes = {
   putExistingSupporterBackActionHandler: PropTypes.func.isRequired,
-  existingSupporterGlobal: PropTypes.string.isRequired,
+  isExistingSupporterGlobal: PropTypes.string.isRequired,
   putExistingSupporterNextActionHandler: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  existingSupporterGlobal: state.survey.existingSupporter,
+  isExistingSupporterGlobal: state.survey.isExistingSupporter,
 });
 
 const mapDispatchToProps = (dispatch) => ({

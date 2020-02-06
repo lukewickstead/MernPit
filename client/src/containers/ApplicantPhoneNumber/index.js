@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import QuestionNumber from '../../components/Widgets/QuestionNumber';
 import SubmitBackButtons from '../../components/Widgets/SubmitBackButtons';
 import { APPLICANT_PHONE_NOS__NEXT, APPLICANT_PHONE_NOS__BACK } from '../../constants/actions/surveyActionConstants';
-import { applicantPhoneNumberBackAction, applicantPhoneNumberNextAction } from '../../actions/surveyActions';
+import { putApplicantPhoneNumberBackAction, putApplicantPhoneNumberNextAction } from '../../actions/surveyActions';
 
 import {
   APPLICANT_MOBILE_PHONE_NUMBER,
@@ -73,7 +73,7 @@ class ApplicantPhoneNumber extends React.Component {
   }
 
   handleSubmit = (event) => {
-    const { applicantPhoneNumberNextActionHandler } = this.props;
+    const { putApplicantPhoneNumberNextActionHandler } = this.props;
     const {
       mobilePhoneNumber,
       mobilePhoneNumberIsInvalid,
@@ -87,14 +87,14 @@ class ApplicantPhoneNumber extends React.Component {
         officePhoneNumberIsVisited: true,
       });
     } else {
-      applicantPhoneNumberNextActionHandler(officePhoneNumber, mobilePhoneNumber);
+      putApplicantPhoneNumberNextActionHandler(officePhoneNumber, mobilePhoneNumber);
       event.preventDefault();
     }
   }
 
   handleBack = (event) => {
-    const { applicantPhoneNumberBackActionHandler } = this.props;
-    applicantPhoneNumberBackActionHandler();
+    const { putApplicantPhoneNumberBackActionHandler } = this.props;
+    putApplicantPhoneNumberBackActionHandler();
     event.preventDefault();
   }
 
@@ -157,8 +157,8 @@ class ApplicantPhoneNumber extends React.Component {
 }
 
 ApplicantPhoneNumber.propTypes = {
-  applicantPhoneNumberBackActionHandler: PropTypes.func.isRequired,
-  applicantPhoneNumberNextActionHandler: PropTypes.func.isRequired,
+  putApplicantPhoneNumberBackActionHandler: PropTypes.func.isRequired,
+  putApplicantPhoneNumberNextActionHandler: PropTypes.func.isRequired,
   applicantMobilePhoneNumberGlobal: PropTypes.string.isRequired,
   applicantOfficePhoneNumberGlobal: PropTypes.string.isRequired,
 };
@@ -169,9 +169,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  applicantPhoneNumberBackActionHandler: () => dispatch(applicantPhoneNumberBackAction()),
-  applicantPhoneNumberNextActionHandler: (officePhoneNumber, mobilePhoneNumber) => {
-    dispatch(applicantPhoneNumberNextAction(officePhoneNumber, mobilePhoneNumber));
+  putApplicantPhoneNumberBackActionHandler: () => dispatch(putApplicantPhoneNumberBackAction()),
+  putApplicantPhoneNumberNextActionHandler: (officePhoneNumber, mobilePhoneNumber) => {
+    dispatch(putApplicantPhoneNumberNextAction(officePhoneNumber, mobilePhoneNumber));
   },
 });
 

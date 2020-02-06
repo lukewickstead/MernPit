@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import QuestionText from '../../components/Widgets/QuestionText';
 import SubmitBackButtons from '../../components/Widgets/SubmitBackButtons';
-import { applicantEmailNextAction, applicantEmailBackAction } from '../../actions/surveyActions';
+import { putApplicantEmailNextAction, putApplicantEmailBackAction } from '../../actions/surveyActions';
 import { validateApplicantEmail } from '../../validation/applicantValidation';
 
 import {
@@ -54,7 +54,7 @@ class ApplicantName extends React.Component {
   isValid = (value) => validateApplicantEmail(value);
 
   handleSubmit = (event) => {
-    const { applicantEmailNextActionHandler } = this.props;
+    const { putApplicantEmailNextActionHandler } = this.props;
     const { email, emailIsInvalid } = this.state;
 
     if (emailIsInvalid) {
@@ -62,14 +62,14 @@ class ApplicantName extends React.Component {
         emailIsVisited: true,
       });
     } else {
-      applicantEmailNextActionHandler(email);
+      putApplicantEmailNextActionHandler(email);
       event.preventDefault();
     }
   }
 
   handleBack = (event) => {
-    const { applicantEmailBackActionHandler } = this.props;
-    applicantEmailBackActionHandler();
+    const { putApplicantEmailBackActionHandler } = this.props;
+    putApplicantEmailBackActionHandler();
     event.preventDefault();
   }
 
@@ -115,8 +115,8 @@ class ApplicantName extends React.Component {
 }
 
 ApplicantName.propTypes = {
-  applicantEmailBackActionHandler: PropTypes.func.isRequired,
-  applicantEmailNextActionHandler: PropTypes.func.isRequired,
+  putApplicantEmailBackActionHandler: PropTypes.func.isRequired,
+  putApplicantEmailNextActionHandler: PropTypes.func.isRequired,
   applicantEmailGlobal: PropTypes.string.isRequired,
 };
 
@@ -125,9 +125,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  applicantEmailBackActionHandler: () => dispatch(applicantEmailBackAction()),
-  applicantEmailNextActionHandler: (email) => {
-    dispatch(applicantEmailNextAction(email));
+  putApplicantEmailBackActionHandler: () => dispatch(putApplicantEmailBackAction()),
+  putApplicantEmailNextActionHandler: (email) => {
+    dispatch(putApplicantEmailNextAction(email));
   },
 });
 
