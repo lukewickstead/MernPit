@@ -7,9 +7,9 @@ import {
   applicantNameNextAction,
   applicantPhoneNumberBackAction,
   applicantPhoneNumberNextAction,
-  putApplicantEmailDataAction,
-  putApplicantNameDataAction,
-  putApplicantPhoneNumberDataAction,
+  putApplicantEmailIntoStateAction,
+  putApplicantNameIntoStateAction,
+  putApplicantPhoneNumberIntoStateAction,
   putExistingSupporterBackAction,
   putExistingSupporterIntoStateAction,
   putExistingSupporterNextAction,
@@ -68,7 +68,7 @@ describe('surveyActions', () => {
 
   describe('putApplicantNameDataAction', () => {
     it('should return the correct action type and value', () => {
-      expect(putApplicantNameDataAction('Test FirstName', 'Test Last Name'))
+      expect(putApplicantNameIntoStateAction('Test FirstName', 'Test Last Name'))
         .to.deep.equal({
           type: PUT__APPLICANT_NAME_INTO_STATE,
           data: {
@@ -101,7 +101,7 @@ describe('surveyActions', () => {
 
   describe('putApplicantPhoneNumberDataAction', () => {
     it('should return the correct action type and value', () => {
-      expect(putApplicantPhoneNumberDataAction('Test OfficeNo', 'Test Mobile No'))
+      expect(putApplicantPhoneNumberIntoStateAction('Test OfficeNo', 'Test Mobile No'))
         .to.deep.equal({
           type: PUT__APPLICANT_PHONE_NOS_INTO_STATE,
           data: {
@@ -134,7 +134,7 @@ describe('surveyActions', () => {
 
   describe('putApplicantEmailDataAction', () => {
     it('should return the correct action type and value', () => {
-      expect(putApplicantEmailDataAction('Test Email'))
+      expect(putApplicantEmailIntoStateAction('Test Email'))
         .to.deep.equal({
           type: PUT__APPLICANT_EMAIL_INTO_STATE,
           data: {

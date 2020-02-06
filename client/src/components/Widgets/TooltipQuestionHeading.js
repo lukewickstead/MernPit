@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  TOOL_TIP__TEXT,
   TOOL_TIP__NEWLINE,
   TOOL_TIP__NEWLINE_SINGLE,
+  TOOL_TIP__TEXT,
 } from '../../constants/common';
 
 import { TOOLTIP_CONFIG_PROP_TYPE } from '../../helpers/propTypeHelper';
@@ -62,11 +62,12 @@ class TooltipQuestionHeading extends React.Component {
         <div className="tooltip-question-heading-title">
           <h2>{title}</h2>
         </div>
+
         <div className="tooltip">
           <button id={tooltipId} type="button" className={cssClass} onClick={this.handleClick} />
-          { visible
-         && <span className="tooltip-text">{tooltip}</span>}
+          { visible && <span className="tooltip-text">{tooltip}</span>}
         </div>
+
         <div className="clear-tooltip" />
       </div>
     );

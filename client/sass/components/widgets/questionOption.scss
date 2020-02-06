@@ -9,12 +9,12 @@
         padding: 0px;
 
         li {
-            position: relative;
             background-color: white;
-            border: solid 2px $border-colour;  
-            transition: border $primary-transition-time ease-in-out;
             border-radius: 8px;  
+            border: solid 2px $border-colour;  
             margin-top: 16px;
+            position: relative;
+            transition: border $primary-transition-time ease-in-out;
 
             &.selected {
                 border: solid 2px $primary-colour;  
@@ -34,16 +34,17 @@
                 display: none;
             }
 
-            .question-title
+            .question-option-title
             {
-                width: 100%;
-                position: relative;
                 line-height: 1.44;
+                position: relative;
+                width: 100%;
+
                 label {
                     cursor: pointer;
                     display: inline-block;
-                    width: 100%;
                     padding: 15px 15px 15px 57px;
+                    width: 100%;
                 }
             }
         }

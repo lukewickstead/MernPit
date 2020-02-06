@@ -5,9 +5,9 @@ import QuestionOption from '../Widgets/QuestionOption';
 
 import {
   EXISTING_SUPPORTER__FIELD_NAME,
+  EXISTING_SUPPORTER__LABEL,
   EXISTING_SUPPORTER__NO,
   EXISTING_SUPPORTER__NO__DISPLAY,
-  EXISTING_SUPPORTER__LABEL,
   EXISTING_SUPPORTER__YES,
   EXISTING_SUPPORTER__YES__DISPLAY,
 } from '../../constants/surveyConstants';

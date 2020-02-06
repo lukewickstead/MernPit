@@ -47,7 +47,7 @@ export function applicantNameNextAction(firstName, lastName) {
   };
 }
 
-export function putApplicantNameDataAction(firstName, lastName) {
+export function putApplicantNameIntoStateAction(firstName, lastName) {
   return {
     type: PUT__APPLICANT_NAME_INTO_STATE,
     data: {
@@ -70,7 +70,7 @@ export function applicantEmailNextAction(email) {
   };
 }
 
-export function putApplicantEmailDataAction(email) {
+export function putApplicantEmailIntoStateAction(email) {
   return {
     type: PUT__APPLICANT_EMAIL_INTO_STATE,
     data: {
@@ -93,7 +93,7 @@ export function applicantPhoneNumberNextAction(officePhoneNumber, mobilePhoneNum
   };
 }
 
-export function putApplicantPhoneNumberDataAction(officePhoneNumber, mobilePhoneNumber) {
+export function putApplicantPhoneNumberIntoStateAction(officePhoneNumber, mobilePhoneNumber) {
   return {
     type: PUT__APPLICANT_PHONE_NOS_INTO_STATE,
     data: {

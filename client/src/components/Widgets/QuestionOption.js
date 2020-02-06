@@ -30,7 +30,7 @@ function QuestionOption({
         value={question.value}
       />
 
-      <div className="question-title">
+      <div className="question-option-title">
         <label htmlFor={question.value}>{question.title}</label>
       </div>
     </li>

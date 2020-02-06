@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 function SubmitBackButtons(
   {
-    handleSubmit,
-    handleBack,
-    forwardId,
-    forwardTitle,
     backId,
     backTitle,
+    forwardId,
+    forwardTitle,
+    handleBack,
+    handleSubmit,
   },
 ) {
   return (
@@ -20,17 +20,17 @@ function SubmitBackButtons(
 }
 
 SubmitBackButtons.defaultProps = {
-  forwardTitle: 'Continue',
   backTitle: 'Back',
+  forwardTitle: 'Continue',
 };
 
 SubmitBackButtons.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  handleBack: PropTypes.func.isRequired,
-  forwardId: PropTypes.string.isRequired,
-  forwardTitle: PropTypes.string,
   backId: PropTypes.string.isRequired,
   backTitle: PropTypes.string,
+  forwardId: PropTypes.string.isRequired,
+  forwardTitle: PropTypes.string,
+  handleBack: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default SubmitBackButtons;
