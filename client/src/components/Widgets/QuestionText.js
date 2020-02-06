@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ValidationMessage from './ValidationMessage';
 import TooltipQuestionHeading from './TooltipQuestionHeading';
 import { TOOLTIP_CONFIG_PROP_TYPE } from '../../helpers/propTypeHelper';
+import ValidationContainer from './ValidationContainer';
 
 function QuestionText({
   handleInputChange,
@@ -19,24 +19,27 @@ function QuestionText({
   validationMessage,
   value,
 }) {
-  const validInvalidStyle = `validation-container-${isInvalid ? 'invalid' : 'valid'}`;
-
   return (
-    <div className={`question-text-container validation-container validation-container-${isVisited ? 'visited' : 'not-visited'} ${value.length > 0 || isInvalid ? validInvalidStyle : ''}`}>
-      <TooltipQuestionHeading title={title} tooltipConfig={tooltipConfig} tooltipId={tooltipId} />
-      <div className="validation-input-wrapper">
-        <input
-          type="text"
-          id={id}
-          name={name}
-          value={value}
-          maxLength={maxLength}
-          onChange={handleInputChange}
-          onBlur={onblur}
-        />
-      </div>
-
-      { isInvalid && isVisited && <ValidationMessage validationMessage={validationMessage} /> }
+    <div className="question-text-container">
+      <ValidationContainer
+        isInvalid={isInvalid}
+        isVisited={isVisited}
+        validationMessage={validationMessage}
+        value={value}
+      >
+        <TooltipQuestionHeading title={title} tooltipConfig={tooltipConfig} tooltipId={tooltipId} />
+        <div className="validation-input-wrapper">
+          <input
+            id={id}
+            maxLength={maxLength}
+            name={name}
+            onBlur={onblur}
+            onChange={handleInputChange}
+            type="text"
+            value={value}
+          />
+        </div>
+      </ValidationContainer>
     </div>
   );
 }

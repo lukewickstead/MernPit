@@ -45,8 +45,6 @@ class ApplicantPhoneNumber extends React.Component {
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
-
-    console.log(`handleInputChange: ${name}, ${value}`);
     const validationMsg = this.isValid(name, value);
 
     this.setState({

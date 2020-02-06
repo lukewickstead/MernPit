@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 
 import ValidationMessage from './ValidationMessage';
 import TooltipQuestionHeading from './TooltipQuestionHeading';
-
 import { TOOLTIP_CONFIG_PROP_TYPE, QUESTIONS_CONFIG_PROP_TYPE } from '../../helpers/propTypeHelper';
 
 function QuestionOption({
-  handleInputChange, title, questionConfig, value, isInvalid, isVisited, tooltipConfig, tooltipId,
+  handleInputChange,
+  isInvalid,
+  isVisited,
+  questionConfig,
+  title,
+  tooltipConfig,
+  tooltipId,
+  value,
 }) {
   const questionItems = questionConfig.questions.map((question) => (
     <li
@@ -16,12 +22,12 @@ function QuestionOption({
     >
       <span className="radio-item" />
       <input
-        type="radio"
-        id={question.value}
-        value={question.value}
-        name={questionConfig.name}
         checked={value === question.value}
+        id={question.value}
+        name={questionConfig.name}
         onChange={handleInputChange}
+        type="radio"
+        value={question.value}
       />
 
       <div className="question-title">
@@ -37,7 +43,11 @@ function QuestionOption({
         {questionItems}
       </ul>
 
-      { isInvalid && isVisited && <ValidationMessage validationMessage="Select a response to continue" /> }
+      <ValidationMessage
+        isInvalid={isInvalid}
+        isVisited={isVisited}
+        validationMessage="Select a response to continue"
+      />
     </div>
   );
 }
