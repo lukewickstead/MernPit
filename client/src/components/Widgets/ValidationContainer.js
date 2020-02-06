@@ -1,19 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import ValidationMessage from './ValidationMessage';
 
 function ValidationContainer({
+  children,
   isInvalid,
   isVisited,
   validationMessage,
-  value,
-  children,
 }) {
-  const validInvalidStyle = `validation-container-${isInvalid ? 'invalid' : 'valid'}`;
-
+  const containerClassNames = classnames(
+    'validation-container',
+    { 'validation-container-invalid': isVisited && isInvalid },
+    { 'validation-container-valid': isVisited && !isInvalid },
+    { 'validation-container-visited': isVisited },
+    { 'validation-container-not-visited': !isVisited },
+  );
   return (
-    <div className={`validation-container validation-container-${isVisited ? 'visited' : 'not-visited'} ${value.length > 0 || isInvalid ? validInvalidStyle : ''}`}>
+    <div className={containerClassNames}>
       {children}
 
       <ValidationMessage
@@ -30,7 +35,6 @@ ValidationContainer.propTypes = {
   isInvalid: PropTypes.bool.isRequired,
   isVisited: PropTypes.bool.isRequired,
   validationMessage: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
 };
 
 export default ValidationContainer;
