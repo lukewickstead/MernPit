@@ -6,6 +6,7 @@ import ApplicantEmail from '../../containers/ApplicantEmail';
 import ApplicantName from '../../containers/ApplicantName';
 import ApplicantPhoneNumber from '../../containers/ApplicantPhoneNumber';
 import ExistingSupporter from '../../containers/ExistingSupporter';
+import SupporterExperience from '../../containers/SupporterExperience';
 import { STORE_PROP_TYPE, HISTORY_PROP_TYPE } from '../../helpers/propTypeHelper';
 
 import {
@@ -13,6 +14,7 @@ import {
   URL__EXISTING_SUPPORTER,
   URL__NAME,
   URL__PHONE_NUMBERS,
+  URL__SUPPORTER_EXPERIENCE,
 } from '../../constants/urlConstants';
 
 function App({
@@ -27,6 +29,7 @@ function App({
           <Route exact path={URL__NAME} component={ApplicantName} />
           <Route exact path={URL__PHONE_NUMBERS} component={ApplicantPhoneNumber} />
           <Route exact path={URL__EMAIL} component={ApplicantEmail} />
+          <Route exact path={URL__SUPPORTER_EXPERIENCE} component={SupporterExperience} />
         </Switch>
       </Router>
     </Provider>

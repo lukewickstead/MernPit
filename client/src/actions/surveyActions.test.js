@@ -2,17 +2,20 @@ import { expect } from 'chai';
 
 import {
   putApplicantEmailBackAction,
+  putApplicantEmailIntoStateAction,
   putApplicantEmailNextAction,
   putApplicantNameBackAction,
+  putApplicantNameIntoStateAction,
   putApplicantNameNextAction,
   putApplicantPhoneNumberBackAction,
-  putApplicantPhoneNumberNextAction,
-  putApplicantEmailIntoStateAction,
-  putApplicantNameIntoStateAction,
   putApplicantPhoneNumberIntoStateAction,
+  putApplicantPhoneNumberNextAction,
   putExistingSupporterBackAction,
   putExistingSupporterIntoStateAction,
   putExistingSupporterNextAction,
+  putSupporterExperienceBackAction,
+  putSupporterExperienceIntoStateAction,
+  putSupporterExperienceNextAction,
 } from './surveyActions';
 
 import {
@@ -28,17 +31,25 @@ import {
   PUT__APPLICANT_NAME_INTO_STATE,
   PUT__APPLICANT_PHONE_NOS_INTO_STATE,
   PUT__EXISTING_SUPPORTER_INTO_STATE,
+  PUT__SUPPORTER_EXPERIENCE_INTO_STATE,
+  SUPPORTER_EXPERIENCE__BACK,
+  SUPPORTER_EXPERIENCE__NEXT,
 } from '../constants/actions/surveyActionConstants';
 
 describe('surveyActions', () => {
+  const stubbedEmail = 'TEST EMAIL';
+  const stubbedFirstName = 'TEST FIRST NAME';
   const stubbedIsExistingSupporter = 'TEST IS CURRENT SUPPORTER';
+  const stubbedLastName = 'TEST LAST NAME';
+  const stubbedMatchesWatched = 'TEST MATCHES WATCHED';
+  const stubbedMobileNo = 'TEST MOBILE NUMBER';
+  const stubbedOfficeNo = 'TEST OFFICE NUMBER';
+  const stubbedShirtsOwned = 'TEST SHIRTS OWNED';
+  const stubbedYearsSupporting = 'TEST YEARS SUPPORTING';
 
   describe('when calling putExistingSupporterBackAction', () => {
     it('should return the correct action type and value', () => {
-      expect(putExistingSupporterBackAction())
-        .to.deep.equal({
-          type: EXISTING_SUPPORTER__BACK,
-        });
+      expect(putExistingSupporterBackAction()).to.deep.equal({ type: EXISTING_SUPPORTER__BACK });
     });
   });
 
@@ -68,12 +79,12 @@ describe('surveyActions', () => {
 
   describe('putApplicantNameDataAction', () => {
     it('should return the correct action type and value', () => {
-      expect(putApplicantNameIntoStateAction('Test FirstName', 'Test Last Name'))
+      expect(putApplicantNameIntoStateAction(stubbedFirstName, stubbedLastName))
         .to.deep.equal({
           type: PUT__APPLICANT_NAME_INTO_STATE,
           data: {
-            firstName: 'Test FirstName',
-            lastName: 'Test Last Name',
+            firstName: stubbedFirstName,
+            lastName: stubbedLastName,
           },
         });
     });
@@ -81,12 +92,12 @@ describe('surveyActions', () => {
 
   describe('applicantNameNextAction', () => {
     it('should return the correct action type and value', () => {
-      expect(putApplicantNameNextAction('Test FirstName', 'Test Last Name'))
+      expect(putApplicantNameNextAction(stubbedFirstName, stubbedLastName))
         .to.deep.equal({
           type: APPLICANT_NAME__NEXT,
           data: {
-            firstName: 'Test FirstName',
-            lastName: 'Test Last Name',
+            firstName: stubbedFirstName,
+            lastName: stubbedLastName,
           },
         });
     });
@@ -94,31 +105,30 @@ describe('surveyActions', () => {
 
   describe('applicantNameNextAction', () => {
     it('should return the correct action type and value', () => {
-      expect(putApplicantNameBackAction('Test FirstName', 'Test Last Name'))
-        .to.deep.equal({ type: APPLICANT_NAME__BACK });
+      expect(putApplicantNameBackAction()).to.deep.equal({ type: APPLICANT_NAME__BACK });
     });
   });
 
   describe('putApplicantPhoneNumberDataAction', () => {
     it('should return the correct action type and value', () => {
-      expect(putApplicantPhoneNumberIntoStateAction('Test OfficeNo', 'Test Mobile No'))
+      expect(putApplicantPhoneNumberIntoStateAction(stubbedOfficeNo, stubbedMobileNo))
         .to.deep.equal({
           type: PUT__APPLICANT_PHONE_NOS_INTO_STATE,
           data: {
-            officePhoneNumber: 'Test OfficeNo',
-            mobilePhoneNumber: 'Test Mobile No',
+            officePhoneNumber: stubbedOfficeNo,
+            mobilePhoneNumber: stubbedMobileNo,
           },
         });
     });
 
     describe('applicantPhoneNumberNextAction', () => {
       it('should return the correct action type and value', () => {
-        expect(putApplicantPhoneNumberNextAction('Test OfficeNo', 'Test Mobile No'))
+        expect(putApplicantPhoneNumberNextAction(stubbedOfficeNo, stubbedMobileNo))
           .to.deep.equal({
             type: APPLICANT_PHONE_NOS__NEXT,
             data: {
-              officePhoneNumber: 'Test OfficeNo',
-              mobilePhoneNumber: 'Test Mobile No',
+              officePhoneNumber: stubbedOfficeNo,
+              mobilePhoneNumber: stubbedMobileNo,
             },
           });
       });
@@ -126,30 +136,29 @@ describe('surveyActions', () => {
 
     describe('applicantPhoneNumberBackAction', () => {
       it('should return the correct action type and value', () => {
-        expect(putApplicantPhoneNumberBackAction())
-          .to.deep.equal({ type: APPLICANT_PHONE_NOS__BACK });
+        expect(putApplicantPhoneNumberBackAction()).to.deep.equal({ type: APPLICANT_PHONE_NOS__BACK });
       });
     });
   });
 
   describe('putApplicantEmailDataAction', () => {
     it('should return the correct action type and value', () => {
-      expect(putApplicantEmailIntoStateAction('Test Email'))
+      expect(putApplicantEmailIntoStateAction(stubbedEmail))
         .to.deep.equal({
           type: PUT__APPLICANT_EMAIL_INTO_STATE,
           data: {
-            email: 'Test Email',
+            email: stubbedEmail,
           },
         });
     });
 
     describe('applicantPhoneNumberNextAction', () => {
       it('should return the correct action type and value', () => {
-        expect(putApplicantEmailNextAction('Test Email'))
+        expect(putApplicantEmailNextAction(stubbedEmail))
           .to.deep.equal({
             type: APPLICANT_EMAIL__NEXT,
             data: {
-              email: 'Test Email',
+              email: stubbedEmail,
             },
           });
       });
@@ -157,8 +166,41 @@ describe('surveyActions', () => {
 
     describe('applicantEmailBackAction', () => {
       it('should return the correct action type and value', () => {
-        expect(putApplicantEmailBackAction())
-          .to.deep.equal({ type: APPLICANT_EMAIL__BACK });
+        expect(putApplicantEmailBackAction()).to.deep.equal({ type: APPLICANT_EMAIL__BACK });
+      });
+    });
+  });
+
+  describe('putSupporterExperienceIntoStateAction', () => {
+    it('should return the correct action type and value', () => {
+      expect(putSupporterExperienceIntoStateAction(stubbedYearsSupporting, stubbedMatchesWatched, stubbedShirtsOwned))
+        .to.deep.equal({
+          type: PUT__SUPPORTER_EXPERIENCE_INTO_STATE,
+          data: {
+            yearsSupporting: stubbedYearsSupporting,
+            matchesWatched: stubbedMatchesWatched,
+            shirtsOwned: stubbedShirtsOwned,
+          },
+        });
+    });
+
+    describe('putSupporterExperienceNextAction', () => {
+      it('should return the correct action type and value', () => {
+        expect(putSupporterExperienceNextAction(stubbedYearsSupporting, stubbedMatchesWatched, stubbedShirtsOwned))
+          .to.deep.equal({
+            type: SUPPORTER_EXPERIENCE__NEXT,
+            data: {
+              yearsSupporting: stubbedYearsSupporting,
+              matchesWatched: stubbedMatchesWatched,
+              shirtsOwned: stubbedShirtsOwned,
+            },
+          });
+      });
+    });
+
+    describe('putSupporterExperienceBackAction', () => {
+      it('should return the correct action type and value', () => {
+        expect(putSupporterExperienceBackAction()).to.deep.equal({ type: SUPPORTER_EXPERIENCE__BACK });
       });
     });
   });

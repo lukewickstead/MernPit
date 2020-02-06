@@ -11,6 +11,9 @@ import {
   PUT__APPLICANT_NAME_INTO_STATE,
   PUT__APPLICANT_PHONE_NOS_INTO_STATE,
   PUT__EXISTING_SUPPORTER_INTO_STATE,
+  PUT__SUPPORTER_EXPERIENCE_INTO_STATE,
+  SUPPORTER_EXPERIENCE__NEXT,
+  SUPPORTER_EXPERIENCE__BACK,
 } from '../constants/actions/surveyActionConstants';
 
 export function putExistingSupporterIntoStateAction(isExistingSupporter) {
@@ -105,4 +108,30 @@ export function putApplicantPhoneNumberIntoStateAction(officePhoneNumber, mobile
 
 export function putApplicantPhoneNumberBackAction() {
   return { type: APPLICANT_PHONE_NOS__BACK };
+}
+
+export function putSupporterExperienceIntoStateAction(yearsSupporting, matchesWatched, shirtsOwned) {
+  return {
+    type: PUT__SUPPORTER_EXPERIENCE_INTO_STATE,
+    data: {
+      yearsSupporting,
+      matchesWatched,
+      shirtsOwned,
+    },
+  };
+}
+
+export function putSupporterExperienceNextAction(yearsSupporting, matchesWatched, shirtsOwned) {
+  return {
+    type: SUPPORTER_EXPERIENCE__NEXT,
+    data: {
+      yearsSupporting,
+      matchesWatched,
+      shirtsOwned,
+    },
+  };
+}
+
+export function putSupporterExperienceBackAction() {
+  return { type: SUPPORTER_EXPERIENCE__BACK };
 }

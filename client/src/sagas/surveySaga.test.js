@@ -1,6 +1,6 @@
-import { put, takeEvery } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
 import { expect } from 'chai';
+import { push } from 'react-router-redux';
+import { put, takeEvery } from 'redux-saga/effects';
 
 import watchSurveyAggregateSaga, {
   applicantEmailBackSaga,
@@ -11,48 +11,60 @@ import watchSurveyAggregateSaga, {
   applicantNameNextSaga,
   applicantPhoneBackSaga,
   applicantPhoneNextSaga,
+  supporterExperienceBackSaga,
+  supporterExperienceNextSaga,
 } from './surveySaga';
 
 import {
   putApplicantEmailBackAction,
+  putApplicantEmailIntoStateAction,
   putApplicantEmailNextAction,
   putApplicantNameBackAction,
+  putApplicantNameIntoStateAction,
   putApplicantNameNextAction,
   putApplicantPhoneNumberBackAction,
-  putApplicantPhoneNumberNextAction,
-  putApplicantEmailIntoStateAction,
-  putApplicantNameIntoStateAction,
   putApplicantPhoneNumberIntoStateAction,
+  putApplicantPhoneNumberNextAction,
   putExistingSupporterBackAction,
   putExistingSupporterIntoStateAction,
   putExistingSupporterNextAction,
+  putSupporterExperienceBackAction,
+  putSupporterExperienceIntoStateAction,
+  putSupporterExperienceNextAction,
 } from '../actions/surveyActions';
 
 import {
-  URL__PHONE_NUMBERS,
-  URL__EXISTING_SUPPORTER,
-  URL__NAME,
   URL__EMAIL,
+  URL__EXISTING_SUPPORTER,
   URL__HOME,
+  URL__NAME,
+  URL__PHONE_NUMBERS,
+  URL__SUMMARY,
+  URL__SUPPORTER_EXPERIENCE,
 } from '../constants/urlConstants';
 
 import {
-  APPLICANT_NAME__NEXT,
-  APPLICANT_NAME__BACK,
-  APPLICANT_PHONE_NOS__NEXT,
-  APPLICANT_PHONE_NOS__BACK,
-  APPLICANT_EMAIL__NEXT,
   APPLICANT_EMAIL__BACK,
-  EXISTING_SUPPORTER__NEXT,
+  APPLICANT_EMAIL__NEXT,
+  APPLICANT_NAME__BACK,
+  APPLICANT_NAME__NEXT,
+  APPLICANT_PHONE_NOS__BACK,
+  APPLICANT_PHONE_NOS__NEXT,
   EXISTING_SUPPORTER__BACK,
+  EXISTING_SUPPORTER__NEXT,
+  SUPPORTER_EXPERIENCE__BACK,
+  SUPPORTER_EXPERIENCE__NEXT,
 } from '../constants/actions/surveyActionConstants';
 
-const stubbedIsExistingSupporter = 'Test IS SUPPORTER';
 const stubbedEmail = 'TEST EMAIL';
 const stubbedFirstName = 'TEST FIRST NAME';
+const stubbedIsExistingSupporter = 'Test IS SUPPORTER';
 const stubbedLastName = 'TEST LAST NAME';
-const stubbedOfficeNo = 'TEST OFFICE NUMBER';
+const stubbedMatchesWatched = 'TEST MATCHES WATCHED';
 const stubbedMobileNo = 'TEST MOBILE NUMBER';
+const stubbedOfficeNo = 'TEST OFFICE NUMBER';
+const stubbedShirtsOwned = 'TEST SHIRTS OWNED';
+const stubbedYearsSupporting = 'TEST YEARS SUPPORTING';
 
 describe('When on the existing supporter page', () => {
   describe('and the user calls next', () => {
@@ -125,11 +137,12 @@ describe('When on the applicant phone page', () => {
 
 describe('When on the applicant email page', () => {
   describe('and the user calls next', () => {
-    it('should set the correct data into state', () => {
+    it('should navigate to Experience and set the correct data into state', () => {
       const action = putApplicantEmailNextAction(stubbedEmail);
       const saga = applicantEmailNextSaga(action);
 
       expect(saga.next().value).to.be.deep.equal(put(putApplicantEmailIntoStateAction(stubbedEmail)));
+      expect(saga.next().value).to.deep.equal(put(push(URL__SUPPORTER_EXPERIENCE)));
       expect(saga.next().value).to.deep.equal(undefined);
     });
   });
@@ -140,6 +153,29 @@ describe('When on the applicant email page', () => {
       const saga = applicantEmailBackSaga(action);
 
       expect(saga.next().value).to.deep.equal(put(push(URL__PHONE_NUMBERS)));
+      expect(saga.next().value).to.deep.equal(undefined);
+    });
+  });
+});
+
+describe('When on the supporters experience page', () => {
+  describe('and the user calls next', () => {
+    it('should set the correct data into state', () => {
+      const action = putSupporterExperienceNextAction(stubbedYearsSupporting, stubbedMatchesWatched, stubbedShirtsOwned);
+      const saga = supporterExperienceNextSaga(action);
+
+      expect(saga.next().value).to.be.deep.equal(put(putSupporterExperienceIntoStateAction(stubbedYearsSupporting, stubbedMatchesWatched, stubbedShirtsOwned)));
+      expect(saga.next().value).to.deep.equal(put(push(URL__SUMMARY)));
+      expect(saga.next().value).to.deep.equal(undefined);
+    });
+  });
+
+  describe('and the user calls back', () => {
+    it('the user is redirected to /Email', () => {
+      const action = putSupporterExperienceBackAction();
+      const saga = supporterExperienceBackSaga(action);
+
+      expect(saga.next().value).to.deep.equal(put(push(URL__EMAIL)));
       expect(saga.next().value).to.deep.equal(undefined);
     });
   });
@@ -156,6 +192,9 @@ describe('when calling watchSurveyAggregateSaga saga', () => {
     expect(saga.next().value).to.deep.equal(takeEvery(APPLICANT_PHONE_NOS__BACK, applicantPhoneBackSaga));
     expect(saga.next().value).to.deep.equal(takeEvery(APPLICANT_EMAIL__NEXT, applicantEmailNextSaga));
     expect(saga.next().value).to.deep.equal(takeEvery(APPLICANT_EMAIL__BACK, applicantEmailBackSaga));
+    expect(saga.next().value).to.deep.equal(takeEvery(SUPPORTER_EXPERIENCE__NEXT, supporterExperienceNextSaga));
+    expect(saga.next().value).to.deep.equal(takeEvery(SUPPORTER_EXPERIENCE__BACK, supporterExperienceBackSaga));
+
     expect(saga.next().value).to.deep.equal(undefined);
   });
 });

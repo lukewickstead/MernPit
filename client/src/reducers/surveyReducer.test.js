@@ -1,29 +1,37 @@
 import { expect } from 'chai';
 
 import surveyReducer from './surveyReducer';
+
 import {
-  putExistingSupporterIntoStateAction,
   putApplicantEmailIntoStateAction,
-  putApplicantPhoneNumberIntoStateAction,
   putApplicantNameIntoStateAction,
+  putApplicantPhoneNumberIntoStateAction,
+  putExistingSupporterIntoStateAction,
+  putSupporterExperienceIntoStateAction,
 } from '../actions/surveyActions';
 
 describe('applicantReducer ', () => {
-  const stubbedIsExistingSupporter = 'Test IS SUPPORTER';
   const stubbedEmail = 'TEST EMAIL';
   const stubbedFirstName = 'TEST FIRST NAME';
+  const stubbedIsExistingSupporter = 'Test IS SUPPORTER';
   const stubbedLastName = 'TEST LAST NAME';
-  const stubbedOfficeNo = 'TEST OFFICE NUMBER';
+  const stubbedMatchesWatched = 'TEST MATCHES WATCHED';
   const stubbedMobileNo = 'TEST MOBILE NUMBER';
+  const stubbedOfficeNo = 'TEST OFFICE NUMBER';
+  const stubbedShirtsOwned = 'TEST SHIRTS OWNED';
+  const stubbedYearsSupporting = 'TEST YEARS SUPPORTING';
 
   it('should return the initial state', () => {
     expect(surveyReducer(undefined, {})).deep.equal({
       email: '',
-      isExistingSupporter: '',
       firstName: '',
+      isExistingSupporter: '',
       lastName: '',
+      matchesWatched: '',
       mobilePhoneNumber: '',
       officePhoneNumber: '',
+      shirtsOwned: '',
+      yearsSupporting: '',
     });
   });
 
@@ -48,4 +56,13 @@ describe('applicantReducer ', () => {
       lastName: stubbedLastName,
     });
   });
+
+  it('should reduce PUT__SUPPORTER_EXPERIENCE_INTO_STATE', () => {
+    expect(surveyReducer({}, putSupporterExperienceIntoStateAction(stubbedYearsSupporting, stubbedMatchesWatched, stubbedShirtsOwned))).deep.equal({
+      yearsSupporting: stubbedYearsSupporting,
+      matchesWatched: stubbedMatchesWatched,
+      shirtsOwned: stubbedShirtsOwned,
+    });
+  });
 });
+

@@ -6,6 +6,7 @@ import {
   putApplicantNameIntoStateAction,
   putApplicantPhoneNumberIntoStateAction,
   putExistingSupporterIntoStateAction,
+  putSupporterExperienceIntoStateAction,
 } from '../actions/surveyActions';
 
 import {
@@ -14,6 +15,8 @@ import {
   URL__HOME,
   URL__NAME,
   URL__PHONE_NUMBERS,
+  URL__SUPPORTER_EXPERIENCE,
+  URL__SUMMARY,
 } from '../constants/urlConstants';
 
 import {
@@ -25,6 +28,8 @@ import {
   APPLICANT_PHONE_NOS__NEXT,
   EXISTING_SUPPORTER__BACK,
   EXISTING_SUPPORTER__NEXT,
+  SUPPORTER_EXPERIENCE__NEXT,
+  SUPPORTER_EXPERIENCE__BACK,
 } from '../constants/actions/surveyActionConstants';
 
 export function* applicantExistingSupporterNextSaga({ data }) {
@@ -56,10 +61,20 @@ export function* applicantPhoneBackSaga() {
 
 export function* applicantEmailNextSaga({ data }) {
   yield put(putApplicantEmailIntoStateAction(data.email));
+  yield put(push(URL__SUPPORTER_EXPERIENCE));
 }
 
 export function* applicantEmailBackSaga() {
   yield put(push(URL__PHONE_NUMBERS));
+}
+
+export function* supporterExperienceNextSaga({ data }) {
+  yield put(putSupporterExperienceIntoStateAction(data.yearsSupporting, data.matchesWatched, data.shirtsOwned));
+  yield put(push(URL__SUMMARY));
+}
+
+export function* supporterExperienceBackSaga() {
+  yield put(push(URL__EMAIL));
 }
 
 export default function* watchSurveyAggregateSaga() {
@@ -71,4 +86,6 @@ export default function* watchSurveyAggregateSaga() {
   yield takeEvery(APPLICANT_PHONE_NOS__BACK, applicantPhoneBackSaga);
   yield takeEvery(APPLICANT_EMAIL__NEXT, applicantEmailNextSaga);
   yield takeEvery(APPLICANT_EMAIL__BACK, applicantEmailBackSaga);
+  yield takeEvery(SUPPORTER_EXPERIENCE__NEXT, supporterExperienceNextSaga);
+  yield takeEvery(SUPPORTER_EXPERIENCE__BACK, supporterExperienceBackSaga);
 }

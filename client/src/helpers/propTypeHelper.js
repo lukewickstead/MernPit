@@ -30,6 +30,7 @@ export const QUESTIONS_CONFIG_PROP_TYPE = PropTypes.shape({
   questions: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
+      subTitle: PropTypes.string,
       value: PropTypes.string.isRequired,
     }),
   ),
