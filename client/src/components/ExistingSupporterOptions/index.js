@@ -7,7 +7,7 @@ import {
   EXISTING_SUPPORTER__FIELD_NAME,
   EXISTING_SUPPORTER__NO,
   EXISTING_SUPPORTER__NO__DISPLAY,
-  EXISTING_SUPPORTER__TITLE,
+  EXISTING_SUPPORTER__LABEL,
   EXISTING_SUPPORTER__YES,
   EXISTING_SUPPORTER__YES__DISPLAY,
 } from '../../constants/surveyConstants';
@@ -36,12 +36,12 @@ function ExistingSupporterOptions(
 
   return (
     <QuestionOption
-      title={EXISTING_SUPPORTER__TITLE}
       handleInputChange={handleInputChange}
-      value={value}
-      questionConfig={questionConfig}
       isInvalid={isInvalid}
       isVisited={isVisited}
+      questionConfig={questionConfig}
+      title={EXISTING_SUPPORTER__LABEL}
+      value={value}
     />
   );
 }

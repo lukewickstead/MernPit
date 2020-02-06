@@ -4,6 +4,9 @@ import { Switch, Route, Router } from 'react-router-dom';
 
 import { STORE_PROP_TYPE, HISTORY_PROP_TYPE } from '../../helpers/propTypeHelper';
 import ExistingSupporter from '../../containers/ExistingSupporter';
+import ApplicantEmail from '../../containers/ApplicantEmail';
+import ApplicantName from '../../containers/ApplicantName';
+import ApplicantPhoneNumber from '../../containers/ApplicantPhoneNumber';
 
 function App({
   store,
@@ -13,7 +16,7 @@ function App({
     <Provider store={store}>
       <Router history={history}>
         <Switch>
-          <Route exact path="/" component={ExistingSupporter} />
+          <Route exact path="/" component={ApplicantPhoneNumber} />
         </Switch>
       </Router>
     </Provider>

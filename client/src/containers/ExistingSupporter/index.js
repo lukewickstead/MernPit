@@ -4,16 +4,8 @@ import { connect } from 'react-redux';
 
 import ExistingSupporterOptions from '../../components/ExistingSupporterOptions';
 import SubmitBackButtons from '../../components/Widgets/SubmitBackButtons';
-
-import {
-  EXISTING_SUPPORTER__BACK,
-  EXISTING_SUPPORTER__NEXT,
-} from '../../constants/actions/surveyActionConstants';
-
-import {
-  putExistingSupporterBackAction,
-  putExistingSupporterNextAction,
-} from '../../actions/surveyActions';
+import { EXISTING_SUPPORTER__BACK, EXISTING_SUPPORTER__NEXT } from '../../constants/actions/surveyActionConstants';
+import { putExistingSupporterBackAction, putExistingSupporterNextAction } from '../../actions/surveyActions';
 
 class ExistingSupporter extends React.Component {
   constructor(props) {

@@ -1,0 +1,10 @@
+@import '../../base/variables.scss';
+
+.question-text-container {
+    input[type=text] {
+        padding: 14px 20px;
+        width: 100%;
+        background-color: $input-background-color;
+        border:none;
+    }
+}

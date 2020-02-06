@@ -1,0 +1,72 @@
+@import '../../base//variables.scss';
+
+.validation-message-wrapper {
+    margin-top: 15px;
+    margin-bottom: 25px;
+
+    .validation-arrow {
+        border-bottom: 10px solid $validation-background-color;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        width: 0;
+        height: 0;
+        margin-left: 10%;
+    }
+    
+    .validation-message {
+        border: solid 1px $validation-border-color; 
+        background-color: $validation-background-color;
+        line-height: 1.44;
+        letter-spacing: 0.2px;  
+        color: white;
+        padding: 20px;
+    }
+}
+
+.validation-container {
+    &:not(.validation-container-visited) {
+        input[type=text], input[type=date] {
+            &:focus {
+                border-bottom: 6px solid $focused-background-color;
+            }
+        }
+    }
+
+    .validation-input-wrapper {
+        margin-top: 16px;
+    }
+
+    &.validation-container-visited {
+      &.validation-container-invalid {
+        .validation-input-wrapper {
+            color: $validation-background-color;
+
+            input[type=text], input[type=date] {
+                color: $validation-background-color;
+                border-bottom: 6px solid $validation-background-color;
+            }
+        }
+      }
+
+      &.validation-container-valid {
+        .validation-input-wrapper {
+            position: relative;
+            border-bottom: 6px solid $valid-background-color;
+
+            &:before {
+                content: "";
+                position: absolute;
+                display: inline-block;
+                background-repeat: no-repeat;
+                background-image: url("../assets/images/inputCompleteIcon.svg");
+                background-size: 20px 20px;
+                width: 20px;
+                height: 20px;
+                right: 20px;
+                top: 15px;
+                z-index: $z-index-priority-high;
+            }
+        }
+      }
+    } 
+}

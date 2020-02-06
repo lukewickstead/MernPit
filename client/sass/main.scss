@@ -1,11 +1,13 @@
 // Base
+@import './base/fonts.scss';
 @import './base/global.scss';
 @import './base/variables.scss';
-@import './base/fonts.scss';
 
 // Layouts
 @import './layout/centralColumnLayout.scss';
 
 // Components/Widgets
 @import './components/widgets/questionOption.scss';
+@import './components/widgets/questionText.scss';
 @import './components/widgets/submitBackButtons.scss';
+@import './components/widgets/validation.scss';

@@ -3,27 +3,27 @@
 @mixin radio-item-common {
     display: absolute;
     &:before {
-        box-sizing: border-box;
+        -webkit-transition: $secondary-transition-time ease-in-out all;
         border-radius: 10px;
+        box-sizing: border-box;
         content: '';
         display: inline-block;
         height: 20px;
-        width: 20px;
         left: 20px;
-        top: 18px;
         position: absolute;
-        -webkit-transition: $secondary-transition-time ease-in-out all;
+        top: 18px;
         transition: $secondary-transition-time ease-in-out all;
+        width: 20px;
     }
 }
 
 @mixin radio-item-selected {
     @include radio-item-common;
     &:before {
-        border: 5px solid white;
         -webkit-box-shadow: 0 0 0 2px $primary-colour;
-        box-shadow: 0 0 0 2px $primary-colour;
         background-color: $primary-colour;
+        border: 5px solid white;
+        box-shadow: 0 0 0 2px $primary-colour;
     }
 }
 

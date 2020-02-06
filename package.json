@@ -1,5 +1,5 @@
 {
-  "name": "mernpit",
+  "name": "mern-sand-pit",
   "version": "2.0.0",
   "description": "A sandpit for learning MERN",
   "main": "index.js",
@@ -32,7 +32,7 @@
     "dev:build-server": "webpack --mode development --config webpack-backend.config.js",
     "dev:run-server": "nodemon --exitcrash --exec babel-node ./server/index.js",
     "dev:debug": "NODE_ENV=development node --inspect ./server/bundle-back.js",
-    "lint": "eslint ./client ./server --ext .js,.jsx",
+    "lint": "eslint ./client ./server ./common --ext .js,.jsx",
     "test": "jest --runInBand",
     "test-watch": "jest --watch --runInBand",
     "test-client": "jest client/ --runInBand",
@@ -49,8 +49,8 @@
     "MERN",
     "REACT"
   ],
-  "author": "Mubaloo Ltd",
-  "license": "ISC",
+  "author": "Luke Wickstead",
+  "license": "MIT",
   "homepage": "https://github.com/lukewickstead/MernPit#readme",
   "devDependencies": {
     "@babel/cli": "^7.7.4",

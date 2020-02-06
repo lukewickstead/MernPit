@@ -2,6 +2,11 @@ import { PUT__EXISTING_SUPPORTER_INTO_STATE } from '../constants/actions/surveyA
 
 export const initialState = {
   existingSupporter: '',
+  email: '',
+  firstName: '',
+  lastName: '',
+  mobilePhoneNumber: '',
+  officePhoneNumber: '',
 };
 
 export default function entityReducer(state = initialState, action) {

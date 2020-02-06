@@ -6,7 +6,12 @@ import { putExistingSupporterIntoStateAction } from '../actions/surveyActions';
 describe('applicantReducer ', () => {
   it('should return the initial state', () => {
     expect(surveyReducer(undefined, {})).deep.equal({
+      email: '',
       existingSupporter: '',
+      firstName: '',
+      lastName: '',
+      mobilePhoneNumber: '',
+      officePhoneNumber: '',
     });
   });
 
