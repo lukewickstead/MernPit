@@ -1,5 +1,26 @@
 @import '../../base/variables.scss';
 
+@mixin radio-item-ul {
+    list-style: none;
+    margin: 0px;
+    overflow: auto;
+    padding: 0px;
+}
+
+@mixin radio-item-li {
+    background-color: white;
+    border-radius: 8px;  
+    border: solid 2px $border-colour;  
+    margin-top: 16px;
+    transition: border $primary-transition-time ease-in-out;
+}
+
+@mixin radio-item-li-selected {
+    border: solid 2px $primary-colour;  
+    transition: border $primary-transition-time ease-in-out;
+}
+
+
 @mixin radio-item-common {
     display: absolute;
     &:before {
