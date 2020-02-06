@@ -1,0 +1,24 @@
+@import '../../base/variables.scss';
+
+@mixin back-button
+    {
+        border: none;
+        background-color: white;
+        color: $link-colour;
+        line-height: 1.17;       
+        background-image: url('../assets/images/backChevron.svg');
+        background-repeat: no-repeat;
+        background-position: 0px 50%;
+        background-size: 8px auto;            
+        padding-left: 18px;
+    }
+
+@mixin submit-button
+{
+    background-color: $primary-colour;
+    transition: background-color $primary-transition-time ease-in-out;
+    color: white;
+    border: none;
+    height: 60px; 
+    width: 184px;
+}

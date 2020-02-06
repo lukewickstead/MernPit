@@ -1,0 +1,19 @@
+@import './buttonsMixins.scss';
+
+.button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 48px; 
+    padding-bottom: 48px; 
+
+    button.back
+    {
+        @include back-button;
+    }
+
+    button.submit
+    {
+        @include submit-button;
+    }
+}
+

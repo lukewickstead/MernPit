@@ -1,0 +1,36 @@
+@import '../../base/variables.scss';
+
+@mixin radio-item-common {
+    display: absolute;
+    &:before {
+        box-sizing: border-box;
+        border-radius: 10px;
+        content: '';
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        left: 20px;
+        top: 18px;
+        position: absolute;
+        -webkit-transition: $secondary-transition-time ease-in-out all;
+        transition: $secondary-transition-time ease-in-out all;
+    }
+}
+
+@mixin radio-item-selected {
+    @include radio-item-common;
+    &:before {
+        border: 5px solid white;
+        -webkit-box-shadow: 0 0 0 2px $primary-colour;
+        box-shadow: 0 0 0 2px $primary-colour;
+        background-color: $primary-colour;
+    }
+}
+
+@mixin  radio-item {
+    @include radio-item-common;
+    &:before {
+        -webkit-box-shadow: 0 0 0 2px $box-shadow-color;
+        box-shadow: 0 0 0 2px $box-shadow-color;
+    }
+}
