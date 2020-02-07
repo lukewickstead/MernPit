@@ -10,6 +10,11 @@ import {
   APPLICANT_EMAIL__INVALID_MSG,
   APPLICANT_MOBILE_PHONE__REGEX,
   APPLICANT_PHONE_NUMBER__REGEX,
+  APPLICANT_FIRST_NAME__FIELD_NAME,
+  APPLICANT_LAST_NAME__FIELD_NAME,
+  APPLICANT_EMAIL__FIELD_NAME,
+  APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME,
+  APPLICANT_PHONE_NUMBER__FIELD_NAME,
 } from '../constants/surveyConstants';
 
 export function validateApplicantFirstName(value) {
@@ -53,4 +58,21 @@ export function validateApplicantOfficeOrMobilePhoneNumber(value) {
 export function validateApplicantEmail(email) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase()) ? '' : APPLICANT_EMAIL__INVALID_MSG;
+}
+
+export function validateSurveyField(name, value) {
+  switch (name) {
+    case APPLICANT_FIRST_NAME__FIELD_NAME:
+      return validateApplicantFirstName(value);
+    case APPLICANT_LAST_NAME__FIELD_NAME:
+      return validateApplicantLastName(value);
+    case APPLICANT_EMAIL__FIELD_NAME:
+      return validateApplicantEmail(value);
+    case APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME:
+      return validateApplicantMobilePhoneNumber(value);
+    case APPLICANT_PHONE_NUMBER__FIELD_NAME:
+      return validateApplicantPhoneNumber(value);
+    default:
+      return value.length > 0 ? '' : 'Please select a value';
+  }
 }

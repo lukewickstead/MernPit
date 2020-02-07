@@ -16,6 +16,7 @@ import {
   putSupporterExperienceBackAction,
   putSupporterExperienceIntoStateAction,
   putSupporterExperienceNextAction,
+  putSurveyFieldIntoStateAction,
 } from './surveyActions';
 
 import {
@@ -34,6 +35,7 @@ import {
   PUT__SUPPORTER_EXPERIENCE_INTO_STATE,
   SUPPORTER_EXPERIENCE__BACK,
   SUPPORTER_EXPERIENCE__NEXT,
+  PUT__SURVEY_FIELD_INTO_STATE,
 } from '../constants/actions/surveyActionConstants';
 
 describe('surveyActions', () => {
@@ -204,4 +206,15 @@ describe('surveyActions', () => {
       });
     });
   });
+
+  describe('putSurveyFieldIntoStateAction', () => {
+    it('should return the correct action type and value', () => {
+      const stubbedFieldName = 'TEST FIELD NAME';
+      const stubbedFieldValue = 'TEST FIELD VALUE';
+
+      expect(putSurveyFieldIntoStateAction(stubbedFieldName, stubbedFieldValue))
+        .to.deep.equal({ type: PUT__SURVEY_FIELD_INTO_STATE, data: { [stubbedFieldName]: stubbedFieldValue } });
+    });
+  });
 });
+

@@ -1,0 +1,25 @@
+@import '../../base/variables.scss';
+
+select {
+    &::-ms-expand
+    {
+        display: none;
+    }
+}
+
+.question-option-select-container {
+    select {
+        width: 100%;
+        padding: 14px 0px 14px 20px;
+        font-size: 18px;
+        line-height: 1.44;
+        letter-spacing: 0.2px;
+        color: $text-colour;
+        border: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: $input-background-color url(../assets/images/downChevron.svg) no-repeat 95% 50%/15px auto; 
+    }
+}
+

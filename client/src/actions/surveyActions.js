@@ -12,8 +12,9 @@ import {
   PUT__APPLICANT_PHONE_NOS_INTO_STATE,
   PUT__EXISTING_SUPPORTER_INTO_STATE,
   PUT__SUPPORTER_EXPERIENCE_INTO_STATE,
-  SUPPORTER_EXPERIENCE__NEXT,
+  PUT__SURVEY_FIELD_INTO_STATE,
   SUPPORTER_EXPERIENCE__BACK,
+  SUPPORTER_EXPERIENCE__NEXT,
 } from '../constants/actions/surveyActionConstants';
 
 export function putExistingSupporterIntoStateAction(isExistingSupporter) {
@@ -134,4 +135,13 @@ export function putSupporterExperienceNextAction(yearsSupporting, matchesWatched
 
 export function putSupporterExperienceBackAction() {
   return { type: SUPPORTER_EXPERIENCE__BACK };
+}
+
+export function putSurveyFieldIntoStateAction(fieldName, fieldValue) {
+  return {
+    type: PUT__SURVEY_FIELD_INTO_STATE,
+    data: {
+      [fieldName]: fieldValue,
+    },
+  };
 }

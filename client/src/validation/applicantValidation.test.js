@@ -7,6 +7,7 @@ import {
   validateApplicantMobilePhoneNumber,
   validateApplicantEmail,
   validateApplicantOfficeOrMobilePhoneNumber,
+  validateSurveyField,
 } from './applicantValidation';
 
 import {
@@ -17,6 +18,11 @@ import {
   APPLICANT_PHONE_NUMBER__INVALID_MSG,
   APPLICANT_MOBILE_PHONE_NUMBER__INVALID_MSG,
   APPLICANT_EMAIL__INVALID_MSG,
+  APPLICANT_FIRST_NAME__FIELD_NAME,
+  APPLICANT_LAST_NAME__FIELD_NAME,
+  APPLICANT_EMAIL__FIELD_NAME,
+  APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME,
+  APPLICANT_PHONE_NUMBER__FIELD_NAME,
 } from '../constants/surveyConstants';
 
 describe('when validating applicantValidation', () => {
@@ -174,6 +180,48 @@ describe('when validating applicantValidation', () => {
     it('should invalidate when neither a landline or mobile number', () => {
       const result = validateApplicantOfficeOrMobilePhoneNumber('NO PHONE NUMBER');
       expect(result).to.equal(APPLICANT_PHONE_NUMBER__INVALID_MSG);
+    });
+  });
+
+  describe('when calling validateSurveyField', () => {
+    describe('with the field APPLICANT_FIRST_NAME__FIELD_NAME', () => {
+      it('can validate a valid value correctly.', () => {
+        expect(validateSurveyField(APPLICANT_FIRST_NAME__FIELD_NAME, 'John')).to.be.equal('');
+      });
+    });
+
+    describe('with the field APPLICANT_LAST_NAME__FIELD_NAME', () => {
+      it('can validate a valid value correctly.', () => {
+        expect(validateSurveyField(APPLICANT_LAST_NAME__FIELD_NAME, 'Smith')).to.be.equal('');
+      });
+    });
+
+    describe('with the field APPLICANT_EMAIL__FIELD_NAME', () => {
+      it('can validate a valid value correctly.', () => {
+        expect(validateSurveyField(APPLICANT_EMAIL__FIELD_NAME, 'John@Smith.com')).to.be.equal('');
+      });
+    });
+
+    describe('with the field APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME', () => {
+      it('can validate a valid value correctly.', () => {
+        expect(validateSurveyField(APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME, '07987987977')).to.be.equal('');
+      });
+    });
+
+    describe('with the field APPLICANT_PHONE_NUMBER__FIELD_NAME', () => {
+      it('can validate a valid value correctly.', () => {
+        expect(validateSurveyField(APPLICANT_PHONE_NUMBER__FIELD_NAME, '01319879878')).to.be.equal('');
+      });
+    });
+
+    describe('with another field', () => {
+      it('can validate a valid value correctly.', () => {
+        expect(validateSurveyField('UNKNOWN FIELD', '0798798797897')).to.be.equal('');
+      });
+
+      it('can INvalidate an invalid value correctly.', () => {
+        expect(validateSurveyField('UNKNOWN FIELD', '')).to.be.equal('Please select a value');
+      });
     });
   });
 });

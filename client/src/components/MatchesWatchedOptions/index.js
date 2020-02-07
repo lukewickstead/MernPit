@@ -4,16 +4,8 @@ import PropTypes from 'prop-types';
 import QuestionOptionHorizontal from '../Widgets/QuestionOptionHorizontal';
 
 import {
-  MATCHES_WATCHED__FIELD_NAME,
   MATCHES_WATCHED__LABEL,
-  MATCHES_WATCHED__OPTION__FOUR_TO_FIVE,
-  MATCHES_WATCHED__OPTION__FOUR_TO_FIVE__LABEL,
-  MATCHES_WATCHED__OPTION__ONE_TO_THREE,
-  MATCHES_WATCHED__OPTION__ONE_TO_THREE__LABEL,
-  MATCHES_WATCHED__OPTION__SIX_PLUS,
-  MATCHES_WATCHED__OPTION__SIX_PLUS__LABEL,
-  MATCHES_WATCHED__OPTION__ZERO,
-  MATCHES_WATCHED__OPTION__ZERO__LABEL,
+  MATCHES_WATCHED__QUESTION_CONFIG,
 } from '../../constants/surveyConstants';
 
 function MatchesWatchedOptions(
@@ -24,38 +16,12 @@ function MatchesWatchedOptions(
     value,
   },
 ) {
-  const questionConfig = {
-    name: MATCHES_WATCHED__FIELD_NAME,
-    questions: [
-      {
-        title: MATCHES_WATCHED__OPTION__ZERO__LABEL,
-        subTitle: 'Matches',
-        value: MATCHES_WATCHED__OPTION__ZERO,
-      },
-      {
-        title: MATCHES_WATCHED__OPTION__ONE_TO_THREE__LABEL,
-        subTitle: 'Matches',
-        value: MATCHES_WATCHED__OPTION__ONE_TO_THREE,
-      },
-      {
-        title: MATCHES_WATCHED__OPTION__FOUR_TO_FIVE__LABEL,
-        subTitle: 'Matches',
-        value: MATCHES_WATCHED__OPTION__FOUR_TO_FIVE,
-      },
-      {
-        title: MATCHES_WATCHED__OPTION__SIX_PLUS__LABEL,
-        subTitle: 'Matches',
-        value: MATCHES_WATCHED__OPTION__SIX_PLUS,
-      },
-    ],
-  };
-
   return (
     <QuestionOptionHorizontal
       handleInputChange={handleInputChange}
       isInvalid={isInvalid}
       isVisited={isVisited}
-      questionConfig={questionConfig}
+      questionConfig={MATCHES_WATCHED__QUESTION_CONFIG}
       title={MATCHES_WATCHED__LABEL}
       value={value}
     />

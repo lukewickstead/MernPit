@@ -4,6 +4,7 @@ import {
   PUT__APPLICANT_PHONE_NOS_INTO_STATE,
   PUT__EXISTING_SUPPORTER_INTO_STATE,
   PUT__SUPPORTER_EXPERIENCE_INTO_STATE,
+  PUT__SURVEY_FIELD_INTO_STATE,
 } from '../constants/actions/surveyActionConstants';
 
 export const initialState = {
@@ -25,6 +26,7 @@ export default function entityReducer(state = initialState, action) {
     case PUT__APPLICANT_PHONE_NOS_INTO_STATE:
     case PUT__EXISTING_SUPPORTER_INTO_STATE:
     case PUT__SUPPORTER_EXPERIENCE_INTO_STATE:
+    case PUT__SURVEY_FIELD_INTO_STATE:
       return {
         ...state,
         ...action.data,

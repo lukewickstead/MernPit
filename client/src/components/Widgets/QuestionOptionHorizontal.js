@@ -55,7 +55,7 @@ function QuestionOptionHorizontal({
         {questionItems}
       </ul>
 
-      { isInvalid && isVisited && <ValidationMessage validationMessage="Select a response to continue" /> }
+      <ValidationMessage isInvalid={isInvalid} isVisited={isVisited} validationMessage="Select a response to continue" />
     </div>
   );
 }

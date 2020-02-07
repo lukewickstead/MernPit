@@ -8,6 +8,7 @@ import {
   putApplicantPhoneNumberIntoStateAction,
   putExistingSupporterIntoStateAction,
   putSupporterExperienceIntoStateAction,
+  putSurveyFieldIntoStateAction,
 } from '../actions/surveyActions';
 
 describe('applicantReducer ', () => {
@@ -63,6 +64,12 @@ describe('applicantReducer ', () => {
       matchesWatched: stubbedMatchesWatched,
       shirtsOwned: stubbedShirtsOwned,
     });
+  });
+
+  it('should reduce PUT__SURVEY_FIELD_INTO_STATE', () => {
+    const stubbedFieldName = 'TEST FIELD NAME';
+    const stubbedValue = 'TEST VALUE';
+    expect(surveyReducer({}, putSurveyFieldIntoStateAction(stubbedFieldName, stubbedValue))).deep.equal({ [stubbedFieldName]: stubbedValue });
   });
 });
 
