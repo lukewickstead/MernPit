@@ -1,0 +1,13 @@
+<h1>PAFC Syrvey</h1>
+
+<table>
+    {{> trRow title='First Name' value=firstName }}
+    {{> trRow title='Last Name' value=lastName }}
+    {{> trRow title='Office Phone No.' value=officePhoneNumber }}
+    {{> trRow title='Mobile Phone No.' value=mobilePhoneNumber }}
+    {{> trRow title='Email' value.email }}
+    {{> trRowEnum title='Existing Supporter' value=isExistingSupporter }}
+    {{> trRowEnum title='Matches Watched' value=matchesWatched }}
+    {{> trRowEnum title='Shirts Owned' value=shirtsOwned }}
+    {{> trRowEnum title='Years Supporting' value=yearsSupporting }}
+</table>
