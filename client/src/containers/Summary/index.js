@@ -6,7 +6,7 @@ import EditableSummaryRow from '../../components/Widgets/SummaryRow';
 import SubmitBackButtons from '../../components/Widgets/SubmitBackButtons';
 import { FIELD_TYPE__NUMBER, FIELD_TYPE__OPTION } from '../../constants/common';
 import { YEARS_SUPPORTING_PROP_TYPE, MATCHES_WATCHED_PROP_TYPE, SHIRTS_OWNED_PROP_TYPE } from '../../helpers/propTypeHelper';
-import { createGetEnumLookUpHelper } from '../../../../domain/enumLookUpHelper';
+import { createGetEnumLookUpHelper } from '../../../../common/enumLookUpHelper';
 import { putSurveyFieldIntoStateAction } from '../../actions/surveyActions';
 import { validateSurveyField } from '../../validation/applicantValidation';
 

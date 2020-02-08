@@ -39,7 +39,9 @@
     "test-watch-client": "jest client/ --watch --runInBand",
     "test-server": "jest server/ --runInBand",
     "test-watch-server": "jest server/ --watch --runInBand",
-    "test-coverage": "jest --coverage --runInBand"
+    "test-coverage": "jest --coverage --runInBand",
+    "test-file": "jest server/routes/surveyValidation.test.js --runInBand"
+
   },
   "repository": {
     "type": "git",
@@ -91,6 +93,7 @@
   },
   "dependencies": {
     "@hapi/joi": "^16.1.8",
+    "@sendgrid/mail": "^6.5.2",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "classnames": "^2.2.6",
