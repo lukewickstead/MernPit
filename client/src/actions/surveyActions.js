@@ -11,8 +11,11 @@ import {
   PUT__APPLICANT_NAME_INTO_STATE,
   PUT__APPLICANT_PHONE_NOS_INTO_STATE,
   PUT__EXISTING_SUPPORTER_INTO_STATE,
+  PUT__IS_BUSY_INTO_STATE,
   PUT__SUPPORTER_EXPERIENCE_INTO_STATE,
   PUT__SURVEY_FIELD_INTO_STATE,
+  SUMMARY__BACK,
+  SUMMARY__NEXT,
   SUPPORTER_EXPERIENCE__BACK,
   SUPPORTER_EXPERIENCE__NEXT,
 } from '../constants/actions/surveyActionConstants';
@@ -145,3 +148,23 @@ export function putSurveyFieldIntoStateAction(fieldName, fieldValue) {
     },
   };
 }
+
+export function putSummaryNextAction() {
+  return { type: SUMMARY__NEXT };
+}
+
+export function putSummaryBackAction() {
+  return { type: SUMMARY__BACK };
+}
+
+export function putIsBusyAction(
+  isBusy,
+) {
+  return {
+    type: PUT__IS_BUSY_INTO_STATE,
+    data: {
+      isBusy,
+    },
+  };
+}
+

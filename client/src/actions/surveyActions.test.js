@@ -13,6 +13,9 @@ import {
   putExistingSupporterBackAction,
   putExistingSupporterIntoStateAction,
   putExistingSupporterNextAction,
+  putIsBusyAction,
+  putSummaryBackAction,
+  putSummaryNextAction,
   putSupporterExperienceBackAction,
   putSupporterExperienceIntoStateAction,
   putSupporterExperienceNextAction,
@@ -32,10 +35,13 @@ import {
   PUT__APPLICANT_NAME_INTO_STATE,
   PUT__APPLICANT_PHONE_NOS_INTO_STATE,
   PUT__EXISTING_SUPPORTER_INTO_STATE,
+  PUT__IS_BUSY_INTO_STATE,
   PUT__SUPPORTER_EXPERIENCE_INTO_STATE,
+  PUT__SURVEY_FIELD_INTO_STATE,
+  SUMMARY__BACK,
+  SUMMARY__NEXT,
   SUPPORTER_EXPERIENCE__BACK,
   SUPPORTER_EXPERIENCE__NEXT,
-  PUT__SURVEY_FIELD_INTO_STATE,
 } from '../constants/actions/surveyActionConstants';
 
 describe('surveyActions', () => {
@@ -122,24 +128,24 @@ describe('surveyActions', () => {
           },
         });
     });
+  });
 
-    describe('applicantPhoneNumberNextAction', () => {
-      it('should return the correct action type and value', () => {
-        expect(putApplicantPhoneNumberNextAction(stubbedOfficeNo, stubbedMobileNo))
-          .to.deep.equal({
-            type: APPLICANT_PHONE_NOS__NEXT,
-            data: {
-              officePhoneNumber: stubbedOfficeNo,
-              mobilePhoneNumber: stubbedMobileNo,
-            },
-          });
-      });
+  describe('applicantPhoneNumberNextAction', () => {
+    it('should return the correct action type and value', () => {
+      expect(putApplicantPhoneNumberNextAction(stubbedOfficeNo, stubbedMobileNo))
+        .to.deep.equal({
+          type: APPLICANT_PHONE_NOS__NEXT,
+          data: {
+            officePhoneNumber: stubbedOfficeNo,
+            mobilePhoneNumber: stubbedMobileNo,
+          },
+        });
     });
+  });
 
-    describe('applicantPhoneNumberBackAction', () => {
-      it('should return the correct action type and value', () => {
-        expect(putApplicantPhoneNumberBackAction()).to.deep.equal({ type: APPLICANT_PHONE_NOS__BACK });
-      });
+  describe('applicantPhoneNumberBackAction', () => {
+    it('should return the correct action type and value', () => {
+      expect(putApplicantPhoneNumberBackAction()).to.deep.equal({ type: APPLICANT_PHONE_NOS__BACK });
     });
   });
 
@@ -153,23 +159,23 @@ describe('surveyActions', () => {
           },
         });
     });
+  });
 
-    describe('applicantPhoneNumberNextAction', () => {
-      it('should return the correct action type and value', () => {
-        expect(putApplicantEmailNextAction(stubbedEmail))
-          .to.deep.equal({
-            type: APPLICANT_EMAIL__NEXT,
-            data: {
-              email: stubbedEmail,
-            },
-          });
-      });
+  describe('applicantPhoneNumberNextAction', () => {
+    it('should return the correct action type and value', () => {
+      expect(putApplicantEmailNextAction(stubbedEmail))
+        .to.deep.equal({
+          type: APPLICANT_EMAIL__NEXT,
+          data: {
+            email: stubbedEmail,
+          },
+        });
     });
+  });
 
-    describe('applicantEmailBackAction', () => {
-      it('should return the correct action type and value', () => {
-        expect(putApplicantEmailBackAction()).to.deep.equal({ type: APPLICANT_EMAIL__BACK });
-      });
+  describe('applicantEmailBackAction', () => {
+    it('should return the correct action type and value', () => {
+      expect(putApplicantEmailBackAction()).to.deep.equal({ type: APPLICANT_EMAIL__BACK });
     });
   });
 
@@ -185,25 +191,25 @@ describe('surveyActions', () => {
           },
         });
     });
+  });
 
-    describe('putSupporterExperienceNextAction', () => {
-      it('should return the correct action type and value', () => {
-        expect(putSupporterExperienceNextAction(stubbedYearsSupporting, stubbedMatchesWatched, stubbedShirtsOwned))
-          .to.deep.equal({
-            type: SUPPORTER_EXPERIENCE__NEXT,
-            data: {
-              yearsSupporting: stubbedYearsSupporting,
-              matchesWatched: stubbedMatchesWatched,
-              shirtsOwned: stubbedShirtsOwned,
-            },
-          });
-      });
+  describe('putSupporterExperienceNextAction', () => {
+    it('should return the correct action type and value', () => {
+      expect(putSupporterExperienceNextAction(stubbedYearsSupporting, stubbedMatchesWatched, stubbedShirtsOwned))
+        .to.deep.equal({
+          type: SUPPORTER_EXPERIENCE__NEXT,
+          data: {
+            yearsSupporting: stubbedYearsSupporting,
+            matchesWatched: stubbedMatchesWatched,
+            shirtsOwned: stubbedShirtsOwned,
+          },
+        });
     });
+  });
 
-    describe('putSupporterExperienceBackAction', () => {
-      it('should return the correct action type and value', () => {
-        expect(putSupporterExperienceBackAction()).to.deep.equal({ type: SUPPORTER_EXPERIENCE__BACK });
-      });
+  describe('putSupporterExperienceBackAction', () => {
+    it('should return the correct action type and value', () => {
+      expect(putSupporterExperienceBackAction()).to.deep.equal({ type: SUPPORTER_EXPERIENCE__BACK });
     });
   });
 
@@ -214,6 +220,30 @@ describe('surveyActions', () => {
 
       expect(putSurveyFieldIntoStateAction(stubbedFieldName, stubbedFieldValue))
         .to.deep.equal({ type: PUT__SURVEY_FIELD_INTO_STATE, data: { [stubbedFieldName]: stubbedFieldValue } });
+    });
+  });
+
+  describe('putSummaryNextAction', () => {
+    it('should return the correct action type and value', () => {
+      expect(putSummaryNextAction()).to.deep.equal({ type: SUMMARY__NEXT });
+    });
+  });
+
+  describe('putSummaryBackAction', () => {
+    it('should return the correct action type and value', () => {
+      expect(putSummaryBackAction()).to.deep.equal({ type: SUMMARY__BACK });
+    });
+  });
+
+  describe('putLoanOffersIsBusyAction', () => {
+    it('should return the correct action type and value', () => {
+      expect(putIsBusyAction(true))
+        .to.deep.equal({
+          type: PUT__IS_BUSY_INTO_STATE,
+          data: {
+            isBusy: true,
+          },
+        });
     });
   });
 });

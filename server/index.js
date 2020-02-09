@@ -6,6 +6,7 @@ import { urlencoded, json } from 'body-parser';
 
 import bootstrapHbs from './bootStrapping/bootstrapHbs';
 import bootstrapHelmet from './bootStrapping/bootstrapHelmet';
+import submitSurveyRoute from './routes/submitSurveyRoute';
 
 const winston = require('winston');
 
@@ -33,7 +34,7 @@ app.use(urlencoded({ extended: false }));
 app.use(express.static(distDir));
 
 bootstrapHbs(app);
-app.set('views', path.join(`${__dirname}`, './views'));
+app.set('views', path.join(`${__dirname}`, './views')); // TODO: This should be done inside the bootstrapHbs function
 
 app.use((req, res, next) => {
   req.app = app;
@@ -41,6 +42,8 @@ app.use((req, res, next) => {
   req.hostUrl = process.env.HOST_URL;
   next();
 });
+
+app.use('/api/submitSurvey', submitSurveyRoute);
 
 app.get('*',
   (req, res) => {

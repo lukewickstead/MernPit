@@ -1,22 +1,35 @@
-import { put, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
+
+import {
+  call,
+  put,
+  select,
+  takeEvery,
+} from 'redux-saga/effects';
+
+import { consoleError } from '../helpers/consoleHelper';
+import { getSurveyDetailsFromState } from '../selectors/selectors';
+import { postSurvey } from '../infrastructure/api';
 
 import {
   putApplicantEmailIntoStateAction,
   putApplicantNameIntoStateAction,
   putApplicantPhoneNumberIntoStateAction,
   putExistingSupporterIntoStateAction,
+  putIsBusyAction,
   putSupporterExperienceIntoStateAction,
 } from '../actions/surveyActions';
 
 import {
+  URL__CONFIRMATION,
   URL__EMAIL,
+  URL__ERROR,
   URL__EXISTING_SUPPORTER,
   URL__HOME,
   URL__NAME,
   URL__PHONE_NUMBERS,
-  URL__SUPPORTER_EXPERIENCE,
   URL__SUMMARY,
+  URL__SUPPORTER_EXPERIENCE,
 } from '../constants/urlConstants';
 
 import {
@@ -28,9 +41,12 @@ import {
   APPLICANT_PHONE_NOS__NEXT,
   EXISTING_SUPPORTER__BACK,
   EXISTING_SUPPORTER__NEXT,
-  SUPPORTER_EXPERIENCE__NEXT,
   SUPPORTER_EXPERIENCE__BACK,
+  SUPPORTER_EXPERIENCE__NEXT,
+  SUMMARY__NEXT,
+  SUMMARY__BACK,
 } from '../constants/actions/surveyActionConstants';
+import getErrorMessageFromServerResponseError from '../helpers/errorHelper';
 
 export function* applicantExistingSupporterNextSaga({ data }) {
   yield put(putExistingSupporterIntoStateAction(data.isExistingSupporter));
@@ -77,6 +93,25 @@ export function* supporterExperienceBackSaga() {
   yield put(push(URL__EMAIL));
 }
 
+export function* summaryPageNextSaga() {
+  try {
+    yield put(putIsBusyAction(true));
+    const surveyDetails = yield select(getSurveyDetailsFromState);
+    yield call(postSurvey, surveyDetails);
+    yield put(push(URL__CONFIRMATION));
+  } catch (error) {
+    const errorMsg = yield call(getErrorMessageFromServerResponseError, error);
+    yield call(consoleError, `Could not submit survey: ${errorMsg}`);
+    yield put(push(URL__ERROR));
+  } finally {
+    yield put(putIsBusyAction(false));
+  }
+}
+
+export function* summaryPageBackSaga() {
+  yield put(push(URL__SUPPORTER_EXPERIENCE));
+}
+
 export default function* watchSurveyAggregateSaga() {
   yield takeEvery(EXISTING_SUPPORTER__NEXT, applicantExistingSupporterNextSaga);
   yield takeEvery(EXISTING_SUPPORTER__BACK, applicantExistingSupporterBackSaga);
@@ -88,4 +123,6 @@ export default function* watchSurveyAggregateSaga() {
   yield takeEvery(APPLICANT_EMAIL__BACK, applicantEmailBackSaga);
   yield takeEvery(SUPPORTER_EXPERIENCE__NEXT, supporterExperienceNextSaga);
   yield takeEvery(SUPPORTER_EXPERIENCE__BACK, supporterExperienceBackSaga);
+  yield takeEvery(SUMMARY__NEXT, summaryPageNextSaga);
+  yield takeEvery(SUMMARY__BACK, summaryPageBackSaga);
 }

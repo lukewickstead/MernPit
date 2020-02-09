@@ -3,6 +3,7 @@ import {
   PUT__APPLICANT_NAME_INTO_STATE,
   PUT__APPLICANT_PHONE_NOS_INTO_STATE,
   PUT__EXISTING_SUPPORTER_INTO_STATE,
+  PUT__IS_BUSY_INTO_STATE,
   PUT__SUPPORTER_EXPERIENCE_INTO_STATE,
   PUT__SURVEY_FIELD_INTO_STATE,
 } from '../constants/actions/surveyActionConstants';
@@ -10,6 +11,7 @@ import {
 export const initialState = {
   email: '',
   firstName: '',
+  isBusy: false,
   isExistingSupporter: '',
   lastName: '',
   matchesWatched: '',
@@ -25,6 +27,7 @@ export default function entityReducer(state = initialState, action) {
     case PUT__APPLICANT_NAME_INTO_STATE:
     case PUT__APPLICANT_PHONE_NOS_INTO_STATE:
     case PUT__EXISTING_SUPPORTER_INTO_STATE:
+    case PUT__IS_BUSY_INTO_STATE:
     case PUT__SUPPORTER_EXPERIENCE_INTO_STATE:
     case PUT__SURVEY_FIELD_INTO_STATE:
       return {

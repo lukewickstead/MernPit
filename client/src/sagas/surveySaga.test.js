@@ -1,6 +1,15 @@
 import { expect } from 'chai';
 import { push } from 'react-router-redux';
-import { put, takeEvery } from 'redux-saga/effects';
+
+import {
+  call,
+  put,
+  select,
+  takeEvery,
+} from 'redux-saga/effects';
+
+import { getSurveyDetailsFromState } from '../selectors/selectors';
+import { postSurvey } from '../infrastructure/api';
 
 import watchSurveyAggregateSaga, {
   applicantEmailBackSaga,
@@ -11,6 +20,8 @@ import watchSurveyAggregateSaga, {
   applicantNameNextSaga,
   applicantPhoneBackSaga,
   applicantPhoneNextSaga,
+  summaryPageBackSaga,
+  summaryPageNextSaga,
   supporterExperienceBackSaga,
   supporterExperienceNextSaga,
 } from './surveySaga';
@@ -28,12 +39,16 @@ import {
   putExistingSupporterBackAction,
   putExistingSupporterIntoStateAction,
   putExistingSupporterNextAction,
+  putIsBusyAction,
+  putSummaryNextAction,
   putSupporterExperienceBackAction,
   putSupporterExperienceIntoStateAction,
   putSupporterExperienceNextAction,
+  putSummaryBackAction,
 } from '../actions/surveyActions';
 
 import {
+  URL__CONFIRMATION,
   URL__EMAIL,
   URL__EXISTING_SUPPORTER,
   URL__HOME,
@@ -41,6 +56,7 @@ import {
   URL__PHONE_NUMBERS,
   URL__SUMMARY,
   URL__SUPPORTER_EXPERIENCE,
+  URL__ERROR,
 } from '../constants/urlConstants';
 
 import {
@@ -52,9 +68,13 @@ import {
   APPLICANT_PHONE_NOS__NEXT,
   EXISTING_SUPPORTER__BACK,
   EXISTING_SUPPORTER__NEXT,
+  SUMMARY__BACK,
+  SUMMARY__NEXT,
   SUPPORTER_EXPERIENCE__BACK,
   SUPPORTER_EXPERIENCE__NEXT,
 } from '../constants/actions/surveyActionConstants';
+import getErrorMessageFromServerResponseError from '../helpers/errorHelper';
+import { consoleError } from '../helpers/consoleHelper';
 
 const stubbedEmail = 'TEST EMAIL';
 const stubbedFirstName = 'TEST FIRST NAME';
@@ -181,6 +201,54 @@ describe('When on the supporters experience page', () => {
   });
 });
 
+describe('when on the summary page', () => {
+  describe('and they select the next button', () => {
+    it('should submit the survey and navigate to /Confirmation', () => {
+      const action = putSummaryNextAction();
+      const saga = summaryPageNextSaga(action);
+
+      const stubbedSurveyDetails = 'TEST SURVEY DETAILS';
+
+      expect(saga.next().value).to.deep.equal(put(putIsBusyAction(true)));
+      expect(saga.next().value).to.deep.equal(select(getSurveyDetailsFromState));
+      expect(saga.next(stubbedSurveyDetails).value).to.deep.equal(call(postSurvey, stubbedSurveyDetails));
+      expect(saga.next().value).to.deep.equal(put(push(URL__CONFIRMATION)));
+      expect(saga.next().value).to.deep.equal(put(putIsBusyAction(false)));
+      expect(saga.next().value).to.deep.equal(undefined);
+      expect(saga.next().value).to.deep.equal(undefined);
+    });
+
+    describe('and an error is reported posting the selcted loan offer', () => {
+      it('should log the error and navigate to /Error', () => {
+        const action = putSummaryNextAction();
+        const saga = summaryPageNextSaga(action);
+
+        const stubbedSurveyDetails = 'TEST SURVEY DETAILS';
+        const stubbedPostSelectLoanOfferResponse = { data: 'TEST POST SURVEY RESPONSE' };
+
+        expect(saga.next().value).to.deep.equal(put(putIsBusyAction(true)));
+        expect(saga.next().value).to.deep.equal(select(getSurveyDetailsFromState));
+        expect(saga.next(stubbedSurveyDetails).value).to.deep.equal(call(postSurvey, stubbedSurveyDetails));
+        expect(saga.throw(stubbedPostSelectLoanOfferResponse).value).to.deep.equal(call(getErrorMessageFromServerResponseError, stubbedPostSelectLoanOfferResponse));
+        expect(saga.next(stubbedPostSelectLoanOfferResponse.data).value).to.deep.equal(call(consoleError, `Could not submit survey: ${stubbedPostSelectLoanOfferResponse.data}`));
+        expect(saga.next().value).to.deep.equal(put(push(URL__ERROR)));
+        expect(saga.next().value).to.deep.equal(put(putIsBusyAction(false)));
+        expect(saga.next().value).to.deep.equal(undefined);
+      });
+    });
+  });
+
+  describe('and the user calls back', () => {
+    it('the user is redirected to /Experience', () => {
+      const action = putSummaryBackAction();
+      const saga = summaryPageBackSaga(action);
+
+      expect(saga.next().value).to.deep.equal(put(push(URL__SUPPORTER_EXPERIENCE)));
+      expect(saga.next().value).to.deep.equal(undefined);
+    });
+  });
+});
+
 describe('when calling watchSurveyAggregateSaga saga', () => {
   it('can watch for all required sagas', () => {
     const saga = watchSurveyAggregateSaga();
@@ -194,7 +262,8 @@ describe('when calling watchSurveyAggregateSaga saga', () => {
     expect(saga.next().value).to.deep.equal(takeEvery(APPLICANT_EMAIL__BACK, applicantEmailBackSaga));
     expect(saga.next().value).to.deep.equal(takeEvery(SUPPORTER_EXPERIENCE__NEXT, supporterExperienceNextSaga));
     expect(saga.next().value).to.deep.equal(takeEvery(SUPPORTER_EXPERIENCE__BACK, supporterExperienceBackSaga));
-
+    expect(saga.next().value).to.deep.equal(takeEvery(SUMMARY__NEXT, summaryPageNextSaga));
+    expect(saga.next().value).to.deep.equal(takeEvery(SUMMARY__BACK, summaryPageBackSaga));
     expect(saga.next().value).to.deep.equal(undefined);
   });
 });

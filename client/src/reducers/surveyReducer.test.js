@@ -9,6 +9,7 @@ import {
   putExistingSupporterIntoStateAction,
   putSupporterExperienceIntoStateAction,
   putSurveyFieldIntoStateAction,
+  putIsBusyAction,
 } from '../actions/surveyActions';
 
 describe('applicantReducer ', () => {
@@ -26,6 +27,7 @@ describe('applicantReducer ', () => {
     expect(surveyReducer(undefined, {})).deep.equal({
       email: '',
       firstName: '',
+      isBusy: false,
       isExistingSupporter: '',
       lastName: '',
       matchesWatched: '',
@@ -70,6 +72,10 @@ describe('applicantReducer ', () => {
     const stubbedFieldName = 'TEST FIELD NAME';
     const stubbedValue = 'TEST VALUE';
     expect(surveyReducer({}, putSurveyFieldIntoStateAction(stubbedFieldName, stubbedValue))).deep.equal({ [stubbedFieldName]: stubbedValue });
+  });
+
+  it('should reduce PUT__IS_BUSY_INTO_STATE', () => {
+    expect(surveyReducer({}, putIsBusyAction(true))).deep.equal({ isBusy: true });
   });
 });
 

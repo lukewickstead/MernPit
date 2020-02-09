@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import EditableSummaryRow from '../../components/Widgets/SummaryRow';
 import SubmitBackButtons from '../../components/Widgets/SubmitBackButtons';
 import { FIELD_TYPE__NUMBER, FIELD_TYPE__OPTION } from '../../constants/common';
-import { YEARS_SUPPORTING_PROP_TYPE, MATCHES_WATCHED_PROP_TYPE, SHIRTS_OWNED_PROP_TYPE } from '../../helpers/propTypeHelper';
+import { SUMMARY__BACK, SUMMARY__NEXT } from '../../constants/actions/surveyActionConstants';
+import { MATCHES_WATCHED_PROP_TYPE, SHIRTS_OWNED_PROP_TYPE, YEARS_SUPPORTING_PROP_TYPE } from '../../helpers/propTypeHelper';
 import { createGetEnumLookUpHelper } from '../../../../common/enumLookUpHelper';
-import { putSurveyFieldIntoStateAction } from '../../actions/surveyActions';
+import { putSurveyFieldIntoStateAction, putSummaryBackAction, putSummaryNextAction } from '../../actions/surveyActions';
 import { validateSurveyField } from '../../validation/applicantValidation';
 
 import {
@@ -33,16 +34,16 @@ import {
   APPLICANT_PHONE_NUMBER__MAX_LENGTH,
   MATCHES_WATCHED,
   MATCHES_WATCHED__FIELD_NAME,
+  MATCHES_WATCHED__QUESTION_CONFIG,
   MATCHES_WATCHED__SUMMARY_LABEL,
+  SHIRTS_OWNED,
+  SHIRTS_OWNED__FIELD_NAME,
+  SHIRTS_OWNED__QUESTION_CONFIG,
+  SHIRTS_OWNED__SUMMARY_LABEL,
   YEARS_SUPPORTING,
   YEARS_SUPPORTING__FIELD_NAME,
   YEARS_SUPPORTING__QUESTION_CONFIG,
   YEARS_SUPPORTING__SUMMARY_LABEL,
-  MATCHES_WATCHED__QUESTION_CONFIG,
-  SHIRTS_OWNED__FIELD_NAME,
-  SHIRTS_OWNED,
-  SHIRTS_OWNED__QUESTION_CONFIG,
-  SHIRTS_OWNED__SUMMARY_LABEL,
 } from '../../constants/surveyConstants';
 
 class Summary extends React.Component {
@@ -79,22 +80,22 @@ class Summary extends React.Component {
 
   editOnClickHandler = (name) => {
     this.setState({
-      isValid: true,
-      isVisited: false,
       fieldNameInEdit: name,
       fieldNameInEditValue: this.getCurrentStateForField(name),
+      isValid: true,
+      isVisited: false,
       validationMessage: '',
     });
   }
 
   getCurrentStateForField = (name) => {
     const {
+      email,
       firstName,
       lastName,
-      email,
-      officePhoneNumber,
-      mobilePhoneNumber,
       matchesWatched,
+      mobilePhoneNumber,
+      officePhoneNumber,
       shirtsOwned,
       yearsSupporting,
     } = this.props;
@@ -156,6 +157,8 @@ class Summary extends React.Component {
       matchesWatched,
       mobilePhoneNumber,
       officePhoneNumber,
+      putSummaryBackActionHandler,
+      putSummaryNextActionHandler,
       shirtsOwned,
       yearsSupporting,
     } = this.props;
@@ -333,11 +336,11 @@ class Summary extends React.Component {
             />
 
             <SubmitBackButtons
+              backId={SUMMARY__BACK}
               displaySubmit
-              handleSubmit={() => {}}
-              handleBack={() => {}}
-              backId="SUMMARY__BACK"
-              forwardId="SUMMARY__NEXT"
+              forwardId={SUMMARY__NEXT}
+              handleBack={putSummaryBackActionHandler}
+              handleSubmit={putSummaryNextActionHandler}
             />
           </div>
         </div>
@@ -353,6 +356,8 @@ Summary.propTypes = {
   matchesWatched: MATCHES_WATCHED_PROP_TYPE.isRequired,
   mobilePhoneNumber: PropTypes.string.isRequired,
   officePhoneNumber: PropTypes.string.isRequired,
+  putSummaryBackActionHandler: PropTypes.func.isRequired,
+  putSummaryNextActionHandler: PropTypes.func.isRequired,
   putSurveyFieldIntoStateActionHandler: PropTypes.func.isRequired,
   shirtsOwned: SHIRTS_OWNED_PROP_TYPE.isRequired,
   yearsSupporting: YEARS_SUPPORTING_PROP_TYPE.isRequired,
@@ -371,6 +376,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  putSummaryBackActionHandler: () => dispatch(putSummaryBackAction()),
+  putSummaryNextActionHandler: () => dispatch(putSummaryNextAction()),
   putSurveyFieldIntoStateActionHandler: (fieldName, value) => dispatch(putSurveyFieldIntoStateAction(fieldName, value)),
 });
 

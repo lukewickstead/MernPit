@@ -1,6 +1,10 @@
 import { expect } from 'chai';
 
 import {
+  EXISTING_SUPPORTER__NO,
+  EXISTING_SUPPORTER__NO__DISPLAY,
+  EXISTING_SUPPORTER__YES,
+  EXISTING_SUPPORTER__YES__DISPLAY,
   MATCHES_WATCHED__OPTION__FOUR_TO_FIVE,
   MATCHES_WATCHED__OPTION__FOUR_TO_FIVE__LABEL,
   MATCHES_WATCHED__OPTION__ONE_TO_THREE,
@@ -119,6 +123,20 @@ describe('when mapping enums to display values', () => {
     it('should return the correct string', () => {
       const result = lookUpHelper(YEARS_SUPPORTING__OPTION__ZERO);
       expect(result).to.equal(YEARS_SUPPORTING__OPTION__ZERO__LABEL);
+    });
+  });
+
+  describe('with EXISTING_SUPPORTER__NO', () => {
+    it('should return the correct string', () => {
+      const result = lookUpHelper(EXISTING_SUPPORTER__NO);
+      expect(result).to.equal(EXISTING_SUPPORTER__NO__DISPLAY);
+    });
+  });
+
+  describe('with EXISTING_SUPPORTER__YES', () => {
+    it('should return the correct string', () => {
+      const result = lookUpHelper(EXISTING_SUPPORTER__YES);
+      expect(result).to.equal(EXISTING_SUPPORTER__YES__DISPLAY);
     });
   });
 
