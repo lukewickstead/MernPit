@@ -1,0 +1,23 @@
+@import  '../base/variables.scss';
+
+.header-container {
+    background-color: $primary-colour;
+    width: 100%;
+    
+    .header-container-inner {
+        background-image: url('../assets/images/logo.png');
+        background-position: 0px 50%;
+        background-repeat: no-repeat;
+        background-size: auto 90%; 
+        margin: 0 auto;
+        max-width: 1164px;
+
+        h1 {
+            color: white;
+            display: inline-block;
+            font-size: 20px;
+            margin: 15px auto;
+            padding-left: 65px;
+        }    
+    }        
+}

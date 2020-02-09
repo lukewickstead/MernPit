@@ -10,11 +10,6 @@ $focused-background-color: #fbba20;
 $valid-background-color: $primary-colour;
 
 $link-colour: $primary-colour;
-$border-colour: #c9c6c6;
-$box-shadow-color: #bcbcbc;
-
-$border-colour-darker: #979797;
-
 
 $primary-transition-time: 600ms;
 $secondary-transition-time: 400ms;
@@ -32,3 +27,8 @@ $break-large-phones: 576px;
 $break-tablets: 768px;
 $break-medium-desktops: 992px;
 $break-large-desktops: 1200px;
+
+$border-colour: #c9c6c6;
+$box-shadow-color: #bcbcbc;
+$border-colour-darker: #979797;
+$border-colour-lighter: #dedede;

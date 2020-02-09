@@ -1,0 +1,90 @@
+@import '../base/variables.scss';
+
+.progress-bar-container {
+    height: 99px;
+    width: 100%;
+    background-color: #f9f9f9;
+    border: solid 1px rgba(201, 198, 198, 0.5);
+
+    .progress-bar {
+        position: relative;
+        height: 4px;
+        width: 85%;
+        max-width: 800px;
+        margin: 37px auto 0px auto;
+        background-color: #efefef;
+        border: solid 1px $border-colour-lighter;
+
+        .progress-checkpoint {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            top: -11px;
+            position: absolute;
+            background-color: white;
+
+            &.progress-tick {
+                background-image: url('../assets/images/progressTick.svg');
+                background-position: 49% 50%;
+                background-repeat: no-repeat;
+                background-size: 29px auto;
+                width: 26px;
+                height: 26px;
+            }
+
+            &.progress-checkpoint-reached {
+                transition: border $primary-transition-time ease-in-out;
+                border: solid 3px $primary-colour;       
+            }
+
+            &.progress-checkpoint-unreached {
+                transition: border $secondary-transition-time ease-in-out;
+                border: solid 3px #c7c7c7;       
+            }
+        
+            &.progress-checkpoint-start {
+                left: 0px;
+                transform: translate(-50%)
+            }
+
+            &.progress-checkpoint-end {
+                left: 100%;
+                transform: translate(-50%);
+            }    
+        }
+        
+        .progress-checkpoint-text {
+            font-size: 16px;
+            position: absolute;
+            top: 15px;
+
+            &.progress-checkpoint-text-reached {
+                color: $text-colour;
+                transition: color $primary-transition-time ease-in-out;
+            }
+            
+            &.progress-checkpoint-text-unreached {
+                color: #757575;
+                transition: color 400ms ease-in-out;
+            }
+        
+            &.progress-checkpoint-text-start {
+                left: 0px;
+                transform: translate(-50%)
+            }
+
+            &.progress-checkpoint-text-end {
+                left: 100%;
+                transform: translate(-50%)
+            }    
+        }        
+
+        .progress-bar-fill {
+            height: 4px;
+            border-radius: 1.5px;
+            border: solid 1px $primary-colour;      
+            background-color: $primary-colour;
+            transition: width $tertiary-transition-time ease-in-out;
+        }    
+    }
+}

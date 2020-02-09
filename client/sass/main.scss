@@ -7,6 +7,10 @@
 @import './layout/centralColumnLayout.scss';
 @import './layout/landingPageLayout.scss';
 
+// Components
+@import './components/header.scss';
+@import './components/progressBar.scss';
+
 // Components/Widgets
 @import './components/widgets/questionOption.scss';
 @import './components/widgets/questionOptionHorizontal.scss';

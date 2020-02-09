@@ -235,7 +235,7 @@ describe('surveyActions', () => {
     });
   });
 
-  describe('putLoanOffersIsBusyAction', () => {
+  describe('putIsBusyAction', () => {
     it('should return the correct action type and value', () => {
       expect(putIsBusyAction(true))
         .to.deep.equal({

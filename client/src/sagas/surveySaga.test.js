@@ -218,19 +218,19 @@ describe('when on the summary page', () => {
       expect(saga.next().value).to.deep.equal(undefined);
     });
 
-    describe('and an error is reported posting the selcted loan offer', () => {
+    describe('and an error is reported posting the survey', () => {
       it('should log the error and navigate to /Error', () => {
         const action = putSummaryNextAction();
         const saga = summaryPageNextSaga(action);
 
         const stubbedSurveyDetails = 'TEST SURVEY DETAILS';
-        const stubbedPostSelectLoanOfferResponse = { data: 'TEST POST SURVEY RESPONSE' };
+        const stubbedPostSurveyResponse = { data: 'TEST POST SURVEY RESPONSE' };
 
         expect(saga.next().value).to.deep.equal(put(putIsBusyAction(true)));
         expect(saga.next().value).to.deep.equal(select(getSurveyDetailsFromState));
         expect(saga.next(stubbedSurveyDetails).value).to.deep.equal(call(postSurvey, stubbedSurveyDetails));
-        expect(saga.throw(stubbedPostSelectLoanOfferResponse).value).to.deep.equal(call(getErrorMessageFromServerResponseError, stubbedPostSelectLoanOfferResponse));
-        expect(saga.next(stubbedPostSelectLoanOfferResponse.data).value).to.deep.equal(call(consoleError, `Could not submit survey: ${stubbedPostSelectLoanOfferResponse.data}`));
+        expect(saga.throw(stubbedPostSurveyResponse).value).to.deep.equal(call(getErrorMessageFromServerResponseError, stubbedPostSurveyResponse));
+        expect(saga.next(stubbedPostSurveyResponse.data).value).to.deep.equal(call(consoleError, `Could not submit survey: ${stubbedPostSurveyResponse.data}`));
         expect(saga.next().value).to.deep.equal(put(push(URL__ERROR)));
         expect(saga.next().value).to.deep.equal(put(putIsBusyAction(false)));
         expect(saga.next().value).to.deep.equal(undefined);

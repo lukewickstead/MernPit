@@ -2,9 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Switch, Route, Router } from 'react-router-dom';
 
-import Home from '../Home';
-import Error from '../Error';
 import Confirmation from '../Confirmation';
+import Error from '../Error';
+import Header from '../Header';
+import Home from '../Home';
+import ProgressBar from '../ProgressBar';
 
 import ApplicantEmail from '../../containers/ApplicantEmail';
 import ApplicantName from '../../containers/ApplicantName';
@@ -34,6 +36,8 @@ function App({
   return (
     <Provider store={store}>
       <Router history={history}>
+        <Header />
+        <ProgressBar />
         <Switch>
           <Route exact path={URL__HOME} component={Home} />
           <Route exact path={URL__EXISTING_SUPPORTER} component={ExistingSupporter} />
