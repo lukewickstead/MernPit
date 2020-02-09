@@ -7,8 +7,8 @@ function Confirmation() {
 
     <LandingPage
       nextUrl={URL__HOME}
-      subTitle="Were all done."
-      title="Why not try again?"
+      subTitle="Why not try again?"
+      title="Were all done."
     />
   );
 }

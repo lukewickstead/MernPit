@@ -24,19 +24,17 @@ beforeEach(() => {
 describe('when calling createAndEmailSurveyReport', () => {
   const stubbedApp = 'TEST APP';
   const stubbedReportHtml = 'TEST REPORT HTML';
-  const stubbedeEmailHtml = 'TEST REPORT HTML';
   const stubbedReportPdfBuffer = 'TEST REPORT PDF BUFFER';
-  const stubbedReq = { hostUrl: 'TEST HOST URL' };
+  const stubbedReq = {};
   const stubbedSurveyDetails = { email: 'TEST EMAIL' };
+  const stubbedeEmailHtml = 'TEST REPORT HTML';
 
   it('should generate a pdf and email it to the client', async () => {
     // Assign
     const mockedLogger = mockLogger();
 
     const expectedRenderEmailHtmlViewModel = {
-      headerUrl: `${stubbedReq.hostUrl}/emailHeader.jpg`,
       clientName: `${stubbedSurveyDetails.firstName} ${stubbedSurveyDetails.lastName}`,
-      layout: false,
     };
 
     renderHtml.mockImplementationOnce(() => Promise.resolve(stubbedReportHtml));

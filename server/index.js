@@ -38,7 +38,6 @@ bootstrapHbs(app, path.join(`${__dirname}`, './views'));
 app.use((req, res, next) => {
   req.app = app;
   req.logger = winstonLogger;
-  req.hostUrl = process.env.HOST_URL;
   next();
 });
 

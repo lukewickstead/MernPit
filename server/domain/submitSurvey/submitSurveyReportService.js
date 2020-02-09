@@ -4,9 +4,7 @@ import { sendEmailWithPdf } from '../../infrastructure/emailService';
 
 async function getEmailHtml(app, req, surveyDetails) {
   const model = {
-    headerUrl: `${req.hostUrl}/emailHeader.jpg`,
     clientName: `${surveyDetails.firstName} ${surveyDetails.lastName}`,
-    layout: false,
   };
 
   return renderHtml(app, 'surveyEmailTemplate', model);
