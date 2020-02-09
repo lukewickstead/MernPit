@@ -22,3 +22,14 @@
     height: 60px; 
     width: 184px;
 }
+
+a {   
+    &.cta-button-primnary {
+        @include submit-button;
+        display: inline-block;
+        margin-top: 24px;
+        padding: 20px 0px;
+        text-align: center;
+        text-decoration: none;
+    }
+}

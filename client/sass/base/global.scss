@@ -26,16 +26,6 @@ h2 {
     font-size: 22px;
 }
 
-@media only screen and (min-width: $break-large-phones) {
-    h1 {
-        font-size: 36px;
-    }
-
-    h2 {
-        font-size: 18px;
-    }   
-}
-
 input+label, button {
     cursor: pointer
 }

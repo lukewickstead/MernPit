@@ -22,7 +22,7 @@ export default async function createAndEmailSurveyReport(app, req, surveyDetails
     const fileName = 'PlymouthArgyleSurvey.pdf';
     const emailHtml = await getEmailHtml(app, req, surveyDetails);
 
-    sendEmailWithPdf(subject, emailHtml, toEmailAddress, fileName, reportPdfBuffer, logger);
+    await sendEmailWithPdf(subject, emailHtml, toEmailAddress, fileName, reportPdfBuffer, logger);
     return { error: false };
   } catch (error) {
     logger.error(`Error generating and emailing the survey for survey. Error: ${error.toString()}`);
