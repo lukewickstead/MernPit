@@ -33,8 +33,7 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(express.static(distDir));
 
-bootstrapHbs(app);
-app.set('views', path.join(`${__dirname}`, './views')); // TODO: This should be done inside the bootstrapHbs function
+bootstrapHbs(app, path.join(`${__dirname}`, './views'));
 
 app.use((req, res, next) => {
   req.app = app;

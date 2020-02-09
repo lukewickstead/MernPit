@@ -1,7 +1,7 @@
 import expressHandlebars from 'express-handlebars';
 import { createGetEnumLookUpHelper } from '../../common/enumLookUpHelper';
 
-export default function bootstrapHbs(app) {
+export default function bootstrapHbs(app, viewsDir) {
   const enumLookUpHelper = createGetEnumLookUpHelper();
 
   const hbs = expressHandlebars.create({
@@ -13,4 +13,5 @@ export default function bootstrapHbs(app) {
 
   app.engine('handlebars', hbs.engine);
   app.set('view engine', 'handlebars');
+  app.set('views', viewsDir);
 }

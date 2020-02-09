@@ -1,5 +1,7 @@
 import sgMail from '@sendgrid/mail';
 
+import { MIME_TYPE__PDF } from '../constants';
+
 function sendEmail(msg, logger) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   logger.info(`Sending Email: ${msg.subject}`);
@@ -23,7 +25,7 @@ export function createAttachment(buffer, fileName, mimeType) {
 }
 
 export function createPdfAttachment(buffer, fileName) {
-  return createAttachment(buffer, fileName, 'application/pdf');
+  return createAttachment(buffer, fileName, MIME_TYPE__PDF);
 }
 
 export function sendEmailWithAttachments(subject, emailHtml, toAddress, logger, attachments) {
