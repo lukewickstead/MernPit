@@ -1,3 +1,5 @@
+import classnames from 'classnames';
+
 import { WORKFLOW_ORDER } from '../../constants/urlConstants';
 
 export default function progressBarHelper(currentUrl) {
@@ -12,4 +14,23 @@ export default function progressBarHelper(currentUrl) {
   return {
     percent,
   };
+}
+
+export function getTextMarkerClassNames(section, isReached) {
+  return classnames(
+    'progress-checkpoint-text',
+    `progress-checkpoint-text-${section}`,
+    { 'progress-checkpoint-text-reached': isReached },
+    { 'progress-checkpoint-text-unreached': !isReached },
+  );
+}
+
+export function getPointMarkerClassNames(section, isReached) {
+  return classnames(
+    'progress-checkpoint',
+    `progress-checkpoint-${section}`,
+    { 'progress-checkpoint-reached': isReached },
+    { 'progress-tick': isReached },
+    { 'progress-checkpoint-unreached': !isReached },
+  );
 }
