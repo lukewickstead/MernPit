@@ -12,6 +12,8 @@
 @import './components/progressBar.scss';
 
 // Components/Widgets
+@import './components/widgets/disableScreen.scss';
+@import './components/widgets/loader.scss';
 @import './components/widgets/questionOption.scss';
 @import './components/widgets/questionOptionHorizontal.scss';
 @import './components/widgets/questionOptionSelect.scss';

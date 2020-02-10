@@ -15,7 +15,7 @@ function LandingPage({ title, subTitle, nextUrl }) {
         <h1>{title}</h1>
         <p>{subTitle}</p>
 
-        <Link className="cta-button-primnary" to={nextUrl}>Continue</Link>
+        <Link className="cta-button-primary" to={nextUrl}>Continue</Link>
       </div>
     </div>
   );

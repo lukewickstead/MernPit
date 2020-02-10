@@ -24,7 +24,7 @@
 }
 
 a {   
-    &.cta-button-primnary {
+    &.cta-button-primary {
         @include submit-button;
         display: inline-block;
         margin-top: 24px;

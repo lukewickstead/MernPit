@@ -1,0 +1,47 @@
+@import '../../base/variables.scss';
+
+.loader {
+  display: none;
+}
+
+@mixin spinner-mixin
+{
+  animation: spin 0.7s linear infinite;
+  border: 9px solid $primary-colour;
+  border-bottom: 9px solid rgba(255, 255, 255, 0);       
+  border-radius: 50%;
+  color: $primary-colour;
+  height: 45px;
+  margin: 32px auto 0 auto;
+  position: relative;
+  width: 45px;
+}
+
+.loader-enabled {
+  background: white; 
+  border-radius: 8px;
+  border: solid 1px $border-colour-darker;
+  display: block;
+  position: fixed;  
+  right: calc( 50% - ( 263px / 2) );
+  top: calc( 50% - ( 170px / 2) );
+  width: 263px;  
+  z-index: $z-index-priority-higher;
+  h2 {
+      color: $primary-colour;
+      font-size: 18px;
+      margin-bottom: 24px;
+      margin-top: 25px;
+      padding: 0 10px 0 10px;
+      text-align: center;
+  }
+
+  .loader-content {
+    @include spinner-mixin;
+  }
+    
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}

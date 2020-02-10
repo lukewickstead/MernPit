@@ -1,0 +1,19 @@
+@import '../../base/variables.scss';
+
+.disable-screen {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    transition: opacity $primary-transition-time ease-in-out;
+    width: 100%;
+    z-index: $z-index-priority-lower;
+
+    &.disable-screen-enabled {
+        background-color: black;
+        opacity: 0.488;
+        transition: opacity $primary-transition-time ease-in-out;
+        z-index: $z-index-priority-high;
+    }
+}
