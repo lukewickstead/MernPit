@@ -5,6 +5,9 @@ import TooltipQuestionHeading from './TooltipQuestionHeading';
 import { TOOLTIP_CONFIG_PROP_TYPE } from '../../helpers/propTypeHelper';
 import ValidationContainer from './ValidationContainer';
 
+/**
+ * Question and input as a free text field.
+ */
 function QuestionText({
   handleInputChange,
   id,

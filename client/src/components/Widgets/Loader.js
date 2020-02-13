@@ -4,6 +4,9 @@ import classnames from 'classnames';
 
 import DisableScreen from './DisableScreen';
 
+/**
+ * Provides a loading spinner and optionally disabling the screen
+ */
 function Loader({ isEnabled, msg }) {
   const loaderClasses = classnames(
     'loader',
@@ -26,7 +29,10 @@ Loader.defaultProps = {
 };
 
 Loader.propTypes = {
+  /** Enables and disables the disable screen */
   isEnabled: PropTypes.bool.isRequired,
+
+  /** Overrides the message displayed to the user */
   msg: PropTypes.string,
 };
 

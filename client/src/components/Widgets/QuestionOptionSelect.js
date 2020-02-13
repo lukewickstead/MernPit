@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import ValidationMessage from './ValidationMessage';
 import { QUESTIONS_CONFIG_PROP_TYPE } from '../../helpers/propTypeHelper';
 
+/**
+ * Question and options which are displayed as a selection dropdown.
+ */
 function QuestionOptionSelect({
   handleInputChange, title, id, optionIdPrefix, questionConfig, value, isInvalid, isVisited,
 }) {
@@ -13,7 +16,7 @@ function QuestionOptionSelect({
       key={question.value}
       value={question.value}
     >
-      {`${question.title} ${question.subTitle}`}
+      {`${question.title} ${question.subTitle ? question.subTitle : ''}`}
     </option>
   ));
 

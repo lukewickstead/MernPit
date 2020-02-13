@@ -13,6 +13,9 @@ import {
   FIELD_TYPE__TEXT,
 } from '../../constants/common';
 
+/**
+ * Summary page field; readonly and editable states for each required field type
+ */
 function EditableSummaryRow(
   {
     editOnClickHandler,

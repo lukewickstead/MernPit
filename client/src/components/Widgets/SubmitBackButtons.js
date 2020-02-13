@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Submit and Back Button
+ */
 function SubmitBackButtons(
   {
     backId,
@@ -25,11 +28,17 @@ SubmitBackButtons.defaultProps = {
 };
 
 SubmitBackButtons.propTypes = {
+  /** The id of the back button */
   backId: PropTypes.string.isRequired,
+  /** The button title of the back button */
   backTitle: PropTypes.string,
+  /** The id of the forward button */
   forwardId: PropTypes.string.isRequired,
+  /** The button title of the forward button */
   forwardTitle: PropTypes.string,
+  /** The back button action handler */
   handleBack: PropTypes.func.isRequired,
+  /** The forward button action handler */
   handleSubmit: PropTypes.func.isRequired,
 };
 

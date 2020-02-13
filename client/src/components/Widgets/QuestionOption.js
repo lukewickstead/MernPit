@@ -5,6 +5,9 @@ import ValidationMessage from './ValidationMessage';
 import TooltipQuestionHeading from './TooltipQuestionHeading';
 import { TOOLTIP_CONFIG_PROP_TYPE, QUESTIONS_CONFIG_PROP_TYPE } from '../../helpers/propTypeHelper';
 
+/**
+ * Question and option input with contectual validation.
+ */
 function QuestionOption({
   handleInputChange,
   isInvalid,

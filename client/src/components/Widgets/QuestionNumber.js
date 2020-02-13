@@ -11,6 +11,9 @@ function ensureOnlyNumberEvent(event, handleInputChange) {
   }
 }
 
+/**
+ * Question and number input with contectual validation.
+ */
 function QuestionNumber({
   handleInputChange,
   id,

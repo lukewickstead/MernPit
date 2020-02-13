@@ -6,6 +6,9 @@ import TooltipQuestionHeading from './TooltipQuestionHeading';
 
 import { TOOLTIP_CONFIG_PROP_TYPE, QUESTIONS_CONFIG_PROP_TYPE } from '../../helpers/propTypeHelper';
 
+/**
+ * Question and options which are displayed as buttons horizontally.
+ */
 function QuestionOptionHorizontal({
   handleInputChange,
   title,
