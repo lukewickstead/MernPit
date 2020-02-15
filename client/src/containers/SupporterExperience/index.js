@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import CentralColumnLayout from '../../components/Layouts/CentralColumnLayout';
 import MatchesWatchedOptions from '../../components/MatchesWatchedOptions';
 import ShirtsOwnedOptions from '../../components/ShirtsOwnedOptions';
 import SubmitBackButtons from '../../components/Widgets/SubmitBackButtons';
@@ -95,41 +96,35 @@ class SupporterExperience extends React.Component {
     } = this.state;
 
     return (
-      <div className="central-column-layout-container">
-        <h1>What is your level of experience?</h1>
-        <div className="central-column-layout-container-inner">
-          <form>
+      <CentralColumnLayout title="What is your level of experience?">
+        <YearsSupportingOptions
+          handleInputChange={this.handleInputChange}
+          value={yearsSupporting}
+          isInvalid={yearsSupportingIsInvalid}
+          isVisited={yearsSupportingIsVisited}
+        />
 
-            <YearsSupportingOptions
-              handleInputChange={this.handleInputChange}
-              value={yearsSupporting}
-              isInvalid={yearsSupportingIsInvalid}
-              isVisited={yearsSupportingIsVisited}
-            />
+        <MatchesWatchedOptions
+          handleInputChange={this.handleInputChange}
+          value={matchesWatched}
+          isInvalid={matchesWatchedIsInvalid}
+          isVisited={matchesWatchedIsVisited}
+        />
 
-            <MatchesWatchedOptions
-              handleInputChange={this.handleInputChange}
-              value={matchesWatched}
-              isInvalid={matchesWatchedIsInvalid}
-              isVisited={matchesWatchedIsVisited}
-            />
+        <ShirtsOwnedOptions
+          handleInputChange={this.handleInputChange}
+          value={shirtsOwned}
+          isInvalid={shirtsOwnedIsInvalid}
+          isVisited={shirtsOwnedIsVisited}
+        />
 
-            <ShirtsOwnedOptions
-              handleInputChange={this.handleInputChange}
-              value={shirtsOwned}
-              isInvalid={shirtsOwnedIsInvalid}
-              isVisited={shirtsOwnedIsVisited}
-            />
-
-            <SubmitBackButtons
-              handleSubmit={this.handleSubmit}
-              handleBack={this.handleBack}
-              backId={SUPPORTER_EXPERIENCE__BACK}
-              forwardId={SUPPORTER_EXPERIENCE__NEXT}
-            />
-          </form>
-        </div>
-      </div>
+        <SubmitBackButtons
+          handleSubmit={this.handleSubmit}
+          handleBack={this.handleBack}
+          backId={SUPPORTER_EXPERIENCE__BACK}
+          forwardId={SUPPORTER_EXPERIENCE__NEXT}
+        />
+      </CentralColumnLayout>
     );
   }
 }

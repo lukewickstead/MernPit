@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import CentralColumnLayout from '../../components/Layouts/CentralColumnLayout';
 import QuestionNumber from '../../components/Widgets/QuestionNumber';
 import SubmitBackButtons from '../../components/Widgets/SubmitBackButtons';
 import { APPLICANT_PHONE_NOS__NEXT, APPLICANT_PHONE_NOS__BACK } from '../../constants/actions/surveyActionConstants';
@@ -111,47 +112,40 @@ class ApplicantPhoneNumber extends React.Component {
     } = this.state;
 
     return (
-      <div className="central-column-layout-container">
-        <h1>
-          What are your telephone numbers?
-        </h1>
-        <div className="central-column-layout-container-inner">
-          <form>
-            <QuestionNumber
-              handleInputChange={this.handleInputChange}
-              id={APPLICANT_PHONE_NUMBER}
-              isInvalid={officePhoneNumberIsInvalid}
-              isVisited={officePhoneNumberIsVisited}
-              maxLength={APPLICANT_PHONE_NUMBER__MAX_LENGTH}
-              name={APPLICANT_PHONE_NUMBER__FIELD_NAME}
-              onblur={this.onBlur}
-              title={APPLICANT_PHONE_NUMBER__LABEL}
-              validationMessage={officePhoneNumberValidationMessage}
-              value={officePhoneNumber}
-            />
+      <CentralColumnLayout title="What are your telephone numbers?">
+        <QuestionNumber
+          handleInputChange={this.handleInputChange}
+          id={APPLICANT_PHONE_NUMBER}
+          isInvalid={officePhoneNumberIsInvalid}
+          isVisited={officePhoneNumberIsVisited}
+          maxLength={APPLICANT_PHONE_NUMBER__MAX_LENGTH}
+          name={APPLICANT_PHONE_NUMBER__FIELD_NAME}
+          onblur={this.onBlur}
+          title={APPLICANT_PHONE_NUMBER__LABEL}
+          validationMessage={officePhoneNumberValidationMessage}
+          value={officePhoneNumber}
+        />
 
-            <QuestionNumber
-              handleInputChange={this.handleInputChange}
-              id={APPLICANT_MOBILE_PHONE_NUMBER}
-              isInvalid={mobilePhoneNumberIsInvalid}
-              isVisited={mobilePhoneNumberIsVisited}
-              maxLength={APPLICANT_MOBILE_PHONE_NUMBER__MAX_LENGTH}
-              name={APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME}
-              onblur={this.onBlur}
-              title={APPLICANT_MOBILE_PHONE_NUMBER__LABEL}
-              validationMessage={mobilePhoneNumberValidationMessage}
-              value={mobilePhoneNumber}
-            />
+        <QuestionNumber
+          handleInputChange={this.handleInputChange}
+          id={APPLICANT_MOBILE_PHONE_NUMBER}
+          isInvalid={mobilePhoneNumberIsInvalid}
+          isVisited={mobilePhoneNumberIsVisited}
+          maxLength={APPLICANT_MOBILE_PHONE_NUMBER__MAX_LENGTH}
+          name={APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME}
+          onblur={this.onBlur}
+          title={APPLICANT_MOBILE_PHONE_NUMBER__LABEL}
+          validationMessage={mobilePhoneNumberValidationMessage}
+          value={mobilePhoneNumber}
+        />
 
-            <SubmitBackButtons
-              backId={APPLICANT_PHONE_NOS__BACK}
-              forwardId={APPLICANT_PHONE_NOS__NEXT}
-              handleBack={this.handleBack}
-              handleSubmit={this.handleSubmit}
-            />
-          </form>
-        </div>
-      </div>
+        <SubmitBackButtons
+          backId={APPLICANT_PHONE_NOS__BACK}
+          forwardId={APPLICANT_PHONE_NOS__NEXT}
+          handleBack={this.handleBack}
+          handleSubmit={this.handleSubmit}
+        />
+      </CentralColumnLayout>
     );
   }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import CentralColumnLayout from '../../components/Layouts/CentralColumnLayout';
 import QuestionText from '../../components/Widgets/QuestionText';
 import SubmitBackButtons from '../../components/Widgets/SubmitBackButtons';
 import { putApplicantEmailNextAction, putApplicantEmailBackAction } from '../../actions/surveyActions';
@@ -82,34 +83,27 @@ class ApplicantName extends React.Component {
     } = this.state;
 
     return (
-      <div className="central-column-layout-container">
-        <h1>
-          Now we need a few personal details
-        </h1>
-        <div className="central-column-layout-container-inner">
-          <form>
-            <QuestionText
-              handleInputChange={this.handleInputChange}
-              onblur={this.onBlur}
-              id={APPLICANT_EMAIL}
-              value={email}
-              name={APPLICANT_EMAIL__FIELD_NAME}
-              title={APPLICANT_EMAIL__TITLE}
-              maxLength={APPLICANT_EMAIL__MAX_LENGTH}
-              isInvalid={emailIsInvalid}
-              isVisited={emailIsVisited}
-              validationMessage={emailValidationMessage}
-            />
+      <CentralColumnLayout title="Now we need a few personal details">
+        <QuestionText
+          handleInputChange={this.handleInputChange}
+          onblur={this.onBlur}
+          id={APPLICANT_EMAIL}
+          value={email}
+          name={APPLICANT_EMAIL__FIELD_NAME}
+          title={APPLICANT_EMAIL__TITLE}
+          maxLength={APPLICANT_EMAIL__MAX_LENGTH}
+          isInvalid={emailIsInvalid}
+          isVisited={emailIsVisited}
+          validationMessage={emailValidationMessage}
+        />
 
-            <SubmitBackButtons
-              handleSubmit={this.handleSubmit}
-              handleBack={this.handleBack}
-              backId={APPLICANT_EMAIL__BACK}
-              forwardId={APPLICANT_EMAIL__NEXT}
-            />
-          </form>
-        </div>
-      </div>
+        <SubmitBackButtons
+          handleSubmit={this.handleSubmit}
+          handleBack={this.handleBack}
+          backId={APPLICANT_EMAIL__BACK}
+          forwardId={APPLICANT_EMAIL__NEXT}
+        />
+      </CentralColumnLayout>
     );
   }
 }

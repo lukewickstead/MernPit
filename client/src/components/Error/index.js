@@ -1,11 +1,11 @@
 import React from 'react';
-import LandingPage from '../LandingPage';
+import LandingPageLayout from '../Layouts/LandingPageLayout';
 import { URL__HOME } from '../../constants/urlConstants';
 
 function Error() {
   return (
 
-    <LandingPage
+    <LandingPageLayout
       nextUrl={URL__HOME}
       subTitle="Something went wrong, please try again:"
       title="Ohh no....."

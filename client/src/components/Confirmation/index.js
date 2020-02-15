@@ -1,11 +1,11 @@
 import React from 'react';
-import LandingPage from '../LandingPage';
+import LandingPageLayout from '../Layouts/LandingPageLayout';
 import { URL__HOME } from '../../constants/urlConstants';
 
 function Confirmation() {
   return (
 
-    <LandingPage
+    <LandingPageLayout
       nextUrl={URL__HOME}
       subTitle="Why not try again?"
       title="Were all done."

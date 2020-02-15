@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import CentralColumnLayout from '../../components/Layouts/CentralColumnLayout';
 import EditableSummaryRow from '../../components/Widgets/SummaryRow';
 import Loader from '../../components/Widgets/Loader';
 import SubmitBackButtons from '../../components/Widgets/SubmitBackButtons';
@@ -176,179 +177,172 @@ class Summary extends React.Component {
     return (
       <>
         <Loader isEnabled={isBusy} />
-        <div className="central-column-layout-container">
-          <h1>Summary</h1>
+        <CentralColumnLayout title="Summary">
+          <EditableSummaryRow
+            editOnClickHandler={this.editOnClickHandler}
+            handleInputChange={this.handleInputChange}
+            id={APPLICANT_FIRST_NAME}
+            includeSeparator
+            isInEdit={fieldNameInEdit === APPLICANT_FIRST_NAME__FIELD_NAME}
+            isValid={isValid}
+            isVisited={isVisited}
+            maxLength={APPLICANT_FIRST_NAME__MAX_LENGTH}
+            name={APPLICANT_FIRST_NAME__FIELD_NAME}
+            onBlurHandler={this.onBlur}
+            readonlyDisplayValue={firstName}
+            saveOnClickHandler={this.saveOnClickHandler}
+            stopEditOnClickHandler={this.stopEditOnClickHandler}
+            title={APPLICANT_FIRST_NAME__LABEL}
+            validationMessage={validationMessage}
+            value={fieldNameInEdit === APPLICANT_FIRST_NAME__FIELD_NAME ? fieldNameInEditValue : firstName}
+          />
 
-          <div className="central-column-layout-container-inner">
-            <div className="summary-table-container">
+          <EditableSummaryRow
+            editOnClickHandler={this.editOnClickHandler}
+            handleInputChange={this.handleInputChange}
+            id={APPLICANT_LAST_NAME}
+            includeSeparator
+            isInEdit={fieldNameInEdit === APPLICANT_LAST_NAME__FIELD_NAME}
+            isValid={isValid}
+            isVisited={isVisited}
+            maxLength={APPLICANT_LAST_NAME__MAX_LENGTH}
+            name={APPLICANT_LAST_NAME__FIELD_NAME}
+            onBlurHandler={this.onBlur}
+            readonlyDisplayValue={lastName}
+            saveOnClickHandler={this.saveOnClickHandler}
+            stopEditOnClickHandler={this.stopEditOnClickHandler}
+            title={APPLICANT_LAST_NAME__LABEL}
+            validationMessage={validationMessage}
+            value={fieldNameInEdit === APPLICANT_LAST_NAME__FIELD_NAME ? fieldNameInEditValue : lastName}
+          />
 
-              <EditableSummaryRow
-                editOnClickHandler={this.editOnClickHandler}
-                handleInputChange={this.handleInputChange}
-                id={APPLICANT_FIRST_NAME}
-                includeSeparator
-                isInEdit={fieldNameInEdit === APPLICANT_FIRST_NAME__FIELD_NAME}
-                isValid={isValid}
-                isVisited={isVisited}
-                maxLength={APPLICANT_FIRST_NAME__MAX_LENGTH}
-                name={APPLICANT_FIRST_NAME__FIELD_NAME}
-                onBlurHandler={this.onBlur}
-                readonlyDisplayValue={firstName}
-                saveOnClickHandler={this.saveOnClickHandler}
-                stopEditOnClickHandler={this.stopEditOnClickHandler}
-                title={APPLICANT_FIRST_NAME__LABEL}
-                validationMessage={validationMessage}
-                value={fieldNameInEdit === APPLICANT_FIRST_NAME__FIELD_NAME ? fieldNameInEditValue : firstName}
-              />
+          <EditableSummaryRow
+            editOnClickHandler={this.editOnClickHandler}
+            handleInputChange={this.handleInputChange}
+            id={APPLICANT_EMAIL}
+            includeSeparator
+            isInEdit={fieldNameInEdit === APPLICANT_EMAIL__FIELD_NAME}
+            isValid={isValid}
+            isVisited={isVisited}
+            maxLength={APPLICANT_EMAIL__MAX_LENGTH}
+            name={APPLICANT_EMAIL__FIELD_NAME}
+            onBlurHandler={this.onBlur}
+            readonlyDisplayValue={email}
+            saveOnClickHandler={this.saveOnClickHandler}
+            stopEditOnClickHandler={this.stopEditOnClickHandler}
+            title={APPLICANT_EMAIL__TITLE}
+            validationMessage={validationMessage}
+            value={fieldNameInEdit === APPLICANT_EMAIL__FIELD_NAME ? fieldNameInEditValue : email}
+          />
 
-              <EditableSummaryRow
-                editOnClickHandler={this.editOnClickHandler}
-                handleInputChange={this.handleInputChange}
-                id={APPLICANT_LAST_NAME}
-                includeSeparator
-                isInEdit={fieldNameInEdit === APPLICANT_LAST_NAME__FIELD_NAME}
-                isValid={isValid}
-                isVisited={isVisited}
-                maxLength={APPLICANT_LAST_NAME__MAX_LENGTH}
-                name={APPLICANT_LAST_NAME__FIELD_NAME}
-                onBlurHandler={this.onBlur}
-                readonlyDisplayValue={lastName}
-                saveOnClickHandler={this.saveOnClickHandler}
-                stopEditOnClickHandler={this.stopEditOnClickHandler}
-                title={APPLICANT_LAST_NAME__LABEL}
-                validationMessage={validationMessage}
-                value={fieldNameInEdit === APPLICANT_LAST_NAME__FIELD_NAME ? fieldNameInEditValue : lastName}
-              />
+          <EditableSummaryRow
+            editOnClickHandler={this.editOnClickHandler}
+            fieldType={FIELD_TYPE__NUMBER}
+            handleInputChange={this.handleInputChange}
+            id={APPLICANT_PHONE_NUMBER}
+            includeSeparator
+            isInEdit={fieldNameInEdit === APPLICANT_PHONE_NUMBER__FIELD_NAME}
+            isValid={isValid}
+            isVisited={isVisited}
+            maxLength={APPLICANT_PHONE_NUMBER__MAX_LENGTH}
+            name={APPLICANT_PHONE_NUMBER__FIELD_NAME}
+            onBlurHandler={this.onBlur}
+            readonlyDisplayValue={officePhoneNumber}
+            saveOnClickHandler={this.saveOnClickHandler}
+            stopEditOnClickHandler={this.stopEditOnClickHandler}
+            title={APPLICANT_PHONE_NUMBER__LABEL}
+            validationMessage={validationMessage}
+            value={fieldNameInEdit === APPLICANT_PHONE_NUMBER__FIELD_NAME ? fieldNameInEditValue : officePhoneNumber}
+          />
 
-              <EditableSummaryRow
-                editOnClickHandler={this.editOnClickHandler}
-                handleInputChange={this.handleInputChange}
-                id={APPLICANT_EMAIL}
-                includeSeparator
-                isInEdit={fieldNameInEdit === APPLICANT_EMAIL__FIELD_NAME}
-                isValid={isValid}
-                isVisited={isVisited}
-                maxLength={APPLICANT_EMAIL__MAX_LENGTH}
-                name={APPLICANT_EMAIL__FIELD_NAME}
-                onBlurHandler={this.onBlur}
-                readonlyDisplayValue={email}
-                saveOnClickHandler={this.saveOnClickHandler}
-                stopEditOnClickHandler={this.stopEditOnClickHandler}
-                title={APPLICANT_EMAIL__TITLE}
-                validationMessage={validationMessage}
-                value={fieldNameInEdit === APPLICANT_EMAIL__FIELD_NAME ? fieldNameInEditValue : email}
-              />
+          <EditableSummaryRow
+            editOnClickHandler={this.editOnClickHandler}
+            fieldType={FIELD_TYPE__NUMBER}
+            handleInputChange={this.handleInputChange}
+            id={APPLICANT_MOBILE_PHONE_NUMBER}
+            includeSeparator
+            isInEdit={fieldNameInEdit === APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME}
+            isValid={isValid}
+            isVisited={isVisited}
+            maxLength={APPLICANT_MOBILE_PHONE_NUMBER__MAX_LENGTH}
+            name={APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME}
+            onBlurHandler={this.onBlur}
+            readonlyDisplayValue={mobilePhoneNumber}
+            saveOnClickHandler={this.saveOnClickHandler}
+            stopEditOnClickHandler={this.stopEditOnClickHandler}
+            title={APPLICANT_MOBILE_PHONE_NUMBER__LABEL}
+            validationMessage={validationMessage}
+            value={fieldNameInEdit === APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME ? fieldNameInEditValue : mobilePhoneNumber}
+          />
 
-              <EditableSummaryRow
-                editOnClickHandler={this.editOnClickHandler}
-                fieldType={FIELD_TYPE__NUMBER}
-                handleInputChange={this.handleInputChange}
-                id={APPLICANT_PHONE_NUMBER}
-                includeSeparator
-                isInEdit={fieldNameInEdit === APPLICANT_PHONE_NUMBER__FIELD_NAME}
-                isValid={isValid}
-                isVisited={isVisited}
-                maxLength={APPLICANT_PHONE_NUMBER__MAX_LENGTH}
-                name={APPLICANT_PHONE_NUMBER__FIELD_NAME}
-                onBlurHandler={this.onBlur}
-                readonlyDisplayValue={officePhoneNumber}
-                saveOnClickHandler={this.saveOnClickHandler}
-                stopEditOnClickHandler={this.stopEditOnClickHandler}
-                title={APPLICANT_PHONE_NUMBER__LABEL}
-                validationMessage={validationMessage}
-                value={fieldNameInEdit === APPLICANT_PHONE_NUMBER__FIELD_NAME ? fieldNameInEditValue : officePhoneNumber}
-              />
+          <EditableSummaryRow
+            editOnClickHandler={this.editOnClickHandler}
+            fieldType={FIELD_TYPE__OPTION}
+            handleInputChange={this.handleInputChange}
+            id={YEARS_SUPPORTING}
+            includeSeparator
+            isInEdit={fieldNameInEdit === YEARS_SUPPORTING__FIELD_NAME}
+            isValid={isValid}
+            isVisited={isVisited}
+            name={YEARS_SUPPORTING__FIELD_NAME}
+            onBlurHandler={this.onBlur}
+            questionConfig={YEARS_SUPPORTING__QUESTION_CONFIG}
+            readonlyDisplayValue={this.getDisplayValueForEnum(yearsSupporting)}
+            saveOnClickHandler={this.saveOnClickHandler}
+            stopEditOnClickHandler={this.stopEditOnClickHandler}
+            title={YEARS_SUPPORTING__SUMMARY_LABEL}
+            validationMessage={validationMessage}
+            value={fieldNameInEdit === YEARS_SUPPORTING__FIELD_NAME ? fieldNameInEditValue : yearsSupporting}
+          />
 
-              <EditableSummaryRow
-                editOnClickHandler={this.editOnClickHandler}
-                fieldType={FIELD_TYPE__NUMBER}
-                handleInputChange={this.handleInputChange}
-                id={APPLICANT_MOBILE_PHONE_NUMBER}
-                includeSeparator
-                isInEdit={fieldNameInEdit === APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME}
-                isValid={isValid}
-                isVisited={isVisited}
-                maxLength={APPLICANT_MOBILE_PHONE_NUMBER__MAX_LENGTH}
-                name={APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME}
-                onBlurHandler={this.onBlur}
-                readonlyDisplayValue={mobilePhoneNumber}
-                saveOnClickHandler={this.saveOnClickHandler}
-                stopEditOnClickHandler={this.stopEditOnClickHandler}
-                title={APPLICANT_MOBILE_PHONE_NUMBER__LABEL}
-                validationMessage={validationMessage}
-                value={fieldNameInEdit === APPLICANT_MOBILE_PHONE_NUMBER__FIELD_NAME ? fieldNameInEditValue : mobilePhoneNumber}
-              />
+          <EditableSummaryRow
+            editOnClickHandler={this.editOnClickHandler}
+            fieldType={FIELD_TYPE__OPTION}
+            handleInputChange={this.handleInputChange}
+            id={MATCHES_WATCHED}
+            includeSeparator
+            isInEdit={fieldNameInEdit === MATCHES_WATCHED__FIELD_NAME}
+            isValid={isValid}
+            isVisited={isVisited}
+            name={MATCHES_WATCHED__FIELD_NAME}
+            onBlurHandler={this.onBlur}
+            questionConfig={MATCHES_WATCHED__QUESTION_CONFIG}
+            readonlyDisplayValue={this.getDisplayValueForEnum(matchesWatched)}
+            saveOnClickHandler={this.saveOnClickHandler}
+            stopEditOnClickHandler={this.stopEditOnClickHandler}
+            title={MATCHES_WATCHED__SUMMARY_LABEL}
+            validationMessage={validationMessage}
+            value={fieldNameInEdit === MATCHES_WATCHED__FIELD_NAME ? fieldNameInEditValue : matchesWatched}
+          />
 
-              <EditableSummaryRow
-                editOnClickHandler={this.editOnClickHandler}
-                fieldType={FIELD_TYPE__OPTION}
-                handleInputChange={this.handleInputChange}
-                id={YEARS_SUPPORTING}
-                includeSeparator
-                isInEdit={fieldNameInEdit === YEARS_SUPPORTING__FIELD_NAME}
-                isValid={isValid}
-                isVisited={isVisited}
-                name={YEARS_SUPPORTING__FIELD_NAME}
-                onBlurHandler={this.onBlur}
-                questionConfig={YEARS_SUPPORTING__QUESTION_CONFIG}
-                readonlyDisplayValue={this.getDisplayValueForEnum(yearsSupporting)}
-                saveOnClickHandler={this.saveOnClickHandler}
-                stopEditOnClickHandler={this.stopEditOnClickHandler}
-                title={YEARS_SUPPORTING__SUMMARY_LABEL}
-                validationMessage={validationMessage}
-                value={fieldNameInEdit === YEARS_SUPPORTING__FIELD_NAME ? fieldNameInEditValue : yearsSupporting}
-              />
+          <EditableSummaryRow
+            editOnClickHandler={this.editOnClickHandler}
+            fieldType={FIELD_TYPE__OPTION}
+            handleInputChange={this.handleInputChange}
+            id={SHIRTS_OWNED}
+            includeSeparator
+            isInEdit={fieldNameInEdit === SHIRTS_OWNED__FIELD_NAME}
+            isValid={isValid}
+            isVisited={isVisited}
+            name={SHIRTS_OWNED__FIELD_NAME}
+            onBlurHandler={this.onBlur}
+            questionConfig={SHIRTS_OWNED__QUESTION_CONFIG}
+            readonlyDisplayValue={this.getDisplayValueForEnum(shirtsOwned)}
+            saveOnClickHandler={this.saveOnClickHandler}
+            stopEditOnClickHandler={this.stopEditOnClickHandler}
+            title={SHIRTS_OWNED__SUMMARY_LABEL}
+            validationMessage={validationMessage}
+            value={fieldNameInEdit === SHIRTS_OWNED__FIELD_NAME ? fieldNameInEditValue : shirtsOwned}
+          />
 
-              <EditableSummaryRow
-                editOnClickHandler={this.editOnClickHandler}
-                fieldType={FIELD_TYPE__OPTION}
-                handleInputChange={this.handleInputChange}
-                id={MATCHES_WATCHED}
-                includeSeparator
-                isInEdit={fieldNameInEdit === MATCHES_WATCHED__FIELD_NAME}
-                isValid={isValid}
-                isVisited={isVisited}
-                name={MATCHES_WATCHED__FIELD_NAME}
-                onBlurHandler={this.onBlur}
-                questionConfig={MATCHES_WATCHED__QUESTION_CONFIG}
-                readonlyDisplayValue={this.getDisplayValueForEnum(matchesWatched)}
-                saveOnClickHandler={this.saveOnClickHandler}
-                stopEditOnClickHandler={this.stopEditOnClickHandler}
-                title={MATCHES_WATCHED__SUMMARY_LABEL}
-                validationMessage={validationMessage}
-                value={fieldNameInEdit === MATCHES_WATCHED__FIELD_NAME ? fieldNameInEditValue : matchesWatched}
-              />
-
-              <EditableSummaryRow
-                editOnClickHandler={this.editOnClickHandler}
-                fieldType={FIELD_TYPE__OPTION}
-                handleInputChange={this.handleInputChange}
-                id={SHIRTS_OWNED}
-                includeSeparator
-                isInEdit={fieldNameInEdit === SHIRTS_OWNED__FIELD_NAME}
-                isValid={isValid}
-                isVisited={isVisited}
-                name={SHIRTS_OWNED__FIELD_NAME}
-                onBlurHandler={this.onBlur}
-                questionConfig={SHIRTS_OWNED__QUESTION_CONFIG}
-                readonlyDisplayValue={this.getDisplayValueForEnum(shirtsOwned)}
-                saveOnClickHandler={this.saveOnClickHandler}
-                stopEditOnClickHandler={this.stopEditOnClickHandler}
-                title={SHIRTS_OWNED__SUMMARY_LABEL}
-                validationMessage={validationMessage}
-                value={fieldNameInEdit === SHIRTS_OWNED__FIELD_NAME ? fieldNameInEditValue : shirtsOwned}
-              />
-
-              <SubmitBackButtons
-                backId={SUMMARY__BACK}
-                displaySubmit
-                forwardId={SUMMARY__NEXT}
-                handleBack={putSummaryBackActionHandler}
-                handleSubmit={putSummaryNextActionHandler}
-              />
-            </div>
-          </div>
-        </div>
+          <SubmitBackButtons
+            backId={SUMMARY__BACK}
+            displaySubmit
+            forwardId={SUMMARY__NEXT}
+            handleBack={putSummaryBackActionHandler}
+            handleSubmit={putSummaryNextActionHandler}
+          />
+        </CentralColumnLayout>
       </>
     );
   }

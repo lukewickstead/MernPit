@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function LandingPage({ title, subTitle, nextUrl }) {
+function LandingPageLayout({ title, subTitle, nextUrl }) {
   return (
 
     <div className="landing-page-layout-container">
@@ -21,10 +21,10 @@ function LandingPage({ title, subTitle, nextUrl }) {
   );
 }
 
-LandingPage.propTypes = {
+LandingPageLayout.propTypes = {
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string.isRequired,
   nextUrl: PropTypes.string.isRequired,
 };
 
-export default LandingPage;
+export default LandingPageLayout;

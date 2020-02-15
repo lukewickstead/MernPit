@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import CentralColumnLayout from '../../components/Layouts/CentralColumnLayout';
 import ExistingSupporterOptions from '../../components/ExistingSupporterOptions';
 import SubmitBackButtons from '../../components/Widgets/SubmitBackButtons';
 import { EXISTING_SUPPORTER__BACK, EXISTING_SUPPORTER__NEXT } from '../../constants/actions/surveyActionConstants';
@@ -63,27 +64,23 @@ class ExistingSupporter extends React.Component {
     } = this.state;
 
     return (
-      <div className="central-column-layout-container">
-        <h1>Are you an existing Plymouth Argyle Fan?</h1>
-        <div className="central-column-layout-container-inner">
-          <form>
+      <CentralColumnLayout
+        title="Are you an existing Plymouth Argyle Fan?"
+      >
+        <ExistingSupporterOptions
+          handleInputChange={this.handleInputChange}
+          value={isExistingSupporter}
+          isInvalid={isExistingSupporterIsInvalid}
+          isVisited={isExistingSupporterIsVisited}
+        />
 
-            <ExistingSupporterOptions
-              handleInputChange={this.handleInputChange}
-              value={isExistingSupporter}
-              isInvalid={isExistingSupporterIsInvalid}
-              isVisited={isExistingSupporterIsVisited}
-            />
-
-            <SubmitBackButtons
-              handleSubmit={this.handleSubmit}
-              handleBack={this.handleBack}
-              backId={EXISTING_SUPPORTER__BACK}
-              forwardId={EXISTING_SUPPORTER__NEXT}
-            />
-          </form>
-        </div>
-      </div>
+        <SubmitBackButtons
+          handleSubmit={this.handleSubmit}
+          handleBack={this.handleBack}
+          backId={EXISTING_SUPPORTER__BACK}
+          forwardId={EXISTING_SUPPORTER__NEXT}
+        />
+      </CentralColumnLayout>
     );
   }
 }
