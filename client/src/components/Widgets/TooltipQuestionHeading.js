@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-
 import {
   TOOL_TIP__NEWLINE,
   TOOL_TIP__NEWLINE_SINGLE,

@@ -6,15 +6,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  mode: process.env.NODE_ENV === 'production' ? 'development' : 'development',
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'source-map',
   entry: ['./client/src/index.js', './client/sass/main.scss'],
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
     new CopyWebpackPlugin([
-      { from: 'client/src/assets/downloads' },
-      { from: 'client/src/assets/public', to: path.join(__dirname, 'dist/public') },
+      { from: 'client/assets/downloads' },
     ]),
   ],
   devServer: {
