@@ -4,10 +4,11 @@ import { Switch, Route, Router } from 'react-router-dom';
 
 import Confirmation from '../Confirmation';
 import Error from '../Error';
-import Header from '../Header';
 import Home from '../Home';
-import ProgressBar from '../ProgressBar';
 import ScrollToTop from '../ScrollToTop';
+
+import Header from '../Widgets/Header';
+import ProgressBar from '../Widgets/ProgressBar';
 
 import ApplicantEmail from '../../containers/ApplicantEmail';
 import ApplicantName from '../../containers/ApplicantName';

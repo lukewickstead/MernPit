@@ -9,7 +9,7 @@ import {
   URL__EMAIL,
   URL__SUPPORTER_EXPERIENCE,
   URL__SUMMARY,
-} from '../../constants/urlConstants';
+} from '../../../constants/urlConstants';
 
 describe('when working out the users progress', () => {
   describe('with the /ExistingSupporter', () => {

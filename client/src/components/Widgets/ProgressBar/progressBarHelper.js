@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-import { WORKFLOW_ORDER } from '../../constants/urlConstants';
+import { WORKFLOW_ORDER } from '../../../constants/urlConstants';
 
 export default function progressBarHelper(currentUrl) {
   const currentIndex = WORKFLOW_ORDER.indexOf(currentUrl);

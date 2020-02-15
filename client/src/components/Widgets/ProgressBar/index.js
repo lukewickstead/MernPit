@@ -1,9 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { LOCATION_PROP_TYPE } from '../../helpers/propTypeHelper';
+import { LOCATION_PROP_TYPE } from '../../../helpers/propTypeHelper';
 import progressBarHelper, { getTextMarkerClassNames, getPointMarkerClassNames } from './progressBarHelper';
 
+/**
+ * The main web site progress bar. Configure new pages by adding them into WORKFLOW_ORDER.
+ */
 function ProgressBar({
   location,
 }) {
@@ -44,6 +47,11 @@ function ProgressBar({
 }
 
 ProgressBar.propTypes = {
+  /**
+   * Location is handled by the react router and should not be passed in.
+   *
+   * @ignore
+   */
   location: LOCATION_PROP_TYPE.isRequired,
 };
 

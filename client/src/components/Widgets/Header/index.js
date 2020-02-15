@@ -1,9 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { LOCATION_PROP_TYPE } from '../../helpers/propTypeHelper';
-import { URL__HOME, URL__ERROR, URL__CONFIRMATION } from '../../constants/urlConstants';
+import { LOCATION_PROP_TYPE } from '../../../helpers/propTypeHelper';
+import { URL__HOME, URL__ERROR, URL__CONFIRMATION } from '../../../constants/urlConstants';
 
+/**
+ * The main web site header.
+ */
 function Header({
   location,
 }) {
@@ -22,6 +25,11 @@ function Header({
 }
 
 Header.propTypes = {
+  /**
+   * Location is handled by the react router and should not be passed in.
+   *
+   * @ignore
+   */
   location: LOCATION_PROP_TYPE.isRequired,
 };
 
