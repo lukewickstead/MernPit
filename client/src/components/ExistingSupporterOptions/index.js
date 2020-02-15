@@ -8,6 +8,8 @@ import {
   EXISTING_SUPPORTER__LABEL,
   EXISTING_SUPPORTER__NO,
   EXISTING_SUPPORTER__NO__DISPLAY,
+  EXISTING_SUPPORTER__TOOLTIP_CLICK_ID,
+  EXISTING_SUPPORTER__TOOLTIP_CONFIG,
   EXISTING_SUPPORTER__YES,
   EXISTING_SUPPORTER__YES__DISPLAY,
 } from '../../constants/surveyConstants';
@@ -41,6 +43,8 @@ function ExistingSupporterOptions(
       isVisited={isVisited}
       questionConfig={questionConfig}
       title={EXISTING_SUPPORTER__LABEL}
+      tooltipConfig={EXISTING_SUPPORTER__TOOLTIP_CONFIG}
+      tooltipId={EXISTING_SUPPORTER__TOOLTIP_CLICK_ID}
       value={value}
     />
   );

@@ -1,0 +1,71 @@
+@import '../../base/variables.scss';
+
+.tooltip-question-heading-container {
+  position: relative;
+
+  .tooltip-question-heading-title {
+    display: inline-block;
+    width: 90%;
+  }
+
+  .tooltip {
+      float: right;
+      margin-right: 22px;
+      margin-top: 36px;
+
+      .tooltip-button {
+        border: none;
+        display: inline-block;
+        height: 24px;
+        vertical-align: top;
+        width: 24px;
+      }
+
+      .tooltip-button-open {
+        background: url(../assets/images/tooltip.svg) no-repeat 0px 0px/24px auto; 
+      }
+
+      .tooltip-button-close {
+        background: url(../assets/images/tooltipClose.svg) no-repeat 0px 0px/24px auto; 
+      }
+    }
+    
+    .tooltip .tooltip-text {
+      background-color: $tooltip-colour;
+      bottom: 85%;
+      color: white;
+      font-size: 16px;  
+      left: -2px;
+      letter-spacing: 0.18px;  
+      line-height: 1.5;  
+      padding: 21px 34px;
+      position: absolute;
+      white-space: pre-line;
+      width: 100%;
+      z-index: $z-index-priority-highest;
+
+      a {
+        color: white;
+        text-decoration: none;
+
+        &:hover {
+          font-style: bold;
+        }
+      }
+    }
+    
+    .tooltip .tooltip-text::after {
+      border-color: $tooltip-colour transparent transparent transparent;
+      border-style: solid;
+      border-width: 13px;
+      content: "";
+      margin-left: -5px;
+      position: absolute;
+      right: 19px;
+      top: 100%;
+    }
+
+    .clear-tooltip {
+      clear: both;
+    }
+}

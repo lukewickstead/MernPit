@@ -1,3 +1,5 @@
+import { TOOL_TIP__TEXT } from './common';
+
 export const EXISTING_SUPPORTER = 'EXISTING_SUPPORTER';
 export const EXISTING_SUPPORTER__LABEL = 'Are you a Plymouth Argyle Fan?';
 export const EXISTING_SUPPORTER__FIELD_NAME = 'isExistingSupporter';
@@ -5,6 +7,14 @@ export const EXISTING_SUPPORTER__YES__DISPLAY = 'Yes';
 export const EXISTING_SUPPORTER__YES = 'EXISTING_SUPPORTER__YES';
 export const EXISTING_SUPPORTER__NO = 'EXISTING_SUPPORTER__NO';
 export const EXISTING_SUPPORTER__NO__DISPLAY = 'No';
+export const EXISTING_SUPPORTER__TOOLTIP_CLICK_ID = 'EXISTING_SUPPORTER__TOOLTIP_CLICK_ID';
+export const EXISTING_SUPPORTER__TOOLTIP_CONFIG = [
+  {
+    key: 0,
+    type: TOOL_TIP__TEXT,
+    value: 'Why would you not love the Green Army? Are you mad?',
+  },
+];
 
 export const APPLICANT_EMAIL = 'APPLICANT_EMAIL?';
 export const APPLICANT_EMAIL__TITLE = 'What is your email address?';

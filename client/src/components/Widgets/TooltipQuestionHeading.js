@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+
 
 import {
   TOOL_TIP__NEWLINE,
@@ -35,7 +37,10 @@ class TooltipQuestionHeading extends React.Component {
     } = this.props;
 
     const { visible } = this.state;
-    const cssClass = visible ? 'tooltip-button tooltip-button-close' : 'tooltip-button tooltip-button-open';
+    const cssClass = classnames(
+      { 'tooltip-button tooltip-button-close': visible },
+      { 'tooltip-button tooltip-button-open': !visible },
+    );
 
     if (title.length === 0) {
       return null;
@@ -70,7 +75,7 @@ class TooltipQuestionHeading extends React.Component {
         </div>
 
         <div className="tooltip">
-          <button id={tooltipId} type="button" className={cssClass} onClick={this.handleClick} />
+          <button id={tooltipId} aria-label="tool tip" type="button" className={cssClass} onClick={this.handleClick} />
           { visible && <span className="tooltip-text">{tooltip}</span>}
         </div>
 
