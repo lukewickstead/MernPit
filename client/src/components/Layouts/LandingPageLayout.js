@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import LinkButton from '../Widgets/LinkButton';
 
 function LandingPageLayout({ title, subTitle, nextUrl }) {
   return (
@@ -15,7 +16,7 @@ function LandingPageLayout({ title, subTitle, nextUrl }) {
         <h1>{title}</h1>
         <p>{subTitle}</p>
 
-        <Link className="cta-button-primary" to={nextUrl}>Continue</Link>
+        <LinkButton toUrl={nextUrl} />
       </div>
     </div>
   );
