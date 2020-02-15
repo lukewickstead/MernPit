@@ -63,11 +63,18 @@ function EditableSummaryRow(
     );
   }
 
+  const inputId = `Summary_Edit_Input__${id}`;
+
   return (
     <>
       <div className="summary-row">
         <div className="summary-row-heading">
-          <span className="summary-row-heading-label">{title}</span>
+          <span className="summary-row-heading-label">
+            <label htmlFor={inputId}>
+              {title}
+            </label>
+          </span>
+
           <span className="summary-row-heading-buttons-wrapper">
             <button className="summary-row-heading-save-button" id={`Summary_Save_Button__${id}`} type="button" onClick={saveOnClickHandler}>Save</button>
             <button id={`Summary_Stop_Edit_Button__${id}`} type="button" onClick={stopEditOnClickHandler}>Close</button>
@@ -80,7 +87,7 @@ function EditableSummaryRow(
           <QuestionText
             handleInputChange={handleInputChange}
             onblur={onBlurHandler}
-            id={`Summary_Edit_Input__${id}`}
+            id={inputId}
             value={value}
             name={name}
             maxLength={maxLength}
@@ -95,7 +102,7 @@ function EditableSummaryRow(
           <QuestionNumber
             handleInputChange={handleInputChange}
             onblur={onBlurHandler}
-            id={`Summary_Edit_Input__${id}`}
+            id={inputId}
             value={value}
             name={name}
             maxLength={maxLength}
@@ -109,7 +116,7 @@ function EditableSummaryRow(
           && (
             <QuestionOptionSelect
               handleInputChange={handleInputChange}
-              id={`Summary_Edit_Input__${id}`}
+              id={inputId}
               optionIdPrefix="Summary_Edit_Input_"
               value={value}
               questionConfig={questionConfig}

@@ -13,7 +13,7 @@ function Header({
   }
 
   return (
-    <div className="header-container">
+    <div className="header-container" role="banner">
       <div className="header-container-inner">
         <h1 className="header-title">PAFC Survey</h1>
       </div>

@@ -27,7 +27,13 @@ class TooltipQuestionHeading extends React.Component {
   }
 
   render() {
-    const { title, tooltipId, tooltipConfig } = this.props;
+    const {
+      title,
+      titleForId,
+      tooltipConfig,
+      tooltipId,
+    } = this.props;
+
     const { visible } = this.state;
     const cssClass = visible ? 'tooltip-button tooltip-button-close' : 'tooltip-button tooltip-button-open';
 
@@ -36,7 +42,7 @@ class TooltipQuestionHeading extends React.Component {
     }
 
     if (tooltipConfig.length === 0) {
-      return <h2>{title}</h2>;
+      return <label className="heading" htmlFor={titleForId}>{title}</label>;
     }
 
     const tooltip = tooltipConfig.map((tooltipConfigEntry) => {
@@ -60,7 +66,7 @@ class TooltipQuestionHeading extends React.Component {
     return (
       <div className="tooltip-question-heading-container">
         <div className="tooltip-question-heading-title">
-          <h2>{title}</h2>
+          <label className="heading" htmlFor={titleForId}>{title}</label>
         </div>
 
         <div className="tooltip">
@@ -81,6 +87,7 @@ TooltipQuestionHeading.defaultProps = {
 };
 
 TooltipQuestionHeading.propTypes = {
+  titleForId: PropTypes.string.isRequired,
   title: PropTypes.string,
   tooltipId: PropTypes.string,
   tooltipConfig: TOOLTIP_CONFIG_PROP_TYPE,

@@ -37,18 +37,20 @@ function App({
     <Provider store={store}>
       <Router history={history}>
         <Header />
-        <ProgressBar />
-        <Switch>
-          <Route exact path={URL__HOME} component={Home} />
-          <Route exact path={URL__EXISTING_SUPPORTER} component={ExistingSupporter} />
-          <Route exact path={URL__NAME} component={ApplicantName} />
-          <Route exact path={URL__PHONE_NUMBERS} component={ApplicantPhoneNumber} />
-          <Route exact path={URL__EMAIL} component={ApplicantEmail} />
-          <Route exact path={URL__SUPPORTER_EXPERIENCE} component={SupporterExperience} />
-          <Route exact path={URL__SUMMARY} component={Summary} />
-          <Route exact path={URL__ERROR} component={Error} />
-          <Route exact path={URL__CONFIRMATION} component={Confirmation} />
-        </Switch>
+        <div role="main">
+          <ProgressBar />
+          <Switch>
+            <Route exact path={URL__HOME} component={Home} />
+            <Route exact path={URL__EXISTING_SUPPORTER} component={ExistingSupporter} />
+            <Route exact path={URL__NAME} component={ApplicantName} />
+            <Route exact path={URL__PHONE_NUMBERS} component={ApplicantPhoneNumber} />
+            <Route exact path={URL__EMAIL} component={ApplicantEmail} />
+            <Route exact path={URL__SUPPORTER_EXPERIENCE} component={SupporterExperience} />
+            <Route exact path={URL__SUMMARY} component={Summary} />
+            <Route exact path={URL__ERROR} component={Error} />
+            <Route exact path={URL__CONFIRMATION} component={Confirmation} />
+          </Switch>
+        </div>
       </Router>
     </Provider>
   );

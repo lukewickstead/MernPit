@@ -71,7 +71,7 @@
             }
             
             &.progress-checkpoint-text-unreached {
-                color: #757575;
+                color: $text-colour-darker;
                 transition: color $secondary-transition-time ease-in-out;
             }
         

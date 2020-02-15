@@ -6,7 +6,7 @@ function LandingPage({ title, subTitle, nextUrl }) {
   return (
 
     <div className="landing-page-layout-container">
-      <div className="landing-page-layout-inner-container">
+      <div className="landing-page-layout-inner-container" role="navigation">
 
         <div className="landing-page-header">
           <h2 className="landing-page-header-title">Plymouth Argyle Survey</h2>

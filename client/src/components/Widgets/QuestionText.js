@@ -30,7 +30,7 @@ function QuestionText({
         validationMessage={validationMessage}
         value={value}
       >
-        <TooltipQuestionHeading title={title} tooltipConfig={tooltipConfig} tooltipId={tooltipId} />
+        <TooltipQuestionHeading title={title} tooltipConfig={tooltipConfig} tooltipId={tooltipId} titleForId={id} />
         <div className="validation-input-wrapper">
           <input
             id={id}
