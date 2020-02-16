@@ -1,5 +1,4 @@
 import puppeteer from 'puppeteer';
-import { expect as chaiExpect } from 'chai';
 
 import generatePdf from './pdfGenerator';
 
@@ -41,10 +40,11 @@ const expectedPdfConfigLanscape = {
 };
 
 describe('when calling generatePdf', () => {
+  const stubbedHtml = 'TEST HTML';
+  const stubbedBuffer = 'TEST BUFFER';
+
   it('should resolve with a success', async () => {
     // Assign
-    const stubbedHtml = 'TEST HTML';
-    const stubbedBuffer = 'TEST BUFFER';
     const pdfMock = jest.fn().mockResolvedValueOnce(stubbedBuffer);
     const closeMock = jest.fn();
     const setContentMock = jest.fn();
@@ -65,29 +65,27 @@ describe('when calling generatePdf', () => {
     const result = await generatePdf(stubbedHtml);
 
     // Assert
-    chaiExpect(result).to.equal(stubbedBuffer);
+    expect(result).toEqual(stubbedBuffer);
 
     expect(puppeteer.launch).toHaveBeenCalledTimes(1);
-    chaiExpect(puppeteer.launch.mock.calls[0][0]).to.deep.equal({ headless: true });
+    expect(puppeteer.launch).toHaveBeenNthCalledWith(1, { headless: true });
 
     expect(newPageMock).toHaveBeenCalledTimes(1);
+
     expect(waitForNavigationMock).toHaveBeenCalledTimes(1);
-    chaiExpect(waitForNavigationMock.mock.calls[0][0]).to.deep.equal({ waitUntil: 'load' });
+    expect(waitForNavigationMock).toHaveBeenNthCalledWith(1, { waitUntil: 'load' });
 
     expect(setContentMock).toHaveBeenCalledTimes(1);
-    chaiExpect(setContentMock.mock.calls[0][0]).to.equal(stubbedHtml);
-    chaiExpect(setContentMock.mock.calls[0][1]).to.deep.equal({ waitUntil: 'load' });
+    expect(setContentMock).toHaveBeenNthCalledWith(1, stubbedHtml, { waitUntil: 'load' });
 
     expect(pdfMock).toHaveBeenCalledTimes(1);
-    chaiExpect(pdfMock.mock.calls[0][0]).to.deep.equal(expectedPdfConfigPortrait);
+    expect(pdfMock).toHaveBeenNthCalledWith(1, expectedPdfConfigPortrait);
 
     expect(closeMock).toHaveBeenCalledTimes(1);
   });
 
   it('should resolve with a success for landscape', async () => {
     // Assign
-    const stubbedHtml = 'TEST HTML';
-    const stubbedBuffer = 'TEST BUFFER';
     const pdfMock = jest.fn().mockResolvedValueOnce(stubbedBuffer);
     const closeMock = jest.fn();
     const setContentMock = jest.fn();
@@ -108,21 +106,21 @@ describe('when calling generatePdf', () => {
     const result = await generatePdf(stubbedHtml, true);
 
     // Assert
-    chaiExpect(result).to.equal(stubbedBuffer);
+    expect(result).toEqual(stubbedBuffer);
 
     expect(puppeteer.launch).toHaveBeenCalledTimes(1);
-    chaiExpect(puppeteer.launch.mock.calls[0][0]).to.deep.equal({ headless: true });
+    expect(puppeteer.launch).toHaveBeenNthCalledWith(1, { headless: true });
 
     expect(newPageMock).toHaveBeenCalledTimes(1);
+
     expect(waitForNavigationMock).toHaveBeenCalledTimes(1);
-    chaiExpect(waitForNavigationMock.mock.calls[0][0]).to.deep.equal({ waitUntil: 'load' });
+    expect(waitForNavigationMock).toHaveBeenNthCalledWith(1, { waitUntil: 'load' });
 
     expect(setContentMock).toHaveBeenCalledTimes(1);
-    chaiExpect(setContentMock.mock.calls[0][0]).to.equal(stubbedHtml);
-    chaiExpect(setContentMock.mock.calls[0][1]).to.deep.equal({ waitUntil: 'load' });
+    expect(setContentMock).toHaveBeenNthCalledWith(1, stubbedHtml, { waitUntil: 'load' });
 
     expect(pdfMock).toHaveBeenCalledTimes(1);
-    chaiExpect(pdfMock.mock.calls[0][0]).to.deep.equal(expectedPdfConfigLanscape);
+    expect(pdfMock).toHaveBeenNthCalledWith(1, expectedPdfConfigLanscape);
 
     expect(closeMock).toHaveBeenCalledTimes(1);
   });

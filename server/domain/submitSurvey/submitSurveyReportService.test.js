@@ -1,5 +1,3 @@
-import { expect as chaiExpect } from 'chai';
-
 import createAndEmailSurveyReport from './submitSurveyReportService';
 import generatePdf from '../../infrastructure/pdfGenerator';
 import renderHtml from '../../infrastructure/htmlRenderer';
@@ -43,29 +41,28 @@ describe('when calling createAndEmailSurveyReport', () => {
 
     // Act
     const result = await createAndEmailSurveyReport(stubbedApp, stubbedReq, stubbedSurveyDetails, mockedLogger);
-    chaiExpect(result).to.deep.equal({ error: false });
+    expect(result).toEqual({ error: false });
 
     // Assert
     expect(renderHtml).toHaveBeenCalledTimes(2);
-    chaiExpect(renderHtml.mock.calls[0][0]).to.equal(stubbedApp);
-    chaiExpect(renderHtml.mock.calls[0][1]).to.equal('surveyPdfTemplate');
-    chaiExpect(renderHtml.mock.calls[0][2]).to.deep.equal(stubbedSurveyDetails);
-    chaiExpect(renderHtml.mock.calls[1][0]).to.equal(stubbedApp);
-    chaiExpect(renderHtml.mock.calls[1][1]).to.equal('surveyEmailTemplate');
-    chaiExpect(renderHtml.mock.calls[1][2]).to.deep.equal(expectedRenderEmailHtmlViewModel);
+    expect(renderHtml).toHaveBeenNthCalledWith(1, stubbedApp, 'surveyPdfTemplate', stubbedSurveyDetails);
+    expect(renderHtml).toHaveBeenNthCalledWith(2, stubbedApp, 'surveyEmailTemplate', expectedRenderEmailHtmlViewModel);
 
     expect(generatePdf).toHaveBeenCalledTimes(1);
-    chaiExpect(generatePdf.mock.calls[0][0]).to.equal(stubbedReportHtml);
+    expect(generatePdf).toHaveBeenNthCalledWith(1, stubbedReportHtml);
 
     expect(sendEmailWithPdf).toHaveBeenCalledTimes(1);
-    chaiExpect(sendEmailWithPdf.mock.calls[0][0]).to.equal('Plymouth Argyle Survey');
-    chaiExpect(sendEmailWithPdf.mock.calls[0][1]).to.equal(stubbedeEmailHtml);
-    chaiExpect(sendEmailWithPdf.mock.calls[0][2]).to.equal(stubbedSurveyDetails.email);
-    chaiExpect(sendEmailWithPdf.mock.calls[0][3]).to.equal('PlymouthArgyleSurvey.pdf');
-    chaiExpect(sendEmailWithPdf.mock.calls[0][4]).to.equal(stubbedReportPdfBuffer);
-    chaiExpect(sendEmailWithPdf.mock.calls[0][5]).to.equal(mockedLogger);
+    expect(sendEmailWithPdf).toHaveBeenNthCalledWith(
+      1,
+      'Plymouth Argyle Survey',
+      stubbedeEmailHtml,
+      stubbedSurveyDetails.email,
+      'PlymouthArgyleSurvey.pdf',
+      stubbedReportPdfBuffer,
+      mockedLogger,
+    );
 
-    expect(mockedLogger.error).toHaveBeenCalledTimes(0);
+    expect(mockedLogger.error).not.toHaveBeenCalled();
   });
 
   describe('and an error occurs', () => {
@@ -79,19 +76,17 @@ describe('when calling createAndEmailSurveyReport', () => {
 
       // Act
       const result = await createAndEmailSurveyReport(stubbedApp, stubbedReq, stubbedSurveyDetails, mockedLogger);
-      chaiExpect(result).to.deep.equal({ error: true });
+      expect(result).toEqual({ error: true });
 
       // Assert
       expect(renderHtml).toHaveBeenCalledTimes(1);
-      chaiExpect(renderHtml.mock.calls[0][0]).to.equal(stubbedApp);
-      chaiExpect(renderHtml.mock.calls[0][1]).to.equal('surveyPdfTemplate');
-      chaiExpect(renderHtml.mock.calls[0][2]).to.deep.equal(stubbedSurveyDetails);
+      expect(renderHtml).toHaveBeenNthCalledWith(1, stubbedApp, 'surveyPdfTemplate', stubbedSurveyDetails);
 
-      expect(generatePdf).toHaveBeenCalledTimes(0);
-      expect(sendEmailWithPdf).toHaveBeenCalledTimes(0);
+      expect(generatePdf).not.toHaveBeenCalled();
+      expect(sendEmailWithPdf).not.toHaveBeenCalled();
+
       expect(mockedLogger.error).toHaveBeenCalledTimes(1);
-
-      chaiExpect(mockedLogger.error.mock.calls[0][0]).to.deep.equal(expectedLogError);
+      expect(mockedLogger.error).toHaveBeenNthCalledWith(1, expectedLogError);
     });
   });
 });

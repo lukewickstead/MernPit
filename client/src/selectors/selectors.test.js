@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { getSurveyDetailsFromState } from './selectors';
 
 describe('when calling selectors', () => {
@@ -23,7 +22,7 @@ describe('when calling selectors', () => {
         officePhoneNumber: 'TEST APPLICANT OFFICE PHONE NO.',
       };
 
-      expect(getSurveyDetailsFromState(stubbedState)).to.deep.equal(expectedSurvey);
+      expect(getSurveyDetailsFromState(stubbedState)).toEqual(expectedSurvey);
     });
   });
 });

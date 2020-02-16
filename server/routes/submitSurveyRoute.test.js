@@ -1,5 +1,3 @@
-import { expect as chaiExpect } from 'chai';
-
 import { mockRequest, mockResponse } from '../testHelpers/mockHelpers';
 import { submitSurvey } from './submitSurveyRoute';
 import submitSurveyValidation from './surveyValidation';
@@ -29,16 +27,13 @@ describe('when calling submitSurvey ', () => {
 
       // Assert
       expect(mockRes.send).toHaveBeenCalledTimes(1);
-      chaiExpect(mockRes.send.mock.calls[0][0]).to.equal(undefined);
+      expect(mockRes.send).toHaveBeenNthCalledWith(1);
 
       expect(mockRes.status).toHaveBeenCalledTimes(1);
-      chaiExpect(mockRes.status.mock.calls[0][0]).to.equal(200);
+      expect(mockRes.status).toHaveBeenNthCalledWith(1, 200);
 
       expect(createAndEmailSurveyReport).toHaveBeenCalledTimes(1);
-      chaiExpect(createAndEmailSurveyReport.mock.calls[0][0]).to.deep.equal(mockReq.app);
-      chaiExpect(createAndEmailSurveyReport.mock.calls[0][1]).to.deep.equal(mockReq);
-      chaiExpect(createAndEmailSurveyReport.mock.calls[0][2]).to.deep.equal(mockReq.body);
-      chaiExpect(createAndEmailSurveyReport.mock.calls[0][3]).to.deep.equal(mockReq.logger);
+      expect(createAndEmailSurveyReport).toHaveBeenNthCalledWith(1, mockReq.app, mockReq, mockReq.body, mockReq.logger);
     });
 
     describe('and an error is reported generating the pdf', () => {
@@ -55,16 +50,13 @@ describe('when calling submitSurvey ', () => {
 
         // Assert
         expect(mockRes.send).toHaveBeenCalledTimes(1);
-        chaiExpect(mockRes.send.mock.calls[0][0]).to.equal('An unexpected error occured');
+        expect(mockRes.send).toHaveBeenNthCalledWith(1, 'An unexpected error occured');
 
         expect(mockRes.status).toHaveBeenCalledTimes(1);
-        chaiExpect(mockRes.status.mock.calls[0][0]).to.equal(500);
+        expect(mockRes.status).toHaveBeenNthCalledWith(1, 500);
 
         expect(createAndEmailSurveyReport).toHaveBeenCalledTimes(1);
-        chaiExpect(createAndEmailSurveyReport.mock.calls[0][0]).to.deep.equal(mockReq.app);
-        chaiExpect(createAndEmailSurveyReport.mock.calls[0][1]).to.deep.equal(mockReq);
-        chaiExpect(createAndEmailSurveyReport.mock.calls[0][2]).to.deep.equal(mockReq.body);
-        chaiExpect(createAndEmailSurveyReport.mock.calls[0][3]).to.deep.equal(mockReq.logger);
+        expect(createAndEmailSurveyReport).toHaveBeenNthCalledWith(1, mockReq.app, mockReq, mockReq.body, mockReq.logger);
       });
     });
   });
@@ -90,12 +82,12 @@ describe('when calling submitSurvey ', () => {
 
       // Assert
       expect(mockRes.status).toHaveBeenCalledTimes(1);
-      chaiExpect(mockRes.status.mock.calls[0][0]).to.equal(400);
+      expect(mockRes.status).toHaveBeenNthCalledWith(1, 400);
 
       expect(mockRes.send).toHaveBeenCalledTimes(1);
-      chaiExpect(mockRes.send.mock.calls[0][0]).to.deep.equal(['msg 1', 'msg 2', 'msg 3']);
+      expect(mockRes.send).toHaveBeenNthCalledWith(1, ['msg 1', 'msg 2', 'msg 3']);
 
-      expect(createAndEmailSurveyReport).toHaveBeenCalledTimes(0);
+      expect(createAndEmailSurveyReport).not.toHaveBeenCalled();
     });
   });
 });

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { expect as chaiExpect } from 'chai';
 
 import { postSurvey } from './api';
 
@@ -19,9 +18,7 @@ describe('When calling api', () => {
       postSurvey('TEST SURVEY DETAILS');
 
       expect(axios.post).toHaveBeenCalledTimes(1);
-      chaiExpect(axios.post.mock.calls[0][0]).to.equal('/api/submitSurvey/');
-      chaiExpect(axios.post.mock.calls[0][1]).to.equal('TEST SURVEY DETAILS');
-      chaiExpect(axios.post.mock.calls[0][2]).to.deep.equal(APPLICATION_JSON_HEADERS);
+      expect(axios.post).toHaveBeenNthCalledWith(1, '/api/submitSurvey/', 'TEST SURVEY DETAILS', APPLICATION_JSON_HEADERS);
     });
   });
 });

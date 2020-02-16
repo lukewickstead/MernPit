@@ -1,16 +1,19 @@
 {
-    "extends": "airbnb", "env": {
+    "extends": [
+       "airbnb",
+       "plugin:jest/recommended",
+       "plugin:jest/style"
+    ],
+    "env": {
       "es6": true,
       "browser": true,
       "node": true,
-      "jest": true
+      "jest": true,
+      "jest/globals": true
     },
     "parser": "babel-eslint",
-    "plugins": [
-      "chai-friendly"
-    ],
+    "plugins": [ "jest"],
     "rules": {
-      "chai-friendly/no-unused-expressions": 2,
       "import/prefer-default-export": 0,
       "linebreak-style": 0,
       "max-len": ["error", { "code": 165, "ignoreTemplateLiterals": true, "ignoreStrings": true }],

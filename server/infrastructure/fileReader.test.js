@@ -1,5 +1,3 @@
-import { expect as chaiExpect } from 'chai';
-
 import fs from 'fs';
 import { readFileToBuffer } from './fileReader';
 
@@ -24,8 +22,9 @@ describe('when calling readFileToBuffer', () => {
 
       // Assert
       expect(fs.readFile).toHaveBeenCalledTimes(1);
-      chaiExpect(fs.readFile.mock.calls[0][0]).to.equal('TEST PATH');
-      chaiExpect(result).to.deep.equal(Buffer.from('TEST RESULT'));
+      expect(fs.readFile).toHaveBeenNthCalledWith(1, 'TEST PATH', null, expect.anything());
+
+      expect(result).toEqual(Buffer.from('TEST RESULT'));
     });
   });
 
@@ -38,15 +37,11 @@ describe('when calling readFileToBuffer', () => {
       });
 
       // Act
-      try {
-        await readFileToBuffer('TEST PATH');
-      } catch (error) {
-        expect(error).toEqual('An Error Occured');
-      }
+      await readFileToBuffer('TEST PATH').catch((e) => expect(e).toEqual('An Error Occured'));
 
       // Assert
       expect(fs.readFile).toHaveBeenCalledTimes(1);
-      chaiExpect(fs.readFile.mock.calls[0][0]).to.equal('TEST PATH');
+      expect(fs.readFile).toHaveBeenNthCalledWith(1, 'TEST PATH', null, expect.anything());
     });
   });
 });

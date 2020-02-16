@@ -1,5 +1,3 @@
-import { expect } from 'chai';
-
 import surveyValidationSchema from './surveyValidation';
 
 import {
@@ -36,7 +34,7 @@ describe('when validating applicantSchemaValidation', () => {
           '"isExistingSupporter" is required'];
 
         const errorMsgs = result.error.details.map((x) => x.message);
-        expect(errorMsgs).to.deep.equal(expectedResult);
+        expect(errorMsgs).toEqual(expectedResult);
       });
     });
 
@@ -74,7 +72,7 @@ describe('when validating applicantSchemaValidation', () => {
 
         const result = surveyValidationSchema.validate(stubbedSurvey, { abortEarly: false });
         const errorMsgs = result.error.details.map((x) => x.message);
-        expect(errorMsgs).to.deep.equal(expectedResult);
+        expect(errorMsgs).toEqual(expectedResult);
       });
     });
 
@@ -112,7 +110,7 @@ describe('when validating applicantSchemaValidation', () => {
 
         const result = surveyValidationSchema.validate(stubbedSurvey, { abortEarly: false });
         const errorMsgs = result.error.details.map((x) => x.message);
-        expect(errorMsgs).to.deep.equal(expectedResult);
+        expect(errorMsgs).toEqual(expectedResult);
       });
     });
   });
@@ -132,7 +130,7 @@ describe('when validating applicantSchemaValidation', () => {
       };
 
       const result = surveyValidationSchema.validate(stubbedSurvey, { abortEarly: false });
-      expect(result.error).to.be.undefined;
+      expect(result.error).toBeUndefined();
     });
   });
 
@@ -151,7 +149,7 @@ describe('when validating applicantSchemaValidation', () => {
       };
 
       const result = surveyValidationSchema.validate(stubbedSurvey, { abortEarly: false });
-      expect(result.error).to.be.undefined;
+      expect(result.error).toBeUndefined();
     });
   });
 
@@ -178,7 +176,7 @@ describe('when validating applicantSchemaValidation', () => {
 
       yearsManagingEnums.forEach((yearsManagingEnum) => {
         const result = surveyValidationSchema.validate(getApplicationForYearsSupporting(yearsManagingEnum), { abortEarly: false });
-        expect(result.error).to.be.undefined;
+        expect(result.error).toBeUndefined();
       });
     });
   });
@@ -206,7 +204,7 @@ describe('when validating applicantSchemaValidation', () => {
 
       matchesWatchedEnums.forEach((matchesWatchedEnum) => {
         const result = surveyValidationSchema.validate(getApplicationForMatchesWatched(matchesWatchedEnum), { abortEarly: false });
-        expect(result.error).to.be.undefined;
+        expect(result.error).toBeUndefined();
       });
     });
   });
@@ -234,7 +232,7 @@ describe('when validating applicantSchemaValidation', () => {
 
       shirtsOwnedEnums.forEach((shirtsOwnedEnum) => {
         const result = surveyValidationSchema.validate(getApplicationForShirtsOwned(shirtsOwnedEnum), { abortEarly: false });
-        expect(result.error).to.be.undefined;
+        expect(result.error).toBeUndefined();
       });
     });
   });

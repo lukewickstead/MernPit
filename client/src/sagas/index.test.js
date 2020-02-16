@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { all, fork } from 'redux-saga/effects';
 
 import watchMany from './index';
@@ -8,7 +7,7 @@ describe('when calling the index route saga', () => {
   it('can watch for all required sagas', () => {
     const saga = watchMany();
 
-    expect(saga.next().value).to.deep.equal(
+    expect(saga.next().value).toEqual(
       all([
         fork(watchSurveyAggregateSaga),
       ]),

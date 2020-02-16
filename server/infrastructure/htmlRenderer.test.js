@@ -1,5 +1,3 @@
-import { expect as chaiExpect } from 'chai';
-
 import renderHtml from './htmlRenderer';
 import { mockAppWithRender, mockAppWithRenderErroring } from '../testHelpers/mockHelpers';
 
@@ -10,29 +8,27 @@ afterEach(() => {
 });
 
 describe('when calling renderHtml', () => {
+  const stubbedHtml = 'TEST HTML';
+  const stubbedView = 'TEST HTML';
+  const stubbedViewModel = 'TEST VIDE MODEL';
+
   it('should resolve with a success', async () => {
     // Assign
-    const stubbedHtml = 'TEST HTML';
-    const stubbedView = 'TEST HTML';
     const app = mockAppWithRender(stubbedHtml);
-    const stubbedViewModel = 'TEST VIDE MODEL';
 
     // Act
     const result = await renderHtml(app, stubbedView, stubbedViewModel);
 
     // Assert
-    chaiExpect(result).to.deep.equal(stubbedHtml);
+    expect(result).toEqual(stubbedHtml);
 
     expect(app.render).toHaveBeenCalledTimes(1);
-    chaiExpect(app.render.mock.calls[0][0]).to.equal(stubbedView);
-    chaiExpect(app.render.mock.calls[0][1]).to.deep.equal(stubbedViewModel);
+    expect(app.render).toHaveBeenNthCalledWith(1, stubbedView, stubbedViewModel, expect.anything());
   });
 
   it('should resolve with a reject', async () => {
     // Assign
     const stubbedError = 'TEST ERROR';
-    const stubbedView = 'TEST HTML';
-    const stubbedViewModel = 'TEST VIDE MODEL';
     const app = mockAppWithRenderErroring(stubbedError);
 
     // Act
@@ -40,7 +36,6 @@ describe('when calling renderHtml', () => {
 
     // Assert
     expect(app.render).toHaveBeenCalledTimes(1);
-    chaiExpect(app.render.mock.calls[0][0]).to.equal(stubbedView);
-    chaiExpect(app.render.mock.calls[0][1]).to.deep.equal(stubbedViewModel);
+    expect(app.render).toHaveBeenNthCalledWith(1, stubbedView, stubbedViewModel, expect.anything());
   });
 });

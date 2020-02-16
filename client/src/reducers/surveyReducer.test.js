@@ -1,5 +1,3 @@
-import { expect } from 'chai';
-
 import surveyReducer from './surveyReducer';
 
 import {
@@ -24,7 +22,7 @@ describe('applicantReducer ', () => {
   const stubbedYearsSupporting = 'TEST YEARS SUPPORTING';
 
   it('should return the initial state', () => {
-    expect(surveyReducer(undefined, {})).deep.equal({
+    expect(surveyReducer(undefined, {})).toEqual({
       email: '',
       firstName: '',
       isBusy: false,
@@ -39,29 +37,29 @@ describe('applicantReducer ', () => {
   });
 
   it('should reduce PUT__EXISTING_SUPPORTER_INTO_STATE', () => {
-    expect(surveyReducer({}, putExistingSupporterIntoStateAction(stubbedIsExistingSupporter))).deep.equal({ isExistingSupporter: stubbedIsExistingSupporter });
+    expect(surveyReducer({}, putExistingSupporterIntoStateAction(stubbedIsExistingSupporter))).toEqual({ isExistingSupporter: stubbedIsExistingSupporter });
   });
 
   it('should reduce PUT__APPLICANT_EMAIL_INTO_STATE', () => {
-    expect(surveyReducer({}, putApplicantEmailIntoStateAction(stubbedEmail))).deep.equal({ email: stubbedEmail });
+    expect(surveyReducer({}, putApplicantEmailIntoStateAction(stubbedEmail))).toEqual({ email: stubbedEmail });
   });
 
   it('should reduce PUT__APPLICANT_PHONE_NOS_INTO_STATE', () => {
-    expect(surveyReducer({}, putApplicantPhoneNumberIntoStateAction(stubbedOfficeNo, stubbedMobileNo))).deep.equal({
+    expect(surveyReducer({}, putApplicantPhoneNumberIntoStateAction(stubbedOfficeNo, stubbedMobileNo))).toEqual({
       officePhoneNumber: stubbedOfficeNo,
       mobilePhoneNumber: stubbedMobileNo,
     });
   });
 
   it('should reduce PUT__APPLICANT_NAME_INTO_STATE', () => {
-    expect(surveyReducer({}, putApplicantNameIntoStateAction(stubbedFirstName, stubbedLastName))).deep.equal({
+    expect(surveyReducer({}, putApplicantNameIntoStateAction(stubbedFirstName, stubbedLastName))).toEqual({
       firstName: stubbedFirstName,
       lastName: stubbedLastName,
     });
   });
 
   it('should reduce PUT__SUPPORTER_EXPERIENCE_INTO_STATE', () => {
-    expect(surveyReducer({}, putSupporterExperienceIntoStateAction(stubbedYearsSupporting, stubbedMatchesWatched, stubbedShirtsOwned))).deep.equal({
+    expect(surveyReducer({}, putSupporterExperienceIntoStateAction(stubbedYearsSupporting, stubbedMatchesWatched, stubbedShirtsOwned))).toEqual({
       yearsSupporting: stubbedYearsSupporting,
       matchesWatched: stubbedMatchesWatched,
       shirtsOwned: stubbedShirtsOwned,
@@ -71,11 +69,11 @@ describe('applicantReducer ', () => {
   it('should reduce PUT__SURVEY_FIELD_INTO_STATE', () => {
     const stubbedFieldName = 'TEST FIELD NAME';
     const stubbedValue = 'TEST VALUE';
-    expect(surveyReducer({}, putSurveyFieldIntoStateAction(stubbedFieldName, stubbedValue))).deep.equal({ [stubbedFieldName]: stubbedValue });
+    expect(surveyReducer({}, putSurveyFieldIntoStateAction(stubbedFieldName, stubbedValue))).toEqual({ [stubbedFieldName]: stubbedValue });
   });
 
   it('should reduce PUT__IS_BUSY_INTO_STATE', () => {
-    expect(surveyReducer({}, putIsBusyAction(true))).deep.equal({ isBusy: true });
+    expect(surveyReducer({}, putIsBusyAction(true))).toEqual({ isBusy: true });
   });
 });
 

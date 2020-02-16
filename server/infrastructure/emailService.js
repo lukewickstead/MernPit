@@ -2,17 +2,16 @@ import sgMail from '@sendgrid/mail';
 
 import { MIME_TYPE__PDF } from '../constants';
 
-function sendEmail(msg, logger) {
+async function sendEmail(msg, logger) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   logger.info(`Sending Email: ${msg.subject}`);
-  return sgMail.send(msg)
-    .then(() => {
-      logger.info(`Sent Email: ${msg.subject}`);
-    })
-    .catch((error) => {
-      logger.error(`Error sending ${msg.subject} email with send grid. ${error.toString()}`);
-      throw error;
-    });
+  try {
+    await sgMail.send(msg);
+    logger.info(`Sent Email: ${msg.subject}`);
+  } catch (error) {
+    logger.error(`Error sending ${msg.subject} email with send grid. ${error.toString()}`);
+    throw error;
+  }
 }
 
 export function createAttachment(buffer, fileName, mimeType) {
