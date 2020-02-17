@@ -1,45 +1,56 @@
-@import './variables.scss';
+@import './variables';
 
 body {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 * {
-    box-sizing: border-box;
-    font-size: 18px;
-    margin: 0px;
-    padding: 0px;
-    font-family: $secondary-font;
+  box-sizing: border-box;
+  font-family: $secondary-font;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
 }
 
-h1, h2, h3, label.heading {
-    font-weight: normal;
-    font-family: $primary-font;
+h1,
+h2,
+h3,
+label.heading {
+  font-family: $primary-font;
+  font-weight: normal;
 }
 
 h1 {
-    font-size: 32px;
-    text-align: center;
-    margin-top: 42px;
+  font-size: 32px;
+  margin-top: 42px;
+  text-align: center;
 }
 
-h2, label.heading {
-    margin-top: 35px;
-    font-size: 22px;
+h2,
+label.heading {
+  font-size: 22px;
+  margin-top: 35px;
 }
 
 label.heading {
-    display: inline-block;
+  display: inline-block;
 }
 
-input+label, button {
-    cursor: pointer
+input+label,
+button {
+  cursor: pointer;
 }
 
-textarea:focus, input:focus {
-    outline: none;
+textarea:focus,
+input:focus {
+  outline: none;
 }
 
-h1, h2, h3, input, textarea, select {
-    color: $text-colour;
+h1,
+h2,
+h3,
+input,
+textarea,
+select {
+  color: $text-colour;
 }

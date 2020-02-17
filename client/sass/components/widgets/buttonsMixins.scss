@@ -1,35 +1,33 @@
-@import '../../base/variables.scss';
+@import '../../base/variables';
 
-@mixin back-button
-    {
-        border: none;
-        background-color: white;
-        color: $link-colour;
-        line-height: 1.17;       
-        background-image: url('../assets/images/backChevron.svg');
-        background-repeat: no-repeat;
-        background-position: 0px 50%;
-        background-size: 8px auto;            
-        padding-left: 18px;
-    }
+@mixin back-button {
+  background-color: #fff;
+  background-image: url('../assets/images/backChevron.svg');
+  background-position: 0 50%;
+  background-repeat: no-repeat;
+  background-size: 8px auto;
+  border: 0;
+  color: $link-colour;
+  line-height: 1.17;
+  padding-left: 18px;
+}
 
-@mixin submit-button
-{
-    background-color: $primary-colour;
-    transition: background-color $primary-transition-time ease-in-out;
-    color: white;
-    border: none;
-    height: 60px; 
-    width: 184px;
+@mixin submit-button {
+  background-color: $primary-colour;
+  border: 0;
+  color: #fff;
+  height: 60px;
+  transition: background-color $primary-transition-time ease-in-out;
+  width: 184px;
 }
 
 a {   
-    &.cta-button-primary {
-        @include submit-button;
-        display: inline-block;
-        margin-top: 24px;
-        padding: 20px 0px;
-        text-align: center;
-        text-decoration: none;
-    }
+  &.cta-button-primary {
+    @include submit-button;
+    display: inline-block;
+    margin-top: 24px;
+    padding: 20px 0;
+    text-align: center;
+    text-decoration: none;
+  }
 }

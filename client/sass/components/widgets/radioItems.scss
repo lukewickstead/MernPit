@@ -1,57 +1,60 @@
-@import '../../base/variables.scss';
+@import '../../base/variables';
 
 @mixin radio-item-ul {
-    list-style: none;
-    margin: 0px;
-    overflow: auto;
-    padding: 0px;
+  list-style: none;
+  margin: 0;
+  overflow: auto;
+  padding: 0;
 }
 
 @mixin radio-item-li {
-    background-color: white;
-    border-radius: 8px;  
-    border: solid 2px $border-colour;  
-    margin-top: 16px;
-    transition: border $primary-transition-time ease-in-out;
+  background-color: #fff;
+  border: solid 2px $border-colour;
+  border-radius: 8px;
+  margin-top: 16px;
+  transition: border $primary-transition-time ease-in-out;
 }
 
 @mixin radio-item-li-selected {
-    border: solid 2px $primary-colour;  
-    transition: border $primary-transition-time ease-in-out;
+  border: solid 2px $primary-colour;
+  transition: border $primary-transition-time ease-in-out;
 }
 
 
 @mixin radio-item-common {
-    display: absolute;
-    &:before {
-        -webkit-transition: $secondary-transition-time ease-in-out all;
-        border-radius: 10px;
-        box-sizing: border-box;
-        content: '';
-        display: inline-block;
-        height: 20px;
-        left: 20px;
-        position: absolute;
-        top: 18px;
-        transition: $secondary-transition-time ease-in-out all;
-        width: 20px;
-    }
+  display: absolute;
+
+  &::before {
+    border-radius: 10px;
+    box-sizing: border-box;
+    content: '';
+    display: inline-block;
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    top: 18px;
+    // -webkit-transition: $secondary-transition-time ease-in-out all;
+    transition: $secondary-transition-time ease-in-out all;
+    width: 20px;
+  }
 }
 
 @mixin radio-item-selected {
-    @include radio-item-common;
-    &:before {
-        -webkit-box-shadow: 0 0 0 2px $primary-colour;
-        background-color: $primary-colour;
-        border: 5px solid white;
-        box-shadow: 0 0 0 2px $primary-colour;
-    }
+  @include radio-item-common;
+
+  &::before {
+    background-color: $primary-colour;
+    border: 5px solid #fff;
+    // -webkit-box-shadow: 0 0 0 2px $primary-colour;
+    box-shadow: 0 0 0 2px $primary-colour;
+  }
 }
 
 @mixin  radio-item {
-    @include radio-item-common;
-    &:before {
-        -webkit-box-shadow: 0 0 0 2px $box-shadow-color;
-        box-shadow: 0 0 0 2px $box-shadow-color;
-    }
+  @include radio-item-common;
+
+  &::before {
+    // -webkit-box-shadow: 0 0 0 2px $box-shadow-color;
+    box-shadow: 0 0 0 2px $box-shadow-color;
+  }
 }

@@ -1,68 +1,70 @@
-@import '../../base/variables.scss';
-@import './radioItems.scss';
+/* stylelint-disable max-nesting-depth */
+/* stylelint-disable selector-max-compound-selectors */
+@import '../../base/variables';
+@import './radioItems';
 
 .question-option-horizontal-container {
-    ul {
-        @include radio-item-ul;
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
+  ul {
+    @include radio-item-ul;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 
-        li:not(:last-child) {
-            margin-right: 16px;
-        }
-
-        li {
-            @include radio-item-li;
-            flex-basis: 0;
-            flex-grow: 1;
-            flex-shrink: 1;
-            width: 31%;
-            
-            &.selected {
-                @include radio-item-li-selected;
-            }
-
-            input[type=radio]
-            {
-                display: none;
-            }
-
-            .question-title, .question-subtitle {
-                display: block;
-                height: 50%;
-                width: 100%;
-
-                label {
-                    cursor: pointer;    
-                    display: inline-block;
-                    height: 100%;
-                    text-align: center;
-                    width: 100%;
-                }
-            }   
-
-            .question-title {
-                label {
-                    font-size: 26px;
-                    font-weight: bold;
-                    padding-top: 12px;
-                }
-            }   
-
-            .question-subtitle {
-                label {
-                    font-size: 14px;
-                    padding-bottom: 12px;    
-                    text-transform: lowercase;
-                }
-
-                @media only screen and (min-width: $break-large-phones) {
-                    label {
-                        font-size: 16px;
-                    }
-                }
-            }
-        }
+    li:not(:last-child) {
+      margin-right: 16px;
     }
+
+    li {
+      @include radio-item-li;
+      flex-basis: 0;
+      flex-grow: 1;
+      flex-shrink: 1;
+      width: 31%;
+            
+      &.selected {
+        @include radio-item-li-selected;
+      }
+
+      input[type=radio] {
+        display: none;
+      }
+    }
+  }
+}
+
+.question-title,
+.question-subtitle {
+  display: block;
+  height: 50%;
+  width: 100%;
+
+  label {
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+  }
+}   
+
+.question-title {
+  label {
+    font-size: 26px;
+    font-weight: bold;
+    padding-top: 12px;
+  }
+}   
+
+.question-subtitle {
+  label {
+    font-size: 14px;
+    padding-bottom: 12px;
+    text-transform: lowercase;
+  }
+
+  @media only screen and (min-width: $break-large-phones) {
+    label {
+      font-size: 16px;
+    }
+  }
 }

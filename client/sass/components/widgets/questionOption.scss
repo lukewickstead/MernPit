@@ -1,45 +1,44 @@
-@import './radioItems.scss';
-@import '../../base/variables.scss';
+/* stylelint-disable max-nesting-depth */
+@import './radioItems';
+@import '../../base/variables';
 
 .question-option-container {
-    ul {
-        @include radio-item-ul;
-        overflow: auto;
+  ul {
+    @include radio-item-ul;
+    overflow: auto;
+  }
 
-        li {
-            @include radio-item-li;
-            position: relative;
+  li {
+    @include radio-item-li;
+    position: relative;
 
-            &.selected {
-                @include radio-item-li-selected;
+    &.selected {
+      @include radio-item-li-selected;
 
-                .radio-item {
-                    @include radio-item-selected
-                }
-            }
-
-            .radio-item {
-                @include radio-item
-            }
-
-            input[type=radio]
-            {
-                display: none;
-            }
-
-            .question-option-title
-            {
-                line-height: 1.44;
-                position: relative;
-                width: 100%;
-
-                label {
-                    cursor: pointer;
-                    display: inline-block;
-                    padding: 15px 15px 15px 57px;
-                    width: 100%;
-                }
-            }
-        }
+      .radio-item {
+        @include radio-item-selected; }
     }
+  }
+
+  .radio-item {
+    @include radio-item;
+  }
+
+  input[type=radio] {
+    display: none;
+  }
 }
+
+.question-option-title {
+  line-height: 1.44;
+  position: relative;
+  width: 100%;
+
+  label {
+    cursor: pointer;
+    display: inline-block;
+    padding: 15px 15px 15px 57px;
+    width: 100%;
+  }
+}
+

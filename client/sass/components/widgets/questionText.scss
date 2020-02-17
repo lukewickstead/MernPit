@@ -1,10 +1,8 @@
-@import '../../base/variables.scss';
+@import '../../base/variables';
 
-.question-text-container {
-    input[type=text] {
-        padding: 14px 20px;
-        width: 100%;
-        background-color: $input-background-color;
-        border:none;
-    }
+input[type=text] {
+  background-color: $input-background-color;
+  border: 0;
+  padding: 14px 20px;
+  width: 100%;
 }

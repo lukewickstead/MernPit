@@ -1,24 +1,24 @@
 // Base
-@import './base/fonts.scss';
-@import './base/global.scss';
-@import './base/variables.scss';
+@import './base/fonts';
+@import './base/global';
+@import './base/variables';
 
 // Layouts
-@import './layout/centralColumnLayout.scss';
-@import './layout/landingPageLayout.scss';
+@import './layout/centralColumnLayout';
+@import './layout/landingPageLayout';
 
 // Components
-@import './components/header.scss';
-@import './components/progressBar.scss';
+@import './components/header';
+@import './components/progressBar';
 
 // Components/Widgets
-@import './components/widgets/disableScreen.scss';
-@import './components/widgets/loader.scss';
-@import './components/widgets/questionOption.scss';
-@import './components/widgets/questionOptionHorizontal.scss';
-@import './components/widgets/questionOptionSelect.scss';
-@import './components/widgets/questionText.scss';
-@import './components/widgets/submitBackButtons.scss';
-@import './components/widgets/summaryRow.scss';
-@import './components/widgets/tooltipQuestionHeading.scss';
-@import './components/widgets/validation.scss';
+@import './components/widgets/disableScreen';
+@import './components/widgets/loader';
+@import './components/widgets/questionOption';
+@import './components/widgets/questionOptionHorizontal';
+@import './components/widgets/questionOptionSelect';
+@import './components/widgets/questionText';
+@import './components/widgets/submitBackButtons';
+@import './components/widgets/summaryRow';
+@import './components/widgets/tooltipQuestionHeading';
+@import './components/widgets/validation';
