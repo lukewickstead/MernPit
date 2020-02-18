@@ -18,9 +18,11 @@ import {
 } from '../../client/src/constants/surveyConstants';
 
 describe('when validating applicantSchemaValidation', () => {
+  const STUBBED_EMAIL_ADDRESS = 'fo@foo.com';
+
   describe('with an invalid entity', () => {
     describe('of an empty object', () => {
-      it('should report as invalid', () => {
+      it('should report all required fields as invalid', () => {
         const result = surveyValidationSchema.validate({}, { abortEarly: false });
         const expectedResult = [
           '"firstName" is required',
@@ -39,7 +41,7 @@ describe('when validating applicantSchemaValidation', () => {
     });
 
     describe('of minimum invalid object', () => {
-      it('should report as invalid', () => {
+      it('should report all minimum fields as invalid', () => {
         const stubbedSurvey = {
           email: '',
           firstName: '',
@@ -77,7 +79,7 @@ describe('when validating applicantSchemaValidation', () => {
     });
 
     describe('of maximum invalid object', () => {
-      it('should report as invalid', () => {
+      it('should report all maximum fields as invalid', () => {
         const stubbedSurvey = {
           firstName: '1'.repeat(36),
           lastName: '1'.repeat(36),
@@ -115,42 +117,38 @@ describe('when validating applicantSchemaValidation', () => {
     });
   });
 
-  describe('of minimum valid object', () => {
-    it('should report as valid', () => {
-      const stubbedSurvey = {
-        firstName: 'Luke',
-        lastName: 'Wickstead',
-        mobilePhoneNumber: '07878787800',
-        officePhoneNumber: '07000000000',
-        email: 'fo@foo.com',
-        isExistingSupporter: EXISTING_SUPPORTER__YES,
-        matchesWatched: MATCHES_WATCHED__OPTION__ZERO,
-        shirtsOwned: SHIRTS_OWNED__OPTION__ZERO,
-        yearsSupporting: YEARS_SUPPORTING__OPTION__ZERO,
-      };
+  it('should report as valid for minimum valid object', () => {
+    const stubbedSurvey = {
+      firstName: 'Luke',
+      lastName: 'Wickstead',
+      mobilePhoneNumber: '07878787800',
+      officePhoneNumber: '07000000000',
+      email: STUBBED_EMAIL_ADDRESS,
+      isExistingSupporter: EXISTING_SUPPORTER__YES,
+      matchesWatched: MATCHES_WATCHED__OPTION__ZERO,
+      shirtsOwned: SHIRTS_OWNED__OPTION__ZERO,
+      yearsSupporting: YEARS_SUPPORTING__OPTION__ZERO,
+    };
 
-      const result = surveyValidationSchema.validate(stubbedSurvey, { abortEarly: false });
-      expect(result.error).toBeUndefined();
-    });
+    const result = surveyValidationSchema.validate(stubbedSurvey, { abortEarly: false });
+    expect(result.error).toBeUndefined();
   });
 
-  describe('of maximum valid object', () => {
-    it('should report as valid', () => {
-      const stubbedSurvey = {
-        firstName: '1'.repeat(35),
-        lastName: '1'.repeat(35),
-        mobilePhoneNumber: '07878787800',
-        officePhoneNumber: '07000000000',
-        email: 'fo@foo.com',
-        isExistingSupporter: EXISTING_SUPPORTER__NO,
-        matchesWatched: MATCHES_WATCHED__OPTION__SIX_PLUS,
-        shirtsOwned: SHIRTS_OWNED__OPTION__SIX_PLUS,
-        yearsSupporting: YEARS_SUPPORTING__OPTION__SIX_PLUS,
-      };
+  it('should report as valid for maximum valid object', () => {
+    const stubbedSurvey = {
+      firstName: '1'.repeat(35),
+      lastName: '1'.repeat(35),
+      mobilePhoneNumber: '07878787800',
+      officePhoneNumber: '07000000000',
+      email: 'fooooooooooooo@fooooooooooooooooooo.c.ukm',
+      isExistingSupporter: EXISTING_SUPPORTER__NO,
+      matchesWatched: MATCHES_WATCHED__OPTION__SIX_PLUS,
+      shirtsOwned: SHIRTS_OWNED__OPTION__SIX_PLUS,
+      yearsSupporting: YEARS_SUPPORTING__OPTION__SIX_PLUS,
+    };
 
-      const result = surveyValidationSchema.validate(stubbedSurvey, { abortEarly: false });
-      expect(result.error).toBeUndefined();
-    });
+    const result = surveyValidationSchema.validate(stubbedSurvey, { abortEarly: false });
+    expect(result.error).toBeUndefined();
   });
 
   describe('of all valid years supporting enums', () => {
@@ -159,14 +157,14 @@ describe('when validating applicantSchemaValidation', () => {
       lastName: '1'.repeat(35),
       mobilePhoneNumber: '07878787800',
       officePhoneNumber: '07000000000',
-      email: 'fo@foo.com',
+      email: STUBBED_EMAIL_ADDRESS,
       isExistingSupporter: EXISTING_SUPPORTER__NO,
       matchesWatched: MATCHES_WATCHED__OPTION__SIX_PLUS,
       shirtsOwned: SHIRTS_OWNED__OPTION__SIX_PLUS,
       yearsSupporting,
     });
 
-    it('should report as valid', () => {
+    it('should report as valid for all valid years supporting values', () => {
       const yearsManagingEnums = [
         YEARS_SUPPORTING__OPTION__ZERO,
         YEARS_SUPPORTING__OPTION__ONE_TO_THREE,
@@ -187,7 +185,7 @@ describe('when validating applicantSchemaValidation', () => {
       lastName: '1'.repeat(35),
       mobilePhoneNumber: '07878787800',
       officePhoneNumber: '07000000000',
-      email: 'fo@foo.com',
+      email: STUBBED_EMAIL_ADDRESS,
       isExistingSupporter: EXISTING_SUPPORTER__NO,
       matchesWatched,
       shirtsOwned: SHIRTS_OWNED__OPTION__SIX_PLUS,
@@ -215,7 +213,7 @@ describe('when validating applicantSchemaValidation', () => {
       lastName: '1'.repeat(35),
       mobilePhoneNumber: '07878787800',
       officePhoneNumber: '07000000000',
-      email: 'fo@foo.com',
+      email: STUBBED_EMAIL_ADDRESS,
       isExistingSupporter: EXISTING_SUPPORTER__NO,
       matchesWatched: MATCHES_WATCHED__OPTION__ZERO,
       shirtsOwned,

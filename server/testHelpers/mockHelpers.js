@@ -12,6 +12,7 @@ export const mockRequest = (body) => ({
 });
 
 export const mockResponse = () => {
+  // eslint-disable-next-line sonarjs/prefer-object-literal
   const res = {};
   res.send = jest.fn().mockReturnValue(res);
   res.status = jest.fn().mockReturnValue(res);

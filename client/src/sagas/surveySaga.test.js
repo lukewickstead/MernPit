@@ -86,7 +86,7 @@ const stubbedShirtsOwned = 'TEST SHIRTS OWNED';
 const stubbedYearsSupporting = 'TEST YEARS SUPPORTING';
 
 describe('When on the existing supporter page', () => {
-  describe('and the user calls next', () => {
+  describe('and the user the calls the supporter page next button', () => {
     it('should navigate to /Name and set the correct data into state', () => {
       const action = putExistingSupporterNextAction(stubbedIsExistingSupporter);
       const saga = applicantExistingSupporterNextSaga(action);
@@ -97,7 +97,7 @@ describe('When on the existing supporter page', () => {
     });
   });
 
-  describe('and the user calls back', () => {
+  describe('and the user calls the supporter page back button', () => {
     it('the user is redirected to /Home', () => {
       const action = putExistingSupporterBackAction();
       const saga = applicantExistingSupporterBackSaga(action);
@@ -109,7 +109,7 @@ describe('When on the existing supporter page', () => {
 });
 
 describe('When on the applicant name page', () => {
-  describe('and the user calls next', () => {
+  describe('and the user calls the applicant name next button', () => {
     it('should navigate to /Phone and set the correct data into state', () => {
       const action = putApplicantNameNextAction(stubbedFirstName, stubbedLastName);
       const saga = applicantNameNextSaga(action);
@@ -120,7 +120,7 @@ describe('When on the applicant name page', () => {
     });
   });
 
-  describe('and the user calls back', () => {
+  describe('and the user calls the applicant page back button', () => {
     it('the user is redirected to /ExistingSupporter', () => {
       const action = putApplicantNameBackAction();
       const saga = applicantNameBackSaga(action);
@@ -132,7 +132,7 @@ describe('When on the applicant name page', () => {
 });
 
 describe('When on the applicant phone page', () => {
-  describe('and the user calls next', () => {
+  describe('and the user calls the applicant phone next button', () => {
     it('should navigate to /Email and set the correct data into state', () => {
       const action = putApplicantPhoneNumberNextAction(stubbedOfficeNo, stubbedMobileNo);
       const saga = applicantPhoneNextSaga(action);
@@ -143,7 +143,7 @@ describe('When on the applicant phone page', () => {
     });
   });
 
-  describe('and the user calls back', () => {
+  describe('and the user calls the applicant page back button', () => {
     it('the user is redirected to /Name', () => {
       const action = putApplicantPhoneNumberBackAction();
       const saga = applicantPhoneBackSaga(action);
@@ -155,7 +155,7 @@ describe('When on the applicant phone page', () => {
 });
 
 describe('When on the applicant email page', () => {
-  describe('and the user calls next', () => {
+  describe('and the user calls the email page next button', () => {
     it('should navigate to Experience and set the correct data into state', () => {
       const action = putApplicantEmailNextAction(stubbedEmail);
       const saga = applicantEmailNextSaga(action);
@@ -166,7 +166,7 @@ describe('When on the applicant email page', () => {
     });
   });
 
-  describe('and the user calls back', () => {
+  describe('and the user calls thr email page back button', () => {
     it('the user is redirected to /Phone', () => {
       const action = putApplicantEmailBackAction();
       const saga = applicantEmailBackSaga(action);
@@ -178,7 +178,7 @@ describe('When on the applicant email page', () => {
 });
 
 describe('When on the supporters experience page', () => {
-  describe('and the user calls next', () => {
+  describe('and the user calls the supporters experience page next button', () => {
     it('should set the correct data into state', () => {
       const action = putSupporterExperienceNextAction(stubbedYearsSupporting, stubbedMatchesWatched, stubbedShirtsOwned);
       const saga = supporterExperienceNextSaga(action);
@@ -189,7 +189,7 @@ describe('When on the supporters experience page', () => {
     });
   });
 
-  describe('and the user calls back', () => {
+  describe('and the user calls supporters experience page back button', () => {
     it('the user is redirected to /Email', () => {
       const action = putSupporterExperienceBackAction();
       const saga = supporterExperienceBackSaga(action);

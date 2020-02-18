@@ -20,7 +20,9 @@ import {
 export function validateApplicantFirstName(value) {
   if (value.length === 0) {
     return APPLICANT_FIRST_NAME__INVALID_MSG;
-  } if (value.length > APPLICANT_FIRST_NAME__MAX_LENGTH) {
+  }
+
+  if (value.length > APPLICANT_FIRST_NAME__MAX_LENGTH) {
     return APPLICANT_FIRST_NAME__INVALID_MAX_MSG;
   }
 
@@ -30,7 +32,9 @@ export function validateApplicantFirstName(value) {
 export function validateApplicantLastName(value) {
   if (value.length === 0) {
     return APPLICANT_LAST_NAME__INVALID_MSG;
-  } if (value.length > APPLICANT_LAST_NAME__MAX_LENGTH) {
+  }
+
+  if (value.length > APPLICANT_LAST_NAME__MAX_LENGTH) {
     return APPLICANT_LAST_NAME__INVALID_MAX_MSG;
   }
 

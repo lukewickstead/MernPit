@@ -34,98 +34,98 @@ describe('when mapping enums to display values', () => {
   const lookUpHelper = createGetEnumLookUpHelper();
 
   describe('with MATCHES_WATCHED__OPTION__FOUR_TO_FIVE', () => {
-    it('should return the correct string', () => {
+    it('should return MATCHES_WATCHED__OPTION__FOUR_TO_FIVE__LABEL', () => {
       const result = lookUpHelper(MATCHES_WATCHED__OPTION__FOUR_TO_FIVE);
       expect(result).toEqual(MATCHES_WATCHED__OPTION__FOUR_TO_FIVE__LABEL);
     });
   });
 
   describe('with MATCHES_WATCHED__OPTION__ONE_TO_THREE', () => {
-    it('should return the correct string', () => {
+    it('should return MATCHES_WATCHED__OPTION__ONE_TO_THREE__LABEL', () => {
       const result = lookUpHelper(MATCHES_WATCHED__OPTION__ONE_TO_THREE);
       expect(result).toEqual(MATCHES_WATCHED__OPTION__ONE_TO_THREE__LABEL);
     });
   });
 
   describe('with MATCHES_WATCHED__OPTION__SIX_PLUS', () => {
-    it('should return the correct string', () => {
+    it('should return MATCHES_WATCHED__OPTION__SIX_PLUS__LABEL', () => {
       const result = lookUpHelper(MATCHES_WATCHED__OPTION__SIX_PLUS);
       expect(result).toEqual(MATCHES_WATCHED__OPTION__SIX_PLUS__LABEL);
     });
   });
 
   describe('with MATCHES_WATCHED__OPTION__ZERO', () => {
-    it('should return the correct string', () => {
+    it('should return MATCHES_WATCHED__OPTION__ZERO__LABEL', () => {
       const result = lookUpHelper(MATCHES_WATCHED__OPTION__ZERO);
       expect(result).toEqual(MATCHES_WATCHED__OPTION__ZERO__LABEL);
     });
   });
 
   describe('with SHIRTS_OWNED__OPTION__FOUR_TO_FIVE', () => {
-    it('should return the correct string', () => {
+    it('should return SHIRTS_OWNED__OPTION__FOUR_TO_FIVE__LABEL', () => {
       const result = lookUpHelper(SHIRTS_OWNED__OPTION__FOUR_TO_FIVE);
       expect(result).toEqual(SHIRTS_OWNED__OPTION__FOUR_TO_FIVE__LABEL);
     });
   });
 
   describe('with SHIRTS_OWNED__OPTION__ONE_TO_THREE', () => {
-    it('should return the correct string', () => {
+    it('should return the SHIRTS_OWNED__OPTION__ONE_TO_THREE__LABEL', () => {
       const result = lookUpHelper(SHIRTS_OWNED__OPTION__ONE_TO_THREE);
       expect(result).toEqual(SHIRTS_OWNED__OPTION__ONE_TO_THREE__LABEL);
     });
   });
 
   describe('with SHIRTS_OWNED__OPTION__SIX_PLUS', () => {
-    it('should return the correct string', () => {
+    it('should return SHIRTS_OWNED__OPTION__SIX_PLUS__LABEL', () => {
       const result = lookUpHelper(SHIRTS_OWNED__OPTION__SIX_PLUS);
       expect(result).toEqual(SHIRTS_OWNED__OPTION__SIX_PLUS__LABEL);
     });
   });
 
   describe('with SHIRTS_OWNED__OPTION__ZERO', () => {
-    it('should return the correct string', () => {
+    it('should return SHIRTS_OWNED__OPTION__ZERO__LABEL', () => {
       const result = lookUpHelper(SHIRTS_OWNED__OPTION__ZERO);
       expect(result).toEqual(SHIRTS_OWNED__OPTION__ZERO__LABEL);
     });
   });
 
   describe('with YEARS_SUPPORTING__OPTION__FOUR_TO_FIVE', () => {
-    it('should return the correct string', () => {
+    it('should return YEARS_SUPPORTING__OPTION__FOUR_TO_FIVE__LABEL', () => {
       const result = lookUpHelper(YEARS_SUPPORTING__OPTION__FOUR_TO_FIVE);
       expect(result).toEqual(YEARS_SUPPORTING__OPTION__FOUR_TO_FIVE__LABEL);
     });
   });
 
   describe('with YEARS_SUPPORTING__OPTION__ONE_TO_THREE', () => {
-    it('should return the correct string', () => {
+    it('should return YEARS_SUPPORTING__OPTION__ONE_TO_THREE__LABEL', () => {
       const result = lookUpHelper(YEARS_SUPPORTING__OPTION__ONE_TO_THREE);
       expect(result).toEqual(YEARS_SUPPORTING__OPTION__ONE_TO_THREE__LABEL);
     });
   });
 
   describe('with YEARS_SUPPORTING__OPTION__SIX_PLUS', () => {
-    it('should return the correct string', () => {
+    it('should return YEARS_SUPPORTING__OPTION__SIX_PLUS__LABEL', () => {
       const result = lookUpHelper(YEARS_SUPPORTING__OPTION__SIX_PLUS);
       expect(result).toEqual(YEARS_SUPPORTING__OPTION__SIX_PLUS__LABEL);
     });
   });
 
   describe('with YEARS_SUPPORTING__OPTION__ZERO', () => {
-    it('should return the correct string', () => {
+    it('should return YEARS_SUPPORTING__OPTION__ZERO__LABEL', () => {
       const result = lookUpHelper(YEARS_SUPPORTING__OPTION__ZERO);
       expect(result).toEqual(YEARS_SUPPORTING__OPTION__ZERO__LABEL);
     });
   });
 
   describe('with EXISTING_SUPPORTER__NO', () => {
-    it('should return the correct string', () => {
+    it('should return EXISTING_SUPPORTER__NO__DISPLAY', () => {
       const result = lookUpHelper(EXISTING_SUPPORTER__NO);
       expect(result).toEqual(EXISTING_SUPPORTER__NO__DISPLAY);
     });
   });
 
   describe('with EXISTING_SUPPORTER__YES', () => {
-    it('should return the correct string', () => {
+    it('should return EXISTING_SUPPORTER__YES__DISPLAY', () => {
       const result = lookUpHelper(EXISTING_SUPPORTER__YES);
       expect(result).toEqual(EXISTING_SUPPORTER__YES__DISPLAY);
     });

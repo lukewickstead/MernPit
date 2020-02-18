@@ -61,30 +61,32 @@ describe('when working out the users progress', () => {
 });
 
 describe('when working out classnames', () => {
+  const STUBBED_CLASS_PREFIX = 'test-point';
+
   describe('for text markers', () => {
     describe('where the point is not reached', () => {
-      it('should return the correct classnames', () => {
-        expect(getTextMarkerClassNames('test-point', false)).toEqual('progress-checkpoint-text progress-checkpoint-text-test-point progress-checkpoint-text-unreached');
+      it('should return the classnames `progress-checkpoint-text progress-checkpoint-text-test-point progress-checkpoint-text-unreached`', () => {
+        expect(getTextMarkerClassNames(STUBBED_CLASS_PREFIX, false)).toEqual('progress-checkpoint-text progress-checkpoint-text-test-point progress-checkpoint-text-unreached');
       });
     });
 
     describe('where the point is reached', () => {
-      it('should return the correct classnames', () => {
-        expect(getTextMarkerClassNames('test-point', true)).toEqual('progress-checkpoint-text progress-checkpoint-text-test-point progress-checkpoint-text-reached');
+      it('should return the classnames `progress-checkpoint-text progress-checkpoint-text-test-point progress-checkpoint-text-reached`', () => {
+        expect(getTextMarkerClassNames(STUBBED_CLASS_PREFIX, true)).toEqual('progress-checkpoint-text progress-checkpoint-text-test-point progress-checkpoint-text-reached');
       });
     });
   });
 
   describe('for point markers', () => {
     describe('where the point is not reached', () => {
-      it('should return the correct classnames', () => {
-        expect(getPointMarkerClassNames('test-point', false)).toEqual('progress-checkpoint progress-checkpoint-test-point progress-checkpoint-unreached');
+      it('should return the classnames `progress-checkpoint progress-checkpoint-test-point progress-checkpoint-unreached`', () => {
+        expect(getPointMarkerClassNames(STUBBED_CLASS_PREFIX, false)).toEqual('progress-checkpoint progress-checkpoint-test-point progress-checkpoint-unreached');
       });
     });
 
     describe('where the point is reached', () => {
-      it('should return the correct classnames', () => {
-        expect(getPointMarkerClassNames('test-point', true)).toEqual('progress-checkpoint progress-checkpoint-test-point progress-checkpoint-reached progress-tick');
+      it('should return the classnames `progress-checkpoint progress-checkpoint-test-point progress-checkpoint-reached progress-tick`', () => {
+        expect(getPointMarkerClassNames(STUBBED_CLASS_PREFIX, true)).toEqual('progress-checkpoint progress-checkpoint-test-point progress-checkpoint-reached progress-tick');
       });
     });
   });

@@ -10,8 +10,15 @@ import {
 
 jest.mock('@sendgrid/mail');
 
-const SENDGRID_API_KEY = 'TEST_SENDGRID_API_KEY';
-const SENDGRID_FROM_EMAIL_ADDRESS = 'TEST_SENDGRID_FROM_EMAIL_ADDRESS';
+const SENDGRID_API_KEY = 'SENDGRID_API_KEY';
+const SENDGRID_FROM_EMAIL_ADDRESS = 'SENDGRID_FROM_EMAIL_ADDRESS';
+const STUBBED_EMAIL_ATTACHMENTS = 'STUBBED_EMAIL_ATTACHMENTS';
+const STUBBED_EMAIL_ATTACHMENT_BUFFER = Buffer.from('XXX');
+const STUBBED_EMAIL_ATTACHMENT_FILE_NAME = 'STUBBED_EMAIL_ATTACHMENT_FILE_NAME';
+const STUBBED_EMAIL_HTML = 'STUBBED_EMAIL_HTML';
+const STUBBED_EMAIL_SUBJECT = 'STUBBED_EMAIL_SUBJECT';
+const STUBBED_EMAIL_TO_ADDRESS = 'STUBBED_EMAIL_TO_ADDRESS';
+const STUBBED_ERROR = 'STUBBED_ERROR';
 
 beforeEach(() => {
   process.env = {
@@ -31,23 +38,17 @@ afterEach(() => {
 });
 
 describe('when calling sendEmailWithPdf', () => {
-  const stubbedSubject = 'TEST SUBJECT';
-  const stubbedEmailHtml = 'TEST EMAIL HTML';
-  const stubbedToAddress = 'TEST TO ADDESS';
-  const stubbedAttachmentFileName = 'TEST ATTACHMENT FILE NAME';
-  const stubbedAttachmentBuffer = Buffer.from('XXX');
-
   const expectedEmailDetails = {
-    to: stubbedToAddress,
+    to: STUBBED_EMAIL_TO_ADDRESS,
     from: SENDGRID_FROM_EMAIL_ADDRESS,
-    subject: stubbedSubject,
-    html: stubbedEmailHtml,
+    subject: STUBBED_EMAIL_SUBJECT,
+    html: STUBBED_EMAIL_HTML,
     attachments: [
       {
         type: 'application/pdf',
         disposition: 'attachment',
-        content: stubbedAttachmentBuffer.toString('base64'),
-        filename: stubbedAttachmentFileName,
+        content: STUBBED_EMAIL_ATTACHMENT_BUFFER.toString('base64'),
+        filename: STUBBED_EMAIL_ATTACHMENT_FILE_NAME,
       },
     ],
   };
@@ -57,7 +58,14 @@ describe('when calling sendEmailWithPdf', () => {
     const logger = mockLogger();
 
     // Act
-    await sendEmailWithPdf(stubbedSubject, stubbedEmailHtml, stubbedToAddress, stubbedAttachmentFileName, stubbedAttachmentBuffer, logger);
+    await sendEmailWithPdf(
+      STUBBED_EMAIL_SUBJECT,
+      STUBBED_EMAIL_HTML,
+      STUBBED_EMAIL_TO_ADDRESS,
+      STUBBED_EMAIL_ATTACHMENT_FILE_NAME,
+      STUBBED_EMAIL_ATTACHMENT_BUFFER,
+      logger,
+    );
 
     // Assert
     expect(sgMail.setApiKey).toHaveBeenCalledTimes(1);
@@ -67,23 +75,23 @@ describe('when calling sendEmailWithPdf', () => {
     expect(sgMail.send).toHaveBeenNthCalledWith(1, expectedEmailDetails);
 
     expect(logger.info).toHaveBeenCalledTimes(2);
-    expect(logger.info).toHaveBeenNthCalledWith(1, `Sending Email: ${stubbedSubject}`);
-    expect(logger.info).toHaveBeenNthCalledWith(2, `Sent Email: ${stubbedSubject}`);
+    expect(logger.info).toHaveBeenNthCalledWith(1, `Sending Email: ${STUBBED_EMAIL_SUBJECT}`);
+    expect(logger.info).toHaveBeenNthCalledWith(2, `Sent Email: ${STUBBED_EMAIL_SUBJECT}`);
   });
 
   describe('and an error occurs sending the email', () => {
     it('the error should be logged', async () => {
       // Assign
       const logger = mockLogger();
-      sgMail.send.mockImplementation(() => Promise.reject(new Error('TEST ERROR')));
+      sgMail.send.mockImplementation(() => Promise.reject(new Error(STUBBED_ERROR)));
 
       // Act
       await expect(sendEmailWithPdf(
-        stubbedSubject,
-        stubbedEmailHtml,
-        stubbedToAddress,
-        stubbedAttachmentFileName,
-        stubbedAttachmentBuffer,
+        STUBBED_EMAIL_SUBJECT,
+        STUBBED_EMAIL_HTML,
+        STUBBED_EMAIL_TO_ADDRESS,
+        STUBBED_EMAIL_ATTACHMENT_FILE_NAME,
+        STUBBED_EMAIL_ATTACHMENT_BUFFER,
         logger,
       )).rejects.toThrow(/TEST ERROR/);
 
@@ -95,10 +103,10 @@ describe('when calling sendEmailWithPdf', () => {
       expect(sgMail.send).toHaveBeenNthCalledWith(1, expectedEmailDetails);
 
       expect(logger.info).toHaveBeenCalledTimes(1);
-      expect(logger.info).toHaveBeenNthCalledWith(1, `Sending Email: ${stubbedSubject}`);
+      expect(logger.info).toHaveBeenNthCalledWith(1, `Sending Email: ${STUBBED_EMAIL_SUBJECT}`);
 
       expect(logger.error).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenNthCalledWith(1, `Error sending ${stubbedSubject} email with send grid. Error: TEST ERROR`);
+      expect(logger.error).toHaveBeenNthCalledWith(1, `Error sending ${STUBBED_EMAIL_SUBJECT} email with send grid. Error: TEST ERROR`);
     });
   });
 });
@@ -106,17 +114,15 @@ describe('when calling sendEmailWithPdf', () => {
 describe('when calling createPdfAttachment', () => {
   it('can create an attachment record', () => {
     // Assign
-    const stubbedAttachmentBuffer = Buffer.from('XXX');
-    const stubbedFileName = 'TEST FILE NAME';
     const expectedResult = {
       type: 'application/pdf',
       disposition: 'attachment',
-      content: stubbedAttachmentBuffer.toString('base64'),
-      filename: stubbedFileName,
+      content: STUBBED_EMAIL_ATTACHMENT_BUFFER.toString('base64'),
+      filename: STUBBED_EMAIL_ATTACHMENT_FILE_NAME,
     };
 
     // Act
-    const result = createPdfAttachment(stubbedAttachmentBuffer, stubbedFileName);
+    const result = createPdfAttachment(STUBBED_EMAIL_ATTACHMENT_BUFFER, STUBBED_EMAIL_ATTACHMENT_FILE_NAME);
     expect(result).toEqual(expectedResult);
   });
 });
@@ -124,17 +130,15 @@ describe('when calling createPdfAttachment', () => {
 describe('when calling createAttachment', () => {
   it('can create an attachment record', () => {
     // Assign
-    const stubbedAttachmentBuffer = Buffer.from('XXX');
-    const stubbedFileName = 'TEST FILE NAME';
     const expectedResult = {
       type: 'application/foo',
       disposition: 'attachment',
-      content: stubbedAttachmentBuffer.toString('base64'),
-      filename: stubbedFileName,
+      content: STUBBED_EMAIL_ATTACHMENT_BUFFER.toString('base64'),
+      filename: STUBBED_EMAIL_ATTACHMENT_FILE_NAME,
     };
 
     // Act
-    const result = createAttachment(stubbedAttachmentBuffer, stubbedFileName, expectedResult.type);
+    const result = createAttachment(STUBBED_EMAIL_ATTACHMENT_BUFFER, STUBBED_EMAIL_ATTACHMENT_FILE_NAME, expectedResult.type);
 
     // Assert
     expect(result).toEqual(expectedResult);
@@ -146,21 +150,16 @@ describe('when calling sendEmailWithAttachments', () => {
     // Assign
     const logger = mockLogger();
 
-    const stubbedSubject = 'TEST SUBJECT';
-    const stubbedEmailHtml = 'TEST EMAIL HTML';
-    const stubbedToAddress = 'TEST TO ADDESS';
-    const stubbedAttachments = 'TEST ATTACHMENTS';
-
     const expectedEmailDetails = {
-      to: stubbedToAddress,
+      to: STUBBED_EMAIL_TO_ADDRESS,
       from: SENDGRID_FROM_EMAIL_ADDRESS,
-      subject: stubbedSubject,
-      html: stubbedEmailHtml,
-      attachments: stubbedAttachments,
+      subject: STUBBED_EMAIL_SUBJECT,
+      html: STUBBED_EMAIL_HTML,
+      attachments: STUBBED_EMAIL_ATTACHMENTS,
     };
 
     // Act
-    await sendEmailWithAttachments(stubbedSubject, stubbedEmailHtml, stubbedToAddress, logger, stubbedAttachments);
+    await sendEmailWithAttachments(STUBBED_EMAIL_SUBJECT, STUBBED_EMAIL_HTML, STUBBED_EMAIL_TO_ADDRESS, logger, STUBBED_EMAIL_ATTACHMENTS);
 
     // Assert
     expect(sgMail.setApiKey).toHaveBeenCalledTimes(1);
@@ -170,8 +169,8 @@ describe('when calling sendEmailWithAttachments', () => {
     expect(sgMail.send).toHaveBeenNthCalledWith(1, expectedEmailDetails);
 
     expect(logger.info).toHaveBeenCalledTimes(2);
-    expect(logger.info).toHaveBeenNthCalledWith(1, `Sending Email: ${stubbedSubject}`);
-    expect(logger.info).toHaveBeenNthCalledWith(2, `Sent Email: ${stubbedSubject}`);
+    expect(logger.info).toHaveBeenNthCalledWith(1, `Sending Email: ${STUBBED_EMAIL_SUBJECT}`);
+    expect(logger.info).toHaveBeenNthCalledWith(2, `Sent Email: ${STUBBED_EMAIL_SUBJECT}`);
   });
 
   describe('and an error occurs sending the email', () => {
@@ -179,29 +178,24 @@ describe('when calling sendEmailWithAttachments', () => {
       // Assign
       const logger = mockLogger();
 
-      const stubbedAttachments = 'TEST ATTACHMENTS';
-      const stubbedSubject = 'TEST SUBJECT';
-      const stubbedEmailHtml = 'TEST EMAIL HTML';
-      const stubbedToAddress = 'TEST TO ADDESS';
-
       const expectedEmailDetails = {
-        to: stubbedToAddress,
+        to: STUBBED_EMAIL_TO_ADDRESS,
         from: SENDGRID_FROM_EMAIL_ADDRESS,
-        subject: stubbedSubject,
-        html: stubbedEmailHtml,
-        attachments: stubbedAttachments,
+        subject: STUBBED_EMAIL_SUBJECT,
+        html: STUBBED_EMAIL_HTML,
+        attachments: STUBBED_EMAIL_ATTACHMENTS,
       };
 
-      sgMail.send.mockImplementation(() => Promise.reject(new Error('TEST ERROR')));
+      sgMail.send.mockImplementation(() => Promise.reject(new Error(STUBBED_ERROR)));
 
       // Act
       await expect(sendEmailWithAttachments(
-        stubbedSubject,
-        stubbedEmailHtml,
-        stubbedToAddress,
+        STUBBED_EMAIL_SUBJECT,
+        STUBBED_EMAIL_HTML,
+        STUBBED_EMAIL_TO_ADDRESS,
         logger,
-        stubbedAttachments,
-      )).rejects.toThrow(new Error('TEST ERROR'));
+        STUBBED_EMAIL_ATTACHMENTS,
+      )).rejects.toThrow(new Error(STUBBED_ERROR));
 
       // Assert
       expect(sgMail.setApiKey).toHaveBeenCalledTimes(1);
@@ -211,10 +205,10 @@ describe('when calling sendEmailWithAttachments', () => {
       expect(sgMail.send).toHaveBeenNthCalledWith(1, expectedEmailDetails);
 
       expect(logger.info).toHaveBeenCalledTimes(1);
-      expect(logger.info).toHaveBeenNthCalledWith(1, `Sending Email: ${stubbedSubject}`);
+      expect(logger.info).toHaveBeenNthCalledWith(1, `Sending Email: ${STUBBED_EMAIL_SUBJECT}`);
 
       expect(logger.error).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenNthCalledWith(1, `Error sending ${stubbedSubject} email with send grid. Error: TEST ERROR`);
+      expect(logger.error).toHaveBeenNthCalledWith(1, `Error sending ${STUBBED_EMAIL_SUBJECT} email with send grid. Error: ${STUBBED_ERROR}`);
     });
   });
 });

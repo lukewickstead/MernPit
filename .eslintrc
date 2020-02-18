@@ -2,7 +2,9 @@
     "extends": [
        "airbnb",
        "plugin:jest/recommended",
-       "plugin:jest/style"
+       "plugin:jest/style",
+       "plugin:promise/recommended",
+       "plugin:sonarjs/recommended"
     ],
     "env": {
       "es6": true,
@@ -12,7 +14,7 @@
       "jest/globals": true
     },
     "parser": "babel-eslint",
-    "plugins": [ "jest"],
+    "plugins": ["jest", "promise", "sonarjs"],
     "rules": {
       "import/prefer-default-export": 0,
       "linebreak-style": 0,
