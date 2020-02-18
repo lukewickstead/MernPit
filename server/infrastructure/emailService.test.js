@@ -93,7 +93,7 @@ describe('when calling sendEmailWithPdf', () => {
         STUBBED_EMAIL_ATTACHMENT_FILE_NAME,
         STUBBED_EMAIL_ATTACHMENT_BUFFER,
         logger,
-      )).rejects.toThrow(/TEST ERROR/);
+      )).rejects.toThrow(/STUBBED_ERROR/);
 
       // Assert
       expect(sgMail.setApiKey).toHaveBeenCalledTimes(1);
@@ -106,7 +106,7 @@ describe('when calling sendEmailWithPdf', () => {
       expect(logger.info).toHaveBeenNthCalledWith(1, `Sending Email: ${STUBBED_EMAIL_SUBJECT}`);
 
       expect(logger.error).toHaveBeenCalledTimes(1);
-      expect(logger.error).toHaveBeenNthCalledWith(1, `Error sending ${STUBBED_EMAIL_SUBJECT} email with send grid. Error: TEST ERROR`);
+      expect(logger.error).toHaveBeenNthCalledWith(1, `Error sending ${STUBBED_EMAIL_SUBJECT} email with send grid. Error: ${STUBBED_ERROR}`);
     });
   });
 });

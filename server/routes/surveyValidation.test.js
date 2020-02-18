@@ -140,7 +140,7 @@ describe('when validating applicantSchemaValidation', () => {
       lastName: '1'.repeat(35),
       mobilePhoneNumber: '07878787800',
       officePhoneNumber: '07000000000',
-      email: 'fooooooooooooo@fooooooooooooooooooo.c.ukm',
+      email: 'fooooooooooooo@fooooooooooo.co.uk',
       isExistingSupporter: EXISTING_SUPPORTER__NO,
       matchesWatched: MATCHES_WATCHED__OPTION__SIX_PLUS,
       shirtsOwned: SHIRTS_OWNED__OPTION__SIX_PLUS,
