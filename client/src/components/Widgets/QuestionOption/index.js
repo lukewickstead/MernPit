@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ValidationMessage from './ValidationMessage';
-import TooltipQuestionHeading from './TooltipQuestionHeading';
-import { TOOLTIP_CONFIG_PROP_TYPE, QUESTIONS_CONFIG_PROP_TYPE } from '../../helpers/propTypeHelper';
+import ValidationMessage from '../ValidationMessage';
+import TooltipQuestionHeading from '../TooltipQuestionHeading';
+import { TOOLTIP_CONFIG_PROP_TYPE, QUESTIONS_CONFIG_PROP_TYPE } from '../../../helpers/propTypeHelper';
 
 /**
  * Question and option input with contectual validation.

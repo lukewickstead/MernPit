@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TooltipQuestionHeading from './TooltipQuestionHeading';
-import { TOOLTIP_CONFIG_PROP_TYPE } from '../../helpers/propTypeHelper';
-import ValidationContainer from './ValidationContainer';
+import TooltipQuestionHeading from '../TooltipQuestionHeading';
+import { TOOLTIP_CONFIG_PROP_TYPE } from '../../../helpers/propTypeHelper';
+import ValidationContainer from '../ValidationContainer';
 
 /**
  * Question and input as a free text field.

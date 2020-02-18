@@ -6,9 +6,9 @@ import {
   TOOL_TIP__NEWLINE,
   TOOL_TIP__NEWLINE_SINGLE,
   TOOL_TIP__TEXT,
-} from '../../constants/common';
+} from '../../../constants/common';
 
-import { TOOLTIP_CONFIG_PROP_TYPE } from '../../helpers/propTypeHelper';
+import { TOOLTIP_CONFIG_PROP_TYPE } from '../../../helpers/propTypeHelper';
 
 class TooltipQuestionHeading extends React.Component {
   constructor(props) {

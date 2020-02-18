@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import QuestionText from './QuestionText';
-import QuestionNumber from './QuestionNumber';
-import QuestionOptionSelect from './QuestionOptionSelect';
+import QuestionText from '../QuestionText';
+import QuestionNumber from '../QuestionNumber';
+import QuestionOptionSelect from '../QuestionOptionSelect';
 
-import { FIELD_TYPE_PROP_TYPE, QUESTIONS_CONFIG_PROP_TYPE } from '../../helpers/propTypeHelper';
+import { FIELD_TYPE_PROP_TYPE, QUESTIONS_CONFIG_PROP_TYPE } from '../../../helpers/propTypeHelper';
 
 import {
   FIELD_TYPE__NUMBER,
   FIELD_TYPE__OPTION,
   FIELD_TYPE__TEXT,
-} from '../../constants/common';
+} from '../../../constants/common';
 
 /**
  * Summary page field; readonly and editable states for each required field type

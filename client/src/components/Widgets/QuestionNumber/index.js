@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import QuestionText from './QuestionText';
-import { isNumber } from '../../../../common/numberHelper';
-import { NUMBER_OR_STRING_PROP_TYPE, TOOLTIP_CONFIG_PROP_TYPE } from '../../helpers/propTypeHelper';
+import QuestionText from '../QuestionText';
+import { isNumber } from '../../../../../common/numberHelper';
+import { NUMBER_OR_STRING_PROP_TYPE, TOOLTIP_CONFIG_PROP_TYPE } from '../../../helpers/propTypeHelper';
 
 function ensureOnlyNumberEvent(event, handleInputChange) {
   if (isNumber(event.target.value)) {

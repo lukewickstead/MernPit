@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import DisableScreen from './DisableScreen';
+import DisableScreen from '../DisableScreen';
 
 /**
  * Provides a loading spinner and optionally disabling the screen
