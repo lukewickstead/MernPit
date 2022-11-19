@@ -85,7 +85,7 @@
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
-    "react-styleguidist": "^10.6.2",
+    "react-styleguidist": "^13.0.0",
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",
     "sinon": "^8.1.1",
@@ -94,7 +94,7 @@
     "stylelint-config-sass-guidelines": "^7.0.0",
     "stylelint-order": "^4.0.0",
     "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11",
+    "webpack-cli": "^3.3.12",
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
