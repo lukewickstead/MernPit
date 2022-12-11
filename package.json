@@ -106,7 +106,7 @@
     "connected-react-router": "^6.7.0",
     "core-js": "^3.6.4",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-handlebars": "^3.1.0",
     "fibers": "^4.0.2",
     "helmet": "^3.21.2",
